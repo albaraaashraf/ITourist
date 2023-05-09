@@ -1,0 +1,71 @@
+.get-in-touch {
+  max-width: 800px;
+  margin: 50px auto;
+  position: relative;
+}
+
+.contact-form .form-field {
+  position: relative;
+  margin: 32px 0;
+}
+.contact-form .input-text {
+  display: block;
+  width: 100%;
+  height: 36px;
+  border-width: 0 0 2px 0;
+  border-color: #5543ca;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+
+  padding: 0px 1rem;
+}
+
+.contact-form .input-text:focus {
+  outline: none;
+}
+.contact-form .input-text + .label,
+.contact-form .input-text.not-empty + .label {
+  -webkit-transform: translateY(-24px);
+  transform: translateY(-24px);
+}
+.contact-form .label,
+.bio-label {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #5543ca;
+  cursor: none;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+.contact-form .label {
+  position: absolute;
+  left: 20px;
+  bottom: 11px;
+}
+.bio-label {
+  padding: 0rem 0rem 1rem 1rem;
+}
+
+.contact-form .submit-btn {
+  display: inline-block;
+  background-color: var(--main_color);
+
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 16px;
+  padding: 8px 16px;
+  border: none;
+  width: 200px;
+  cursor: pointer;
+  border-radius: 18px;
+}
+
+#message {
+  resize: none;
+  min-height: 10rem;
+}

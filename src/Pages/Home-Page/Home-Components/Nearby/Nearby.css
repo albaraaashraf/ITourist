@@ -1,0 +1,31 @@
+img{
+    width: 100%;
+}
+.nearby__card{
+    background-color: #dafffb; 
+    width: 20rem;
+    margin: 0.5rem;
+    
+
+}
+.nearbyCard__top{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+border: 1px solid #072c3d;
+padding: 1rem;
+color: #072c3d;
+font-size: 1rem;
+font-weight:normal;
+}
+
+
+
+.nearbyData{
+    display: flex;
+    margin-top:1rem;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+

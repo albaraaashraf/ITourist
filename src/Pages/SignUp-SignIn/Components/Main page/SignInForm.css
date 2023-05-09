@@ -1,0 +1,69 @@
+.sign-in-container {
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 1.5rem 0;
+}
+::placeholder {
+  color: white;
+  font-size: 16px;
+}
+.sign-in-container::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+}
+.sign-in-container > h2 {
+  border-bottom: 1px solid white;
+  width: 90%;
+  text-align: center;
+  padding: 15px 0px;
+}
+.input-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  width: 100%;
+  padding: 5px;
+}
+.font-awesome {
+  margin: 0px 10px;
+  font-size: 150%;
+}
+.btn-sign-in {
+  padding: 10px 30px;
+}
+.btn {
+  background-color: #d8f1fd;
+  color: #333;
+  transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: #7ba9b7;
+  color: #333;
+}
+.sign-in-container > button {
+  margin: 10px 0px;
+}
+.brands-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  border-top: 1px solid white;
+}
+.brand-icon {
+  padding: 0px;
+  font-size: 20px;
+  margin: 0px 9px;
+}

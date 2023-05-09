@@ -1,0 +1,203 @@
+:root {
+  --input_color: #f2f3f2;
+  --placeholder_color: #989999;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.788);
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 5rem;
+}
+
+form.req-proposal {
+  position: relative;
+
+  width: 66%;
+  height: 80%;
+
+  padding: 2rem;
+
+  border-radius: 2rem;
+
+  background-color: #fefffe;
+}
+
+.close-btn {
+  color: #c491dd;
+
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+form.req-proposal h2 {
+  color: rgba(0, 0, 0, 0.822);
+  text-transform: capitalize;
+}
+
+.location,
+input.input-style {
+  margin: 0.5rem;
+  border-radius: 4px;
+  border: 3px solid #e4e0e0;
+  background-color: var(--input_color);
+  overflow: hidden;
+  width: 100%;
+}
+
+input.input-style::placeholder {
+  color: var(--placeholder_color);
+}
+
+.loaction-icon {
+  color: #fb5657;
+  font-size: 1.5rem;
+}
+
+.city-image {
+  width: 13rem;
+  height: 10rem;
+}
+
+.city-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+#dataOfArrivel {
+  position: relative;
+  border: none;
+  /* width: 59%; */
+}
+#dataOfArrivel::after {
+  content: "Date Of Arrivel";
+  position: absolute;
+  background-color: var(--input_color);
+  width: 80%;
+  color: var(--placeholder_color);
+  padding-left: 0.5rem;
+}
+
+#dataOfArrivel:hover::after {
+  display: none;
+}
+
+.input-info-container {
+  display: flex;
+
+  align-items: center;
+  background-color: var(--input_color);
+  width: 100%;
+}
+
+#Preferences input.input-style {
+  width: 70%;
+}
+
+.input-info-container input {
+  border: none;
+}
+.input-info-container .select-style {
+  border-left: 1px solid #b3b3b2;
+  padding-left: 5px;
+}
+
+.select-style {
+  width: 5rem;
+  font-size: 1.5rem;
+  border-radius: 0px 3px 3px 0;
+  border: none;
+  background-color: transparent;
+}
+
+.gender-btn {
+  border-radius: 5px;
+  border: 1px solid var(--input_color);
+}
+.gender-btn.male {
+  color: #5e51f3;
+}
+.gender-btn.female {
+  color: #d21af1;
+}
+
+.submit-btn {
+  background-color: #a13acf;
+  color: var(--input_color);
+  border: 1px solid #a03acf8f;
+  width: 50%;
+  padding: 0.5rem;
+  border-radius: 4px 10px 4px 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .input-info-container {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 425px) {
+  form.req-proposal {
+    width: 100%;
+  }
+
+  form.req-proposal h2 {
+    font-size: 1rem;
+    font-weight: bolder;
+  }
+
+  .close-btn {
+    font-size: 1.8rem;
+  }
+
+  .location,
+  input.input-style {
+    margin: 0.2rem;
+    border-radius: 1px;
+    width: 100%;
+    height: 1.6rem;
+  }
+
+  .location span {
+    font-size: 0.8rem;
+  }
+
+  input.input-style {
+    font-size: 0.8rem;
+  }
+
+  input.input-style::placeholder {
+    font-size: 0.8rem;
+  }
+
+  .city-image {
+    width: 5rem;
+    height: 4rem;
+  }
+
+  .input-info-container {
+    width: 100%;
+    margin-left: 0.2rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .submit-btn {
+    width: 70%;
+  }
+}

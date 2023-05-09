@@ -1,0 +1,29 @@
+.label {
+  font-size: 1.4rem;
+  color: #4e1a73;
+}
+
+.bio-style {
+  background-color: var(--btn_color);
+}
+
+.img-container {
+  background-color: var(--btn_color);
+}
+
+.skill-style {
+  background-color: #cfcfcf;
+  width: 50%;
+}
+
+/* very small screens */
+
+@media (max-width: 320px) {
+  .label {
+    font-size: 1.2rem;
+  }
+
+  .data-sm-screen {
+    font-size: smaller;
+  }
+}

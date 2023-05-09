@@ -1,0 +1,19 @@
+{
+  "users_dataBase": [
+    {
+      "id": "1",
+      "User Name": "Albaraa Ashraf",
+      "Full Name": "Albaraa Ashraf zaghloul Elhalafawi",
+      "followers": "2M",
+      "following": "800K",
+      "trips": "1K",
+      "Born": "28-7-2001",
+      "Gender": "Male",
+      "Email": "albaraa.elhalafawi@gmail.com",
+      "Phone": "01092229777",
+      "Bio": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi id cumque consequatur asperiores necessitatibus excepturi quaerat aut ullam eaque, atque eligendi facilis reprehenderit mollitia itaque. Eaque distinctio debitis eius.",
+      "Skills": ["Html", "Css", "Java script"],
+      "Photo": []
+    }
+  ]
+}

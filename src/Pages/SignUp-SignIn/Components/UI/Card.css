@@ -1,0 +1,10 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgb(66, 66, 66, 0.6);
+  width: 80%;
+  margin: 1rem auto;
+  padding: 0.9rem 0.4rem;
+  border-radius: 0.7rem;
+}
