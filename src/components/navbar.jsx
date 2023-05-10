@@ -6,13 +6,12 @@ import { useUser } from "../Context/UserContext";
 function Navbar() {
   let navStyle = {
     backgroundColor: "#EEE",
+    marginBottom: "0",
   };
 
   const { signedUp } = useUser();
   const { theUser } = useUser();
-  // useEffect(() => {
-  //   console.log(signedUp);
-  // }, [signedUp]);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light" style={navStyle}>
