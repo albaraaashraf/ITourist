@@ -7,6 +7,7 @@ function Navbar() {
   let navStyle = {
     backgroundColor: "#EEE",
     marginBottom: "0",
+    marginLeft: "0",
   };
 
   const { signedUp } = useUser();
