@@ -1,4 +1,5 @@
-const cards__Popular=[{
+
+const cards__nearbySldier=[{
     id:'1',
     src:'/assets/images/Popular__images/1.jpg',
     city:"Austria",
@@ -52,5 +53,5 @@ const cards__Popular=[{
 
 }]
 
-  export default cards__Popular;
+  export default cards__nearbySldier;
 

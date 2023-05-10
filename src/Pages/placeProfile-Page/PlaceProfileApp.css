@@ -1,0 +1,23 @@
+#page__container{
+    background-color: #ECF6F9;
+    padding: 0.1rem;
+}
+#first__part{
+    margin: 1rem;
+display: flex;
+justify-content: space-around;
+margin-top: 8rem;
+}
+#second__part{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+@media (max-width:900px) {
+    #first__part{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+#third__part{
+    margin: 2rem 0rem 2rem 0rem;
+}

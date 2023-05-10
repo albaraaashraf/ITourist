@@ -1,0 +1,14 @@
+#overAll__container{
+    display: flex;
+}
+#leftSide__container{
+    width: 20%;
+    /* background-color: #e7f7ff; */
+}
+#rightSide__container{
+    width: 100%;
+    margin-left: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}

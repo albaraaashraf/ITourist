@@ -1,55 +1,72 @@
-.overAll__container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.home__container {
-  background-color: #ecf6f9;
-  height: 35rem;
-  padding: 0.5rem;
-}
-.secondPage__container {
-  background-color: #fff;
-  height: 25rem;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3rem;
-  padding: 0.5rem;
-}
-.thirdPage__container {
-  background-color: #ecf6f9;
-  margin-top: 2rem;
-  padding: 0.5rem;
-}
-
-.fourthPage__container {
-  background-color: #fff;
-  margin-top: 2rem;
-  padding-bottom: 3rem;
-}
-
-.footer__container {
-  background-color: #ecf6f9;
-}
-
-.slick-list {
-  margin: 0 -5px !important;
-}
-.slick-slide > div {
-  padding: 0 10px;
-}
-
-.slick-next,
-.slick-prev {
-  top: 15% !important;
-}
-
-.slick-prev:before {
-  color: #597a76 !important;
-  background-color: transparent;
-}
-.slick-next:before {
-  color: #597a76 !important;
-  background-color: transparent;
-}
+*{
+  margin: 0;
+  padding: 0;
+  }
+  .home__container{
+    background-color: #ECF6F9;
+    height: 35rem;
+    padding: 0.5rem;
+  
+  }
+  .secondPage__container{
+    background-color: #FFF;
+    height: 25rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    padding: 0.5rem;
+  
+  }
+  .thirdPage__container{
+    background-color: #ECF6F9;
+    margin-top: 2rem;
+    padding: 0.5rem;
+  
+    /* height: 40rem; */
+    /* display: flex;
+    justify-content: flex-start;
+    flex-direction: column; */
+  }
+  
+  .fourthPage__container{
+    background-color: #FFF;
+    margin-top: 2rem;
+    padding-bottom: 3rem;
+  }
+  
+  .footer__container{
+    background-color: #ECF6F9;
+  }
+  
+  /* .thirdPage__container p{
+    margin-bottom: 2rem;
+    color:#597A76;
+    font-weight: bold;
+    font-size: 24px;
+  
+  
+  } */
+  
+  
+  .slick-list {
+    margin: 0 -5px!important;
+  }
+  .slick-slide>div {
+    padding: 0 10px;
+  }
+  
+  .slick-next, .slick-prev{
+    top:15% !important;
+  }
+  
+  
+  .slick-prev:before {
+    color: #597A76 !important;
+    background-color: transparent;
+  }
+  .slick-next:before {
+    color: #597A76 !important;
+    background-color: transparent;
+  }
+  
+  

@@ -5,7 +5,7 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
-
+import { useState } from "react";
 // Layouts
 import RootLayout from "./Pages/LayOut/rootLayout";
 import NotFound from "./Pages/Not Found/NotFound";
@@ -13,6 +13,9 @@ import Edit from "./Pages/Profile/Edit";
 
 //Components
 import Home from "./Pages/Home-Page/Home";
+import PlaceProfileApp from "./Pages/placeProfile-Page/PorfilePlaceApp"
+import PlacesApp from "./Pages/Places-Page/PlacesApp";
+
 
 // profile
 import Profile from "./Pages/Profile/Profile.jsx";
@@ -40,11 +43,20 @@ import {
 import { library } from "@fortawesome/fontawesome-svg-core";
 import RequestTourGuide from "./Pages/Places/Request Tour Guide/RequestTourGuide";
 
+
+
+//context 
+
+import CityContext from "./Context/CityContext";
+import CityDataContext from "./Context/CityDataContext";
+
 library.add(faEnvelope, faLock, faUser, faCalendar);
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
+      <Route path="Places" element={<PlacesApp />} />
+      <Route path="/Places/Profile" element={<PlaceProfileApp/>} />
       {/* profile root components */}
       <Route path="Profile" element={<Profile />}>
         <Route path="Info" element={<Info />} />
@@ -76,9 +88,16 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  const [lon, setLon] = useState();
+  const [lat, setLat] = useState();
+  const [cardData, setCardData] = useState();
   return (
     <>
-      <RouterProvider router={router} />
+      <CityDataContext.Provider value={{ cardData, setCardData }}>
+        <CityContext.Provider value={{ lon, setLon, lat, setLat }}>
+          <RouterProvider router={router} />
+        </CityContext.Provider>
+      </CityDataContext.Provider>
     </>
   );
 }

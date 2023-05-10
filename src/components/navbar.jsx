@@ -29,7 +29,7 @@ function Navbar() {
               className="mx-1"
               style={{ width: "3rem" }}
             ></img>
-            <span>itourist</span>
+            <span>iTourist</span>
           </NavLink>
           <button
             className="navbar-toggler"

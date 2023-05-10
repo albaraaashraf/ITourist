@@ -1,0 +1,103 @@
+/* html {
+    scroll-behavior: smooth;
+  } */
+  .active{
+    color: #072c3d61;
+  }
+#card__container{
+    background-color: #e7f7ff;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+#card__container img{
+    border-radius: 10px;
+    margin: 1rem;
+    width: 75%;
+    height: 10rem;
+}
+#card__leftCol{
+    display: flex;
+    width: 100%;
+}
+.star__container{
+    padding: 2rem;
+}
+.rightCol{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;}
+.imageInfo{
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+.imageInfo p {
+    color: #072c3d;
+}
+#cardHeader{
+    font-size: 17px;
+    font-weight: bold;
+    padding: 2rem;
+    max-width: 16rem;
+}
+#card__par{
+    display: flex;
+    align-items: center;
+}
+#card__par p {
+margin-left: 0.3rem;    
+}
+.card__like{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.faLike{
+    margin: 0.5rem;
+    color:#072c3d
+}
+.faLike:hover{
+    color: #072c3dd3;
+    cursor: pointer;
+}
+@media (max-width:920px) {
+#card__container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 0.5rem;
+    margin-left: 0px;
+}
+#leftSide__container{
+    width: 30%;
+}
+}
+#nextPrev__container{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+.placePageButton{
+    width: 5rem;
+    padding: 0.3rem 1rem;
+    text-align: center;
+    scroll-behavior: smooth;
+}
+.labelPages{
+    display: flex;
+    gap: 3rem;
+    color:#072c3d;
+    font-family: cursive;
+}
+.labelPages p:hover{
+    cursor: pointer;
+}

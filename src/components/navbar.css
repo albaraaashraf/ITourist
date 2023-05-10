@@ -1,0 +1,173 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.registerButton{
+	background-color: inherit;
+	border: 1px solid white;
+	color: white;
+	transition: 0.7s ease;
+	margin: 0 0.5rem;
+	border-radius: 2rem;
+	width: 5rem;
+	height: 2rem;
+
+}
+.regMobile{
+	display: none;
+}
+.registerButton:hover{
+	cursor: pointer;
+	background-color: white;
+	color: dodgerblue;
+	transition: 0.1s ease-in;
+}
+.nav-branding img{
+	width: 3rem;
+	height: 3rem;
+}
+.nav-branding a{
+	margin-left: 0.5rem;
+	font-weight: 700;
+	font-size:1.1rem ;
+	font-family: cursive;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+li{
+	list-style: none;
+}
+a{
+	color: white;
+	text-decoration: none;
+}
+.nav-branding img{
+	cursor: pointer;
+}
+.navbarHome{
+	min-height: 70px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 24px;
+	position: fixed;
+    background-color: #072c3d;
+	width: 100%;
+	z-index: 3;
+	transition-duration: 0.5s;
+	
+}
+.nav-menu{
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	gap: 60px;
+}
+
+.nav-branding{
+	font-size: 1rem;
+	display: flex;
+	align-items: center;
+}
+
+.nav-link{
+	transition: 0.7s ease;
+	font-size: 1rem;
+	font-weight: lighter;
+}
+.nav-link:hover{
+	color: dodgerblue;
+}
+.humburger{
+	display: none;
+	cursor: pointer;
+}
+.bar{
+	display: block;
+	width: 25px;
+	height: 3px;
+	margin: 5px auto;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	background-color: white;
+}
+.navbarHome.active{
+	position: fixed;
+}
+
+@media(min-width:768px){
+	.navbarHome.scroll{
+		position: fixed;
+		opacity: 0;
+		transition: 0.1s ease-in-out;
+	}
+}
+@media(max-width:768px){
+	.navbarHome.active{
+		position: fixed;
+		background-color: #072c3d;
+	}
+	.register{
+		display: none;
+	}
+	.humburger{
+		display: block;
+	}
+	.humburger.active .bar:nth-child(2){
+		opacity: 0;
+	}
+	.humburger.active .bar:nth-child(1){
+		transform: translateY(8px) rotate(45deg);
+	}
+	.humburger.active .bar:nth-child(3){
+		transform: translateY(-8px) rotate(-45deg);
+	}
+	.navbarBlue{
+		position: fixed;
+	}
+	.nav-menu{
+	position: fixed;
+    left: 100rem;
+    top: 70px;
+    gap: 0;
+    flex-direction: column;
+    background-color: #072c3d;
+    text-align: center;
+    transition: 0.5s;
+    width: 100%;
+	height: 100%;
+	}
+	.nav-item{
+		margin:16px 0;
+	}
+	
+	.nav-menu.active{
+		left: 0;
+		width: 100%;
+		position: fixed;
+		height: 100%;
+		}
+		.register.active{
+			display: block;
+		}
+		.regMobile{
+			display: flex;
+		}
+		.regMobile button{
+			background-color: dodgerblue;
+	margin: 0 0.5rem;
+	border-radius: 2rem;
+	width: 5rem;
+	height: 2rem;
+		}
+		.regMobile button:hover{
+	cursor: pointer;
+	background-color: white;
+	color: dodgerblue;
+	transition: 0.1s ease-in;
+		}
+		
+		
+}

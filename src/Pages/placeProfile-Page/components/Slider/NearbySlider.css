@@ -1,0 +1,45 @@
+.card__top img{
+    width: 90%;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 30px;
+  }
+  .card__top p,.star__class{
+padding: 0.5rem;
+color: #072c3d;
+  }
+  .city__style {
+    font-weight: bold;
+    color:#597A76;
+    flex: 1 1 150px;
+
+  }
+    .card__top{
+      display: flex;
+      flex-direction: column;
+
+    }
+    #distance{
+      font-size: 1rem ;
+      color:#597A76;
+
+    }
+ 
+  .card{
+    border: 1px solid #3b504d;
+    background-color: #ecfafe;
+    border-radius: 30px;
+
+  }
+
+  .card__top img:hover{
+    cursor: pointer;
+  }
+  .image__content{
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 50%;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0.1rem;
+  }
