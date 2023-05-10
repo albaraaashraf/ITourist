@@ -1,0 +1,67 @@
+
+#firstRow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0rem 0.5rem 0rem 0.5rem;
+    color: #072c3d;
+}
+#sidebar__container{
+    margin-left: 1rem;
+}
+#secRow,#thirdRow,#fourthRow{
+    margin: 0rem 0.5rem 0rem 0.5rem;
+    color:#072c3d;
+}
+.filterHeader {
+    font-weight: bold;
+}
+
+#firstRow p{
+    font-size: 22px;
+    font-weight: bolder;
+    line-height: 3rem;
+}
+ hr{
+border: 1.5px solid #072c3d;
+}
+.hrContainer{
+    padding: 0.3rem 0rem 0.3rem 0rem;
+}
+#fourthRow{
+    font-size: 18px;
+    font-weight: bold;
+    color:#072c3d;
+}
+
+#button__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+.searchButton{
+    background-color: #072c3d;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    width: 7rem;
+    text-align: center;
+    color: white;
+    margin-top: 4rem;
+}
+.searchButton:hover{
+    cursor: pointer;
+    background-color: #072c3dd3;
+}
+.filterItems,#fourthRow p{
+    width: fit-content;
+    line-height: 3rem;
+}
+
+.filterItems p:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+#fourthRow p:hover {
+    cursor: pointer;
+}

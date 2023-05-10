@@ -1,10 +1,10 @@
-import FooterContent from "./footerPage/FooterContent";
 import "./Footer.css";
+import FooterContent from "./footerPage/FooterContent";
 const Footer = () => {
   return (
     <>
       <div className="overAllFooter">
-        <FooterContent />
+    <FooterContent></FooterContent>
       </div>
     </>
   );

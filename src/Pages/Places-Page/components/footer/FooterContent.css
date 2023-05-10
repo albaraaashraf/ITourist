@@ -1,0 +1,30 @@
+.foot__container{
+    display: flex;
+    justify-content: flex-start;
+}
+.footCol__container{
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+}
+.footFirst__column h3,.footSecond__column h3{
+    /* margin-bottom: 1rem; */
+    color: #072c3d;
+}
+
+.foot__container p {
+    margin-top: 1rem;
+    color :#597A76;
+}
+.footFirst__column, .footSecond__column{
+    padding: 1.5rem;
+}
+
+.footerFA{
+    text-align: center;
+    font-size:25px;
+    color: #072c3d;
+}
+.footerFA > *{
+    margin-left: 1rem;
+}

@@ -1,0 +1,24 @@
+.footThird__column{
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+}
+.footThird__column p{
+    font-weight: Bold;
+    font-size: 1.5rem;
+    color: #3b504d;
+    margin-left: 0.5rem;
+
+
+}
+#footerLogo{
+    width: 3rem;
+    height: 3rem;
+    margin-top: 1rem;
+}
+
+/* .overAllFooter{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+} */

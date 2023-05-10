@@ -1,0 +1,36 @@
+.reviewCard__container{
+    background-color: white;
+    margin: 3rem;
+    border-radius: 25px;
+    padding: 1.5rem;
+    width: 75%;
+}
+.reviewCard__firstrow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.likeLogo{
+    margin: 0.5rem;
+    font-size: 22px;
+    /* color: #597a7678; */
+    color: #072c3da8;
+}
+.likeLogo:hover{
+    cursor: pointer;
+}
+#reviewCard__review{
+    margin: 1rem 0rem 1rem 0rem;
+}
+#reviewCard__username{
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #072c3d;
+}
+#reviewCard__review{
+    color: #072c3d;
+    font-weight: 450;
+}
+.reviewCard__userscore{
+    color:#072c3d
+}

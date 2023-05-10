@@ -1,0 +1,11 @@
+#buttonReview{
+    background-color: #072c3d;
+    color: #ECF6F9;
+    border-radius: 2rem;
+    width: fit-content;
+    padding: 0.5rem;
+    margin: 0 auto;
+}
+#buttonReview:hover{
+    cursor: pointer;
+}

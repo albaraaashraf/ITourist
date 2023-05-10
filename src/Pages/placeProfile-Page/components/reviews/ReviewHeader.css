@@ -1,0 +1,24 @@
+.firstRowHeader{
+    margin: 0rem 3rem 0rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#peopleReviews{
+    color: #072c3d;    ;
+    font-weight: bold;
+    font-size: 20px;
+}
+#reviewNum{
+    color: #072c3d9e;
+    font-size: 20px;
+    margin-right: 1rem;
+}
+.reviewSec__star{
+    color: #072c3d
+    ;
+}
+.secPart{
+    display: flex;
+    align-items: center;
+}

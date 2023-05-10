@@ -1,0 +1,24 @@
+.slick-slider{
+    width: 90%;
+    margin: 0 auto;
+}
+.slick-next{
+    right: -40px;
+}
+.slick-prev{
+    left: -40px;
+}
+.slick-arrow::before{
+color:black;
+}
+.card{
+    width: 90% !important;
+    background-color: white !important;
+}
+.sliderHeader__container p{
+    color: #072c3d;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 3rem;
+    margin-bottom: 2rem;
+}

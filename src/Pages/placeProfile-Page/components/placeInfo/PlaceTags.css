@@ -1,0 +1,13 @@
+#image__tag{
+    background-color: #d7e3e291;
+    color: #3b504d;
+    width: fit-content;
+    padding: 0.5rem;
+    border-radius: 1.3rem;
+    margin: 0.5rem;
+    margin-left: 1.5rem;
+}
+#image__tag:hover{
+    cursor: pointer;
+}
+

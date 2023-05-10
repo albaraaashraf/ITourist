@@ -1,0 +1,30 @@
+#place__image{
+    width: 43.875rem;
+    height: 24.688rem;
+    border-radius: 2rem;
+}
+#image__container{
+    display: flex;
+    flex-direction: column;
+}
+#tag__container{
+    display: flex;
+    margin: 1rem;
+    flex-wrap: wrap;
+    width: 80%;
+}
+@media (max-width:900px) {
+#place__image{
+        width: 20rem;
+        height: 9rem;
+    }
+    #image__container{
+        width: 100%;
+        align-items: center;
+    }
+    #tag__container{
+        margin: 0.2rem;
+        width: 100%;
+        justify-content: center;
+    }
+}

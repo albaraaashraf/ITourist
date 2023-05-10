@@ -1,0 +1,8 @@
+.countryImg{
+    width: 20px;
+    height: 20px;
+}
+.autoCompleteItem{
+    display: flex;
+    align-items: center;
+}

@@ -5,17 +5,21 @@
     border-radius: 2rem;
 }
 .image__container{
+    position: relative;
     display: flex;
     justify-content: center;
     width: 50%;
+    margin-top: 2rem
+;
 }
 
 .header__container{
     position: absolute;
-    top: 6rem;
+    top: 2rem;
     color: #072c3d;
     font-size: 1.563rem;
     font-weight: bold;
+    font-family: cursive;
 }
 @media (max-width:900px) {
     .header__container{
