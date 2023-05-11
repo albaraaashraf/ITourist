@@ -1,17 +1,17 @@
 import React, { useContext, useEffect } from "react";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import SideBar from "./components/leftSide/SideBar";
 import PlaceCard from "./components/rightSide/PlaceCard";
 import { useState } from "react";
 import "./PlacesApp.css";
-import Footer from "./components/footer/Footer";
+// import Footer from "./components/footer/Footer";
 import CityContext from "../../Context/CityContext";
 function PlacesApp() {
   const [currentPage, setCurrentPage] = useState(1);
   const [displayData, setDisplayData] = useState([]);
   const [allData, setAllData] = useState([]);
-  const {lon}=useContext(CityContext);
-  const{lat}=useContext(CityContext);
+  const { lon } = useContext(CityContext);
+  const { lat } = useContext(CityContext);
   console.log(displayData.length);
 
   async function fetchAllPlaces() {
@@ -89,7 +89,6 @@ function PlacesApp() {
           </div>
         }
       </div>
-      <Footer></Footer>
     </>
   );
 }
