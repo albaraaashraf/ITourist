@@ -16,7 +16,9 @@ import "~slick-carousel/slick/slick-theme.css";
 
 9- firebase =>  npm install firebase
 
+10- axois => npm i axios
 
+11- react-search-autocomplete = > npm i react-search-autocomplete
 ------
 
 create .env.local file (without name)
