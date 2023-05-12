@@ -22,7 +22,6 @@ console.log(cardData)
 
     <div id='info__par'>
       <p>
-      {/* The remains of what used to be a 33 foot bronze statue of Ferdinand de Lesseps at the entrance of the Suez Canal. It was built in 1899. But in response to the 1956 Suez Crisis, the statue was removed, and is now located in a shipyard in Port Fouad. */}
     {cardData.info}
 
       </p>

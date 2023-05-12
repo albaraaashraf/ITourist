@@ -6,14 +6,18 @@ import { useState } from "react";
 import "./PlacesApp.css";
 import Footer from "./components/footer/Footer";
 import CityContext from "../../Context/CityContext";
+import { useLocation } from "react-router-dom";
+import CityDataContext from "../../Context/CityDataContext";
+
 function PlacesApp() {
   const [currentPage, setCurrentPage] = useState(1);
   const [displayData, setDisplayData] = useState([]);
   const [allData, setAllData] = useState([]);
-  const {lon}=useContext(CityContext);
-  const{lat}=useContext(CityContext);
+  const { lon } = useContext(CityContext);
+  const { lat } = useContext(CityContext);
+  const { categoryName } = useContext(CityDataContext);
   console.log(displayData.length);
-
+  console.log(categoryName);
   async function fetchAllPlaces() {
     const response = await fetch(
       `https://api.tomtom.com/search/2/poiSearch/resturant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&language=ar&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
@@ -37,10 +41,45 @@ function PlacesApp() {
     // setResturantPlaces(transformedData);
     // props.onShowResturant(transformedData);
   }
+  async function fetchCategoryPlaces() {
+    const response = await fetch(
+      `https://api.tomtom.com/search/2/poiSearch/${categoryName}.json?limit=1000&language=ar&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+    );
+    const data = await response.json();
+    const transformedData = data.results.map((takeAwayData) => {
+      return {
+        id: takeAwayData.id,
+        header: takeAwayData.poi.name,
+        street: takeAwayData.address.streetName,
+        city: takeAwayData.address.localName,
+        type: takeAwayData.poi.categories[0],
+        distance: takeAwayData.dist,
+        info:
+          takeAwayData.address.municipalitySubdivision +
+          "  ,   " +
+          takeAwayData.address.municipality,
+      };
+    });
+    setAllData(transformedData);
+    // setResturantPlaces(transformedData);
+    // props.onShowResturant(transformedData);
+  }
   useEffect(() => {
-    fetchAllPlaces();
+    console.log(categoryName);
+    if(categoryName){
+      fetchCategoryPlaces();}
+      else{
+        fetchAllPlaces();
+      }
+    
+    
   }, []);
   console.log(allData);
+  const showGardenHandler = (garden) => {
+    setDisplayData(garden);
+    setCurrentPage(1);
+    console.log(garden);
+  };
   const showBeachHandler = (beach) => {
     setDisplayData(beach);
     setCurrentPage(1);
@@ -72,6 +111,7 @@ function PlacesApp() {
       <div id="overAll__container">
         <div id="leftSide__container">
           <SideBar
+            onShowGarden={showGardenHandler}
             onShowBeach={showBeachHandler}
             onShowMuseum={showMuseumHandler}
             onShowResturant={showResturantHandler}

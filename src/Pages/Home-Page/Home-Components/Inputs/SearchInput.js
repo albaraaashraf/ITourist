@@ -94,7 +94,7 @@ const Search = () => {
   return (
     <>
       <div id="autoCompleteContainer">
-        <div style={{ width: "260px", marginTop: "10px" }}>
+        <div className={classes.autoComplete__container} >
           <ReactSearchAutocomplete
             items={searchResults}
             onSearch={handleOnSearch}

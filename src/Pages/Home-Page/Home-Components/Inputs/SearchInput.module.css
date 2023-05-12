@@ -6,3 +6,13 @@
     display: flex;
     align-items: center;
 }
+.autoComplete__container{
+    width: 260px;
+    margin-top: 10px;
+}
+@media only screen and (max-width: 767px) {
+    /* Your CSS styles for mobile screens go here */
+    .autoComplete__container{
+        width: 180px;
+    }
+  }

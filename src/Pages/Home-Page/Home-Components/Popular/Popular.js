@@ -5,7 +5,7 @@ const Popular = () => {
   return (
     <>
       <div className="slick1__container">
-        <p className="popular__header">Popular Places</p>
+        <p className="popular__header">Nearby Places</p>
 
         <div className="slider__container">
           <PopularSlider />

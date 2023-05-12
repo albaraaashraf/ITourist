@@ -1,18 +1,19 @@
-.card__top img{
+.cardSlide__top img{
   width: 90%;
   height: 100%;
   padding: 1rem;
   border-radius: 2rem;
 }
-.card__top p,.star__class{
+.cardSlide__top p,.star__class{
 padding: 0.5rem;
+margin: 0rem !important;
 }
 .city__style {
   font-weight: bold;
   color:#072c3d;
 
 }
-  .card__top{
+  .cardSlide__top{
     display: flex;
     flex-direction: column;
 
@@ -23,7 +24,7 @@ padding: 0.5rem;
 
   }
 
-.card{
+.cardSlide{
   border: 1px solid #072c3d !important;
   background-color: white !important;
   height: 10rem !important;
@@ -31,7 +32,7 @@ padding: 0.5rem;
 
 }
 
-.card__top img:hover{
+.cardSlide__top img:hover{
   cursor: pointer;
 }
 .image__content{

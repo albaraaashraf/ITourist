@@ -5,7 +5,10 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import CityContext from "./Context/CityContext";
+import CityDataContext from "./Context/CityDataContext";
 // Layouts
 import RootLayout from "./Pages/LayOut/rootLayout";
 import NotFound from "./Pages/Not Found/NotFound";
@@ -13,9 +16,8 @@ import Edit from "./Pages/Profile/Edit";
 
 //Components
 import Home from "./Pages/Home-Page/Home";
-import PlaceProfileApp from "./Pages/placeProfile-Page/PorfilePlaceApp"
+import PlaceProfileApp from "./Pages/placeProfile-Page/PorfilePlaceApp";
 import PlacesApp from "./Pages/Places-Page/PlacesApp";
-
 
 // profile
 import Profile from "./Pages/Profile/Profile.jsx";
@@ -43,12 +45,15 @@ import {
 import { library } from "@fortawesome/fontawesome-svg-core";
 import RequestTourGuide from "./Pages/Places/Request Tour Guide/RequestTourGuide";
 
+export const ScrollToTop = () => {
+  const { pathname } = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
-//context 
-
-import CityContext from "./Context/CityContext";
-import CityDataContext from "./Context/CityDataContext";
+  return null;
+};
 
 library.add(faEnvelope, faLock, faUser, faCalendar);
 const router = createBrowserRouter(
@@ -56,7 +61,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path="Places" element={<PlacesApp />} />
-      <Route path="/Places/Profile" element={<PlaceProfileApp/>} />
+      <Route path="/Places/Profile" element={<PlaceProfileApp />} />
       {/* profile root components */}
       <Route path="Profile" element={<Profile />}>
         <Route path="Info" element={<Info />} />
@@ -91,11 +96,17 @@ function App() {
   const [lon, setLon] = useState();
   const [lat, setLat] = useState();
   const [cardData, setCardData] = useState();
+  const [categoryName, setCategoryName] = useState();
+
   return (
     <>
-      <CityDataContext.Provider value={{ cardData, setCardData }}>
+      <CityDataContext.Provider
+        value={{ cardData, setCardData, categoryName, setCategoryName }}
+      >
         <CityContext.Provider value={{ lon, setLon, lat, setLat }}>
-          <RouterProvider router={router} />
+          <RouterProvider router={router}>
+            <ScrollToTop />
+          </RouterProvider>
         </CityContext.Provider>
       </CityDataContext.Provider>
     </>
