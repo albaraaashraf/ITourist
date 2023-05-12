@@ -11,6 +11,7 @@ const SideBar = (props) => {
   const [resturantPlaces, setResturantPlaces] = useState([]);
   const [historicPlaces, setHistoricPlaces] = useState([]);
   const [marketPlaces, setMarketPlaces] = useState([]);
+  const [gardenPlaces,setGardenPlaces]=useState([]);
     // const lat = 31.2001;
     // const lon = 29.9187;
     console.log(lon,lat)
@@ -136,6 +137,29 @@ const SideBar = (props) => {
     setMarketPlaces(transformedData);
     props.onShowMarket(transformedData);
   }
+  async function fetchGardenPlaces() {
+    const response = await fetch(
+      `https://api.tomtom.com/search/2/poiSearch/Park%26Recreation%20Area.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&language=ar&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      );
+    const data = await response.json();
+    const transformedData = data.results.map((takeAwayData) => {
+      return {
+        id: takeAwayData.id,
+        header: takeAwayData.poi.name,
+        street: takeAwayData.address.streetName,
+        city: takeAwayData.address.localName,
+        type: takeAwayData.poi.categories[0],
+        distance: takeAwayData.dist,
+        info:
+          takeAwayData.address.municipalitySubdivision +
+          "  ,   " +
+          takeAwayData.address.municipality,
+      };
+    });
+    setGardenPlaces(transformedData);
+    props.onShowGarden(transformedData);
+  }
+
 
   return (
     <>
@@ -174,7 +198,7 @@ const SideBar = (props) => {
           <hr></hr>
         </div>
         <div id="fourthRow">
-          <p>Gardens</p>
+          <p onClick={fetchGardenPlaces}>Gardens</p>
           <p onClick={fetchResturantPlaces}>Resturants</p>
           <p onClick={fetchMuseumPlaces}>Museums</p>
           <p onClick={fetchHistoricPlaces}>Historic Buildings</p>

@@ -1,0 +1,41 @@
+.cardContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border: 1px solid black;
+    width: 20%;
+    height: 27rem;
+    justify-content: space-evenly;
+    background-color: white;
+    color: Black;
+    border-radius: 10px;
+}
+.cardContainer button{
+background-color:#072c3d;
+color: aliceblue;
+padding: 10px;
+border-radius: 10px;
+transition: transform 0.2s ease-in-out; /* Add a transition effect */
+
+}
+.cardContainer button:hover{
+    transform: scale(1.1); /* Increase the size by 10% on hover */
+}
+.iconWrapper{
+    color: #072c3d;
+    font-size: xx-large;
+}
+@media only screen and (max-width: 767px) {
+    /* CSS rules for mobile screens */
+    .cardContainer{
+        width: auto;
+        height: auto;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .cardContainer{
+        width: auto;
+        height: auto;
+    }
+}

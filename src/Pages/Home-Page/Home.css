@@ -9,18 +9,17 @@
   
   }
   .secondPage__container{
-    background-color: #FFF;
     height: 25rem;
     display: flex;
     justify-content: center;
-    margin-bottom: 3rem;
-    padding: 0.5rem;
+    padding-top: 2rem;
+    background-color: #F5F5F5;
   
   }
   .thirdPage__container{
-    background-color: #ECF6F9;
-    margin-top: 2rem;
     padding: 0.5rem;
+    padding-top: 2rem;
+    background-color: #F5F5F5;
   
     /* height: 40rem; */
     /* display: flex;
@@ -29,9 +28,9 @@
   }
   
   .fourthPage__container{
-    background-color: #FFF;
-    margin-top: 2rem;
     padding-bottom: 3rem;
+    padding-top: 2rem;
+    background-color: #F5F5F5;
   }
   
   .footer__container{
@@ -56,7 +55,7 @@
   }
   
   .slick-next, .slick-prev{
-    top:15% !important;
+    top:50% !important;
   }
   
   

@@ -2,8 +2,11 @@ import { HiOutlineLocationMarker } from 'react-icons/hi';
 import {HiMagnifyingGlassPlus} from 'react-icons/hi2'
 import './MainCard.css'
 import SearchInput from '../Inputs/SearchInput';
-
+import CityNameContext from '../../../../Context/CityNameContext';
+import { useContext } from 'react';
 const MainCard=(props)=>{
+    const{cityName}=useContext(CityNameContext);
+    console.log(cityName)
     return<>
 
 <div className='card__container'>
@@ -17,7 +20,7 @@ const MainCard=(props)=>{
         </p>
         </div>
         <p id='location__header'>
-            Port Said
+            {cityName}
         </p>
     </div>
     <div className='sec__column'>
