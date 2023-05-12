@@ -15,10 +15,9 @@ function PlacesApp() {
   const [allData, setAllData] = useState([]);
   const { lon } = useContext(CityContext);
   const { lat } = useContext(CityContext);
-// <<<<<<< new-branch
-//   const { categoryName } = useContext(CityDataContext);
-// =======
-// >>>>>>> main
+
+  const { categoryName } = useContext(CityDataContext);
+
   console.log(displayData.length);
   console.log(categoryName);
   async function fetchAllPlaces() {
@@ -69,13 +68,11 @@ function PlacesApp() {
   }
   useEffect(() => {
     console.log(categoryName);
-    if(categoryName){
-      fetchCategoryPlaces();}
-      else{
-        fetchAllPlaces();
-      }
-    
-    
+    if (categoryName) {
+      fetchCategoryPlaces();
+    } else {
+      fetchAllPlaces();
+    }
   }, []);
   console.log(allData);
   const showGardenHandler = (garden) => {

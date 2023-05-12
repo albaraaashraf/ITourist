@@ -19,6 +19,7 @@ function RootLayout() {
               <Navbar />
             </nav>
           </header>
+
           {/* The main content */}
           <main>
             <StorageProvider>
