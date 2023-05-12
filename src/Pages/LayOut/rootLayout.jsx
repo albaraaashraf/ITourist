@@ -7,6 +7,7 @@ import Navbar from "../../components/navbar";
 import { StorageProvider } from "../../Context/StorageContext";
 import { UserProvider } from "../../Context/UserContext";
 import { AuthProvider } from "../../Context/AuthContext";
+import Footer from "../Home-Page/Home-Components/Footer/Footer";
 
 function RootLayout() {
   return (
@@ -26,6 +27,10 @@ function RootLayout() {
           </main>
         </AuthProvider>
       </UserProvider>
+
+      <div className="footer__container">
+        <Footer />
+      </div>
     </>
   );
 }

@@ -15,3 +15,31 @@ import "~slick-carousel/slick/slick.css";
 import "~slick-carousel/slick/slick-theme.css";
 
 9- firebase =>  npm install firebase
+
+10- axois => npm i axios
+
+11- react-search-autocomplete = > npm i react-search-autocomplete
+------
+
+create .env.local file (without name)
+
+
+copy that to it :
+
+
+REACT_APP_FIREBASE_API_KEY=AIzaSyB2aBroOp8lz4tPSlKg_RgPakwSI6QlLSA
+
+REACT_APP_FIREBASE_AUTH_DOMAIN=itourist-auth-development.firebaseapp.com
+
+REACT_APP_FIREBASE_PROJECT_ID=itourist-auth-development
+
+REACT_APP_FIREBASE_STORAGE_BUCKET=itourist-auth-development.appspot.com
+
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=2529422593
+
+REACT_APP_FIREBASE_APP_ID=1:2529422593:web:1661ea4505190536c4ff00
+
+
+
+
+

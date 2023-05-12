@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import SideBar from "./components/leftSide/SideBar";
 import PlaceCard from "./components/rightSide/PlaceCard";
 import { useState } from "react";
 import "./PlacesApp.css";
-import Footer from "./components/footer/Footer";
+// import Footer from "./components/footer/Footer";
 import CityContext from "../../Context/CityContext";
 import { useLocation } from "react-router-dom";
 import CityDataContext from "../../Context/CityDataContext";
@@ -15,7 +15,10 @@ function PlacesApp() {
   const [allData, setAllData] = useState([]);
   const { lon } = useContext(CityContext);
   const { lat } = useContext(CityContext);
-  const { categoryName } = useContext(CityDataContext);
+// <<<<<<< new-branch
+//   const { categoryName } = useContext(CityDataContext);
+// =======
+// >>>>>>> main
   console.log(displayData.length);
   console.log(categoryName);
   async function fetchAllPlaces() {
@@ -129,7 +132,6 @@ function PlacesApp() {
           </div>
         }
       </div>
-      <Footer></Footer>
     </>
   );
 }
