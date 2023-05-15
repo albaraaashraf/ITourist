@@ -4,7 +4,6 @@
 import Popular from "./Home-Components/Popular/Popular";
 import NearbyPage from "./Home-Components/Nearby/nearbyPlaces/NearbyPage";
 import CategoryPage from "./Home-Components/Category/CategoryPage";
-// import Footer from "./Home-Components/Footer/Footer";
 
 //CSS
 import "./Home.css";
