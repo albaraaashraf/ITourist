@@ -1,14 +1,13 @@
 .image__container img{
     /* width: 45rem; */
-    width: 70%;
-    border-radius: 10px;
+    /* width: 70%;
+    border-radius: 10px; */
 }
 .image__container{
     position: relative;
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
-    height: 25rem
+    height: 35rem
 ;
 }
 
