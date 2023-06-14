@@ -22,7 +22,7 @@ function PlacesApp() {
   console.log(categoryName);
   async function fetchAllPlaces() {
     const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/resturant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&language=ar&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      `https://api.tomtom.com/search/2/poiSearch/resturant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
     );
     const data = await response.json();
     const transformedData = data.results.map((takeAwayData) => {
@@ -45,7 +45,7 @@ function PlacesApp() {
   }
   async function fetchCategoryPlaces() {
     const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/${categoryName}.json?limit=1000&language=ar&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      `https://api.tomtom.com/search/2/poiSearch/${categoryName}.json?limit=1000&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
     );
     const data = await response.json();
     const transformedData = data.results.map((takeAwayData) => {

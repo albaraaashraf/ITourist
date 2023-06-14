@@ -5,6 +5,7 @@ import CityContext from "../../../../Context/CityContext";
 const SideBar = (props) => {
   const{lon}=useContext(CityContext);
   const{lat}=useContext(CityContext)
+  const {cityName} = useContext(CityContext);
 
   const [beachPlaces, setBeachPlaces] = useState([]);
   const [museumPlaces, setMuseumPlaces] = useState([]);
@@ -15,9 +16,10 @@ const SideBar = (props) => {
     // const lat = 31.2001;
     // const lon = 29.9187;
     console.log(lon,lat)
+    console.log(cityName)
   async function fetchResturantPlaces() {
     const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/Resturant.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&language=ar&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      `https://api.tomtom.com/search/2/poiSearch/Resturant.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
       );
     const data = await response.json();
     const transformedData = data.results.map((takeAwayData) => {
@@ -40,7 +42,7 @@ const SideBar = (props) => {
 
   async function fetchMuseumPlaces() {
     const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/Museum.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&language=ar&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      `https://api.tomtom.com/search/2/poiSearch/Museum.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
     );
     const data = await response.json();
     const transformedData = data.results.map((takeAwayData) => {
@@ -63,7 +65,7 @@ const SideBar = (props) => {
 
   async function fetchBeachPlaces() {
     const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/beach.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&language=ar&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      `https://api.tomtom.com/search/2/poiSearch/beach.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
     );
 
     const data = await response.json();
@@ -89,7 +91,7 @@ const SideBar = (props) => {
 
   async function fetchHistoricPlaces() {
     const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/historic.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&language=ar&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      `https://api.tomtom.com/search/2/poiSearch/historic.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
     );
 
     const data = await response.json();
@@ -114,7 +116,7 @@ const SideBar = (props) => {
   }
   async function fetchMarketPlaces() {
     const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/market.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&language=ar&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      `https://api.tomtom.com/search/2/poiSearch/market.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
     );
 
     const data = await response.json();
@@ -139,7 +141,7 @@ const SideBar = (props) => {
   }
   async function fetchGardenPlaces() {
     const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/Park%26Recreation%20Area.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&language=ar&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      `https://api.tomtom.com/search/2/poiSearch/Park%26Recreation%20Area.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
       );
     const data = await response.json();
     const transformedData = data.results.map((takeAwayData) => {

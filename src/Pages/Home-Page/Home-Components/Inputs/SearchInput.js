@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import CityContext from "../../../../Context/CityContext";
 const Search = () => {
   const{setLon}=useContext(CityContext);
-  const{setLat}=useContext(CityContext)
+  const{setLat}=useContext(CityContext);
+  const {setCityName}=useContext(CityContext)
 
   const navigate=useNavigate()
   const [searchItem, setSearchItem] = useState();
@@ -62,7 +63,8 @@ const Search = () => {
     console.log(item);
     setLat(item.lat);
     setLon(item.lon);
-    navigate('places')
+    setCityName(item.name);
+    navigate('cityprofile')
     
     
     

@@ -44,6 +44,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import RequestTourGuide from "./Pages/Places/Request Tour Guide/RequestTourGuide";
+import CityProfileApp from "./Pages/cityProfile-Page/CityProfileApp";
 
 export const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -60,6 +61,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
+      <Route path="CityProfile" element={<CityProfileApp />}></Route>
       <Route path="Places" element={<PlacesApp />} />
       <Route path="/Places/Profile" element={<PlaceProfileApp />} />
       {/* profile root components */}
@@ -95,6 +97,7 @@ const router = createBrowserRouter(
 function App() {
   const [lon, setLon] = useState();
   const [lat, setLat] = useState();
+  const [cityName,setCityName]=useState();
   const [cardData, setCardData] = useState();
   const [categoryName, setCategoryName] = useState();
 
@@ -103,7 +106,7 @@ function App() {
       <CityDataContext.Provider
         value={{ cardData, setCardData, categoryName, setCategoryName }}
       >
-        <CityContext.Provider value={{ lon, setLon, lat, setLat }}>
+        <CityContext.Provider value={{ lon, setLon, lat, setLat,cityName,setCityName }}>
           <RouterProvider router={router}>
             <ScrollToTop />
           </RouterProvider>
