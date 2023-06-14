@@ -8,6 +8,7 @@ const Search = () => {
   const{setLon}=useContext(CityContext);
   const{setLat}=useContext(CityContext);
   const {setCityName}=useContext(CityContext)
+  const {setCityId}=useContext(CityContext)
 
   const navigate=useNavigate()
   const [searchItem, setSearchItem] = useState();
@@ -64,6 +65,7 @@ const Search = () => {
     setLat(item.lat);
     setLon(item.lon);
     setCityName(item.name);
+    setCityId(item.countryId);
     navigate('cityprofile')
     
     

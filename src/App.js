@@ -63,6 +63,8 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="CityProfile" element={<CityProfileApp />}></Route>
       <Route path="Places" element={<PlacesApp />} />
+      <Route path="CityProfile/Places" element={<PlacesApp />} />
+
       <Route path="/Places/Profile" element={<PlaceProfileApp />} />
       {/* profile root components */}
       <Route path="Profile" element={<Profile />}>
@@ -98,6 +100,7 @@ function App() {
   const [lon, setLon] = useState();
   const [lat, setLat] = useState();
   const [cityName,setCityName]=useState();
+  const [cityId,setCityId]=useState();
   const [cardData, setCardData] = useState();
   const [categoryName, setCategoryName] = useState();
 
@@ -106,7 +109,7 @@ function App() {
       <CityDataContext.Provider
         value={{ cardData, setCardData, categoryName, setCategoryName }}
       >
-        <CityContext.Provider value={{ lon, setLon, lat, setLat,cityName,setCityName }}>
+        <CityContext.Provider value={{ lon, setLon, lat, setLat,cityName,setCityName,cityId,setCityId }}>
           <RouterProvider router={router}>
             <ScrollToTop />
           </RouterProvider>

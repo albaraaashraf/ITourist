@@ -4,6 +4,7 @@ import CityContext from '../../../Context/CityContext';
 const CityCover=(props)=>{
     const [cityImg, setCityImg] = useState([]);
   const { cityName } = useContext(CityContext);
+  const {cityId} = useContext(CityContext)
   const words = cityName.split(" ");
   let processedName = cityName;
   if (words.length === 2) {
@@ -12,8 +13,8 @@ const CityCover=(props)=>{
     );
     processedName = capitalizedWords.join("_");
   }
-  console.log(cityName);
-  console.log(processedName);
+ 
+  console.log(cityId)
 
   useEffect(() => {
     
@@ -33,8 +34,18 @@ const CityCover=(props)=>{
       }
     fetchCityImg()
   }, []);
+  const imageId = `https://flagsapi.com/${cityId}/shiny/64.png`;
+
     return <>
-          <img className={classes.coverImage} src={cityImg} alt=""></img>
+    <div className={classes.coverContainer}>
+    <img className={classes.coverImage} src={cityImg} alt=""></img>
+    <div className={classes.imageText}>
+    <h1>{cityName}</h1>
+    <img src={imageId} alt='country ID'></img>
+  </div>
+
+    </div>
+
 
     </>
 }
