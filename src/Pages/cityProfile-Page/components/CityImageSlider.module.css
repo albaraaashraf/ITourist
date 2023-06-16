@@ -1,3 +1,20 @@
-.hello{
-    color: green;
+.customNextArrow{
+    position: absolute;
+    top: 50%;
+    right: -35px;
+    cursor: pointer;
+}
+
+.customPrevArrow{
+    position: absolute;
+    top: 50%;
+    left: -35px;
+    cursor: pointer;
+}
+
+.sliderContainer{
+    margin-bottom: 2rem;
+}
+.sliderImg{
+    height: 15rem;
 }
