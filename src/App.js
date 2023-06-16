@@ -65,7 +65,7 @@ const router = createBrowserRouter(
       <Route path="Places" element={<PlacesApp />} />
       <Route path="CityProfile/Places" element={<PlacesApp />} />
 
-      <Route path="/Places/Profile" element={<PlaceProfileApp />} />
+      <Route path="/cityProfile/Places/Profile" element={<PlaceProfileApp />} />
       {/* profile root components */}
       <Route path="Profile" element={<Profile />}>
         <Route path="Info" element={<Info />} />
