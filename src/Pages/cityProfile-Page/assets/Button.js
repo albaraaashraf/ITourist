@@ -1,9 +1,11 @@
 import classes from './Button.module.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,useParams } from 'react-router-dom'
 const Button=(props)=>{
+    const { cityId } = useParams();
     const navigate=useNavigate()
     const handleOnClick=()=>{
-        navigate('places')
+        console.log(cityId)
+        navigate(`/CityProfile/${cityId}/Places`);
     }
     return <>
           <button className={classes.button} onClick={handleOnClick} >Discover More</button>

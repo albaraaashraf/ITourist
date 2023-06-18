@@ -2,25 +2,56 @@ import "./SideBar.css";
 import { AiFillFilter } from "react-icons/ai";
 import { useContext, useState } from "react";
 import CityContext from "../../../../Context/CityContext";
+import { useNavigate } from "react-router-dom";
 const SideBar = (props) => {
-  const{lon}=useContext(CityContext);
-  const{lat}=useContext(CityContext)
-  const {cityName} = useContext(CityContext);
+  const {cityId} = useContext(CityContext)
+  const { lon } = useContext(CityContext);
+  const { lat } = useContext(CityContext);
+  const { cityName } = useContext(CityContext);
+  const navigate = useNavigate();
 
   const [beachPlaces, setBeachPlaces] = useState([]);
   const [museumPlaces, setMuseumPlaces] = useState([]);
   const [resturantPlaces, setResturantPlaces] = useState([]);
   const [historicPlaces, setHistoricPlaces] = useState([]);
   const [marketPlaces, setMarketPlaces] = useState([]);
-  const [gardenPlaces,setGardenPlaces]=useState([]);
-    // const lat = 31.2001;
-    // const lon = 29.9187;
-    console.log(lon,lat)
-    console.log(cityName)
+  const [gardenPlaces, setGardenPlaces] = useState([]);
+  // const lat = 31.2001;
+  // const lon = 29.9187;
+  console.log(lon, lat);
+  console.log(cityName);
+  // Function to handle the category click event
+  const handleCategoryClick = async (category) => {
+    switch (category) {
+      case "Gardens":
+        await fetchGardenPlaces();
+        break;
+      case "Resturants":
+        await fetchResturantPlaces();
+        break;
+      case "Museums":
+        await fetchMuseumPlaces();
+        break;
+      case "Historic Buildings":
+        await fetchHistoricPlaces();
+        break;
+      case "Beaches":
+        await fetchBeachPlaces();
+        break;
+      case "Markets":
+        await fetchMarketPlaces();
+        break;
+      default:
+        break;
+    }
+
+    // Updating the URL path with the selected category
+    navigate(`/CityProfile/${cityId}/Places/${category.toLowerCase()}`);
+  };
   async function fetchResturantPlaces() {
     const response = await fetch(
       `https://api.tomtom.com/search/2/poiSearch/Resturant.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
-      );
+    );
     const data = await response.json();
     const transformedData = data.results.map((takeAwayData) => {
       return {
@@ -36,6 +67,7 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
+    
     setResturantPlaces(transformedData);
     props.onShowResturant(transformedData);
   }
@@ -59,6 +91,7 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
+    
     setMuseumPlaces(transformedData);
     props.onShowMuseum(transformedData);
   }
@@ -84,7 +117,7 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
-
+   
     setBeachPlaces(transformedData);
     props.onShowBeach(transformedData);
   }
@@ -110,7 +143,7 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
-
+   
     setHistoricPlaces(transformedData);
     props.onShowHistoric(transformedData);
   }
@@ -135,14 +168,16 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
-
+    
+    navigate("markets");
     setMarketPlaces(transformedData);
     props.onShowMarket(transformedData);
+    
   }
   async function fetchGardenPlaces() {
     const response = await fetch(
       `https://api.tomtom.com/search/2/poiSearch/Park%26Recreation%20Area.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
-      );
+    );
     const data = await response.json();
     const transformedData = data.results.map((takeAwayData) => {
       return {
@@ -160,8 +195,9 @@ const SideBar = (props) => {
     });
     setGardenPlaces(transformedData);
     props.onShowGarden(transformedData);
+    
   }
-
+  
 
   return (
     <>
@@ -200,12 +236,12 @@ const SideBar = (props) => {
           <hr></hr>
         </div>
         <div id="fourthRow">
-          <p onClick={fetchGardenPlaces}>Gardens</p>
-          <p onClick={fetchResturantPlaces}>Resturants</p>
-          <p onClick={fetchMuseumPlaces}>Museums</p>
-          <p onClick={fetchHistoricPlaces}>Historic Buildings</p>
-          <p onClick={fetchBeachPlaces}>Beaches</p>
-          <p onClick={fetchMarketPlaces}>Markets</p>
+          <p onClick={() => handleCategoryClick("Gardens")}>Gardens</p>
+          <p onClick={() => handleCategoryClick("Resturants")}>Resturants</p>
+          <p onClick={() => handleCategoryClick("Museums")}>Museums</p>
+          <p onClick={() => handleCategoryClick("Historic Buildings")}>Historic Buildings</p>
+          <p onClick={() => handleCategoryClick("Beaches")}>Beaches</p>
+          <p onClick={() => handleCategoryClick("Markets")}>Markets</p>
         </div>
       </div>
 
