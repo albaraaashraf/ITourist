@@ -5,6 +5,7 @@ import CityImageSlider from "./components/CityImageSlider";
 import Button from "./assets/Button";
 
 const CityProfileApp = (props) => {
+
   return (
     <>
       <CityCover />

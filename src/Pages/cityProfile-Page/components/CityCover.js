@@ -6,7 +6,7 @@ import { TbMap } from "react-icons/tb";
 const CityCover = (props) => {
   const [cityImg, setCityImg] = useState([]);
   const { cityName } = useContext(CityContext);
-  const { cityId } = useContext(CityContext);
+  const { countryId } = useContext(CityContext);
   const words = cityName.split(" ");
   let processedName = cityName;
   if (words.length === 2) {
@@ -16,7 +16,7 @@ const CityCover = (props) => {
     processedName = capitalizedWords.join("_");
   }
 
-  console.log(cityId);
+  console.log(countryId);
 
   useEffect(() => {
     async function fetchCityImg() {
@@ -35,7 +35,7 @@ const CityCover = (props) => {
     }
     fetchCityImg();
   }, []);
-  const imageId = `https://flagsapi.com/${cityId}/shiny/64.png`;
+  const imageId = `https://flagsapi.com/${countryId}/shiny/64.png`;
 
   return (
     <>

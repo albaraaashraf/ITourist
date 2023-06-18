@@ -5,12 +5,12 @@ import classes from "./SearchInput.module.css";
 import { useNavigate } from "react-router-dom";
 import CityContext from "../../../../Context/CityContext";
 const Search = () => {
-  const{setLon}=useContext(CityContext);
-  const{setLat}=useContext(CityContext);
-  const {setCityName}=useContext(CityContext)
-  const {setCityId}=useContext(CityContext)
+  const { setLon } = useContext(CityContext);
+  const { setLat } = useContext(CityContext);
+  const { setCityName } = useContext(CityContext);
+  const { setCountryId } = useContext(CityContext);
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [searchItem, setSearchItem] = useState();
   const [searchResults, setSearchResults] = useState([]);
   // const [lon,setLon]=useState();
@@ -40,12 +40,9 @@ const Search = () => {
         id: takeAwayData.id,
         lat: takeAwayData.latitude,
         lon: takeAwayData.longitude,
-      })
-      );
-      
+      }));
+
       setSearchResults(cities);
-      
-      
     } catch (error) {
       console.error(error);
     }
@@ -65,11 +62,9 @@ const Search = () => {
     setLat(item.lat);
     setLon(item.lon);
     setCityName(item.name);
-    setCityId(item.countryId);
-    navigate('cityprofile')
-    
-    
-    
+    setCountryId(item.countryId);
+    console.log(item.id);
+    navigate(`CityProfile/${item.id}`);
   };
   // console.log(lat,lon)
 
@@ -81,15 +76,14 @@ const Search = () => {
 
     return (
       <>
-        <span key={item.id} className={classes.autoCompleteItem} style={{ textAlign: "left",cursor:"pointer" }}>
-          <img
-            className={classes.countryImg}
-            alt=""
-            src={imageId}
-          />
-                  &nbsp;
-
-           {item.name}
+        <span
+          key={item.id}
+          className={classes.autoCompleteItem}
+          style={{ textAlign: "left", cursor: "pointer" }}
+        >
+          <img className={classes.countryImg} alt="" src={imageId} />
+          &nbsp;
+          {item.name}
         </span>
       </>
     );
@@ -98,7 +92,7 @@ const Search = () => {
   return (
     <>
       <div id="autoCompleteContainer">
-        <div className={classes.autoComplete__container} >
+        <div className={classes.autoComplete__container}>
           <ReactSearchAutocomplete
             items={searchResults}
             onSearch={handleOnSearch}
