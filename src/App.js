@@ -62,8 +62,15 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path="CityProfile/:cityId" element={<CityProfileApp />}></Route>
-      <Route path="Places" element={<PlacesApp />} />
+      <Route path="CityProfile/:cityId/Places" element={<PlacesApp />} />
       <Route path="CityProfile/Places" element={<PlacesApp />} />
+      <Route path="CityProfile/:cityId/Places/museums" element={<PlacesApp />} />
+      <Route path="CityProfile/:cityId/Places/resturants" element={<PlacesApp />} />
+      <Route path="CityProfile/:cityId/Places/beaches" element={<PlacesApp />} />
+      <Route path="CityProfile/:cityId/Places/historic buildings" element={<PlacesApp />} />
+      <Route path="CityProfile/:cityId/Places/markets" element={<PlacesApp />} />
+      <Route path="CityProfile/:cityId/Places/gardens" element={<PlacesApp />} />
+
 
       <Route path="/cityProfile/Places/Profile" element={<PlaceProfileApp />} />
       {/* profile root components */}
@@ -99,17 +106,31 @@ const router = createBrowserRouter(
 function App() {
   const [lon, setLon] = useState();
   const [lat, setLat] = useState();
-  const [cityName,setCityName]=useState();
-  const [countryId,setCountryId]=useState();
+  const [cityName, setCityName] = useState();
+  const [countryId, setCountryId] = useState();
   const [cardData, setCardData] = useState();
   const [categoryName, setCategoryName] = useState();
+  const [cityId,setCityId] = useState();
 
   return (
     <>
       <CityDataContext.Provider
         value={{ cardData, setCardData, categoryName, setCategoryName }}
       >
-        <CityContext.Provider value={{ lon, setLon, lat, setLat,cityName,setCityName,countryId,setCountryId }}>
+        <CityContext.Provider
+          value={{
+            lon,
+            setLon,
+            lat,
+            setLat,
+            cityName,
+            setCityName,
+            countryId,
+            setCountryId,
+            cityId,
+            setCityId
+          }}
+        >
           <RouterProvider router={router}>
             <ScrollToTop />
           </RouterProvider>

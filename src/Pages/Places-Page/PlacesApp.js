@@ -6,7 +6,6 @@ import { useState } from "react";
 import "./PlacesApp.css";
 // import Footer from "./components/footer/Footer";
 import CityContext from "../../Context/CityContext";
-import { useLocation } from "react-router-dom";
 import CityDataContext from "../../Context/CityDataContext";
 
 function PlacesApp() {
