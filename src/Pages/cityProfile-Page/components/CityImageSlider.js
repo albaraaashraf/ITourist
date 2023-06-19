@@ -24,7 +24,7 @@ const CityImageSlider = () => {
     }
 
     fetchUnsplash();
-  }, []);
+  }, [cityName]);
   const CustomPrevArrow = (props) => {
     const { onClick } = props;
     return (
