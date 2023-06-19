@@ -34,7 +34,7 @@ const CityCover = (props) => {
       setCityImg(y);
     }
     fetchCityImg();
-  }, []);
+  }, [processedName]);
   const imageId = `https://flagsapi.com/${countryId}/shiny/64.png`;
 
   return (
