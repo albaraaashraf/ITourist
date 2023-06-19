@@ -1,0 +1,13 @@
+.button {
+    background-color: #072c3d;
+    color: aliceblue;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 0.2s;
+    margin-left: 2rem;
+  }
+  .button:hover {
+    background-color: aliceblue;
+    color: #072c3d;
+  }
+  

@@ -1,9 +1,10 @@
 import classes from "./TourRequest.module.css";
 import { useState } from "react";
-import {AiTwotoneCalendar,AiFillCar,AiOutlineCheck} from "react-icons/ai"
-import {FaWallet,FaTimes} from "react-icons/fa"
-import {BsPersonFill,BsGenderFemale,BsGenderMale} from "react-icons/bs"
-import {MdOutlineLanguage,MdGroups2} from "react-icons/md"
+import { AiTwotoneCalendar, AiFillCar, AiOutlineCheck } from "react-icons/ai";
+import { FaWallet } from "react-icons/fa";
+import { BsPersonFill, BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { MdOutlineLanguage, MdGroups2 } from "react-icons/md";
+import { IoMdCheckmark, IoMdClose } from "react-icons/io";
 import { Slider } from "@mui/material";
 const TourRequest = () => {
   const [value, setValue] = useState(50);
@@ -19,6 +20,12 @@ const TourRequest = () => {
     Language: "",
     Car: "",
   });
+  const [maleIsClicked, setMaleIsClicked] = useState(false);
+  const [femaleIsClicked, setFemaleIsClicked] = useState(false);
+  const [carClicked, setCarClicked] = useState(false);
+  const [noCarClicked, setNoCarClicked] = useState(false);
+
+
   const handleCurrencyChange = (event) => {
     const selectedValue = event.target.value;
     setCurrecny(selectedValue);
@@ -33,12 +40,16 @@ const TourRequest = () => {
   const handleGender = (value) => {
     if (value === 1) {
       if (gender === "Male") {
+        setMaleIsClicked(false);
         setGender("");
+
         setFormData((prevFormData) => ({
           ...prevFormData,
           Gender: "",
         }));
       } else {
+        setMaleIsClicked(true);
+        setFemaleIsClicked(false);
         setGender("Male");
         setFormData((prevFormData) => ({
           ...prevFormData,
@@ -47,6 +58,7 @@ const TourRequest = () => {
       }
     } else if (value === 2) {
       if (gender === "Female") {
+        setFemaleIsClicked(false);
         setGender("");
         setFormData((prevFormData) => ({
           ...prevFormData,
@@ -54,6 +66,8 @@ const TourRequest = () => {
         }));
       } else {
         setGender("Female");
+        setFemaleIsClicked(true);
+        setMaleIsClicked(false);
         setFormData((prevFormData) => ({
           ...prevFormData,
           Gender: "Female",
@@ -61,16 +75,20 @@ const TourRequest = () => {
       }
     }
   };
+  console.log(femaleIsClicked);
 
   const handleCar = (value) => {
     if (value === 1) {
       if (car === "Yes") {
+        setCarClicked(false);
         setCar("");
         setFormData((prevFormData) => ({
           ...prevFormData,
           Car: "",
         }));
       } else {
+        setCarClicked(true);
+        setNoCarClicked(false);
         setCar("Yes");
         setFormData((prevFormData) => ({
           ...prevFormData,
@@ -79,17 +97,18 @@ const TourRequest = () => {
       }
     } else if (value === 2) {
       if (car === "No") {
+        setNoCarClicked(false)
         setCar("");
         setFormData((prevFormData) => ({ ...prevFormData, Car: "" }));
-      }
-      else{
+      } else {
+        setNoCarClicked(true);
+        setCarClicked(false);
         setCar("No");
         setFormData((prevFormData) => ({
           ...prevFormData,
           Car: "No",
         }));
       }
-     
     }
   };
   const handleInputChange = (event) => {
@@ -120,7 +139,9 @@ const TourRequest = () => {
   };
   return (
     <>
-       <form onSubmit={handleOnSubmit}>
+    
+      <form onSubmit={handleOnSubmit}>
+        <div className={classes.container}>
         <div className={classes.numContainer}>
           <i className={classes.iconContainer}>
             <MdGroups2 />
@@ -198,6 +219,11 @@ const TourRequest = () => {
             className={classes.inputContainer}
           />
           <button
+            style={{
+              backgroundColor: maleIsClicked ? "aliceblue" : "#072c3d",
+              color: maleIsClicked ? "#072c3d" : "aliceblue",
+            }}
+            className={classes.checkButton}
             type="button"
             onClick={() => {
               handleGender(1);
@@ -206,6 +232,11 @@ const TourRequest = () => {
             <BsGenderMale />
           </button>
           <button
+            style={{
+              backgroundColor: femaleIsClicked ? "aliceblue" : "#072c3d",
+              color: femaleIsClicked ? "#072c3d" : "aliceblue",
+            }}
+            className={classes.checkButton}
             type="button"
             onClick={() => {
               handleGender(2);
@@ -248,23 +279,36 @@ const TourRequest = () => {
             className={classes.inputContainer}
           />
           <button
+          style={{
+            backgroundColor: carClicked ? "aliceblue" : "#072c3d",
+            color: carClicked ? "#072c3d" : "aliceblue",
+          }}
+            className={classes.checkButton}
             type="button"
             onClick={() => {
               handleCar(1);
             }}
           >
-            <AiOutlineCheck />
+            <IoMdCheckmark />
           </button>
           <button
+          style={{
+            backgroundColor: noCarClicked ? "aliceblue" : "#072c3d",
+            color: noCarClicked ? "#072c3d" : "aliceblue",
+          }}
+            className={classes.checkButton}
             type="button"
             onClick={() => {
               handleCar(2);
             }}
           >
-            <FaTimes />
+            <IoMdClose />
           </button>
         </div>
-        <button type="submit">Submit</button>
+        <button className={classes.submitButton} type="submit">
+          Submit
+        </button>
+        </div>
       </form>
       {showError && <p>Error Please Submit the required fields</p>}
     </>

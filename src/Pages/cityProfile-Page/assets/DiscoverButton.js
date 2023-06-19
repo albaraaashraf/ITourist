@@ -1,4 +1,4 @@
-import classes from './Button.module.css'
+import classes from './DiscoverButton.module.css'
 import { useNavigate,useParams } from 'react-router-dom'
 const Button=(props)=>{
     const { cityId } = useParams();

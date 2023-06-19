@@ -1,36 +1,46 @@
-.numContainer{
-    display: flex;
-    align-items: center;
-    }
-    .inputContainer {
-        position: relative;
-        background-color: #f2f2f2;
-        padding: 1rem 0 1rem 2.5rem;
-        border: 1px solid gainsboro;
-        border-radius: 5px;
-        width: 15rem;
-      }
-      
-      .iconContainer {
-        position: absolute;
-        left: 15px;
-        z-index:2;
-      }
-      
-      .rangeSlider {
-        width: 15rem;
-        height: 10px;
-        -webkit-appearance: none;
-        background-color: #ddd;
-        outline: none;
-      }
-      
-      .rangeSlider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background-color: #425281;
-        cursor: pointer;
-      }
-      
+.numContainer {
+  display: flex;
+  align-items: center;
+}
+.inputContainer {
+  position: relative;
+  background-color: #f2f2f2;
+  padding: 1rem 0 1rem 2.5rem;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  width: 15rem;
+}
+
+.iconContainer {
+  position: absolute;
+  left: 15px;
+  z-index: 2;
+}
+
+.rangeSlider {
+  width: 15rem;
+  height: 10px;
+  -webkit-appearance: none;
+  background-color: #ddd;
+  outline: none;
+}
+
+.rangeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #425281;
+  cursor: pointer;
+}
+.inputContainer::placeholder {
+  color: black;
+}
+.checkButton,.submitButton {
+  background-color: #072c3d;
+  color: aliceblue;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.2s;
+  margin-left: 0.8rem;
+}
