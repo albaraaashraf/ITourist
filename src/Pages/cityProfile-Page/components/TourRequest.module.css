@@ -1,7 +1,7 @@
 .numContainer {
   display: flex;
   align-items: center;
-  margin-top: 10px; 
+  margin-top: 10px;
 }
 
 .inputContainer {
@@ -37,7 +37,8 @@
 .inputContainer::placeholder {
   color: black;
 }
-.checkButton,.submitButton {
+.checkButton,
+.submitButton {
   background-color: #072c3d;
   color: aliceblue;
   padding: 10px;
@@ -45,16 +46,29 @@
   transition: background-color 0.2s;
   margin-left: 0.8rem;
 }
-.formButton{
+.formButton {
   margin-top: 10px;
 }
-
+.formImgContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tourImg {
+  width: 50%;
+  height: 50%;
+}
 
 @media only screen and (max-width: 480px) {
   /* CSS styles specifically for mobile screens go here */
-  
-  .responsiveContainer{
+
+  .responsiveContainer {
     display: flex;
     align-items: center;
   }
-  /* Example styles */}
+  .formImgContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  /* Example styles */
+}
