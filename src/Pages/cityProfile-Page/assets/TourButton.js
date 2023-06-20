@@ -1,5 +1,4 @@
 import classes from "./TourButton.module.css";
-import { useState, useEffect } from "react";
 const TourButton = (props) => {
   return (
     <>

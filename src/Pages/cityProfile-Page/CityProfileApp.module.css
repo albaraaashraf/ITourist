@@ -1,0 +1,19 @@
+.buttonFormContainer{
+    margin-left: 2rem;
+}
+
+.tourRequest {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .show {
+    opacity: 1;
+  }
+  @media only screen and (max-width: 480px) {
+    /* CSS styles specifically for mobile screens go here */
+    
+    .buttonFormContainer{
+        margin-left: 0;
+    }
+    /* Example styles */}

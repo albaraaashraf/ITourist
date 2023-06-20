@@ -5,19 +5,26 @@ import DiscoverButton from "./assets/DiscoverButton";
 import TourRequest from "./components/TourRequest";
 import TourButton from "./assets/TourButton";
 import { useState } from "react";
+import classes from "./CityProfileApp.module.css"
 const CityProfileApp = (props) => {
   const [showForm, setShowForm] = useState(false);
 
   return (
     <>
+
       <CityCover />
       <CityNotes />
       <CityImageSlider />
+          <div className={classes.buttonFormContainer}>
       <DiscoverButton />
       <TourButton onClick={() => {
           setShowForm(!showForm);
         }} />
-      {showForm&&<TourRequest />}
+      <div className={`${classes.tourRequest} ${showForm ? classes.show : ''}`}>
+        {showForm && <TourRequest />}
+      </div>
+          </div>
+
     </>
   );
 };

@@ -1,7 +1,9 @@
 .numContainer {
   display: flex;
   align-items: center;
+  margin-top: 10px; 
 }
+
 .inputContainer {
   position: relative;
   background-color: #f2f2f2;
@@ -12,15 +14,14 @@
 }
 
 .iconContainer {
-  position: absolute;
-  left: 15px;
+  position: relative;
+  left: 25px;
   z-index: 2;
 }
 
 .rangeSlider {
   width: 15rem;
   height: 10px;
-  -webkit-appearance: none;
   background-color: #ddd;
   outline: none;
 }
@@ -44,3 +45,16 @@
   transition: background-color 0.2s;
   margin-left: 0.8rem;
 }
+.formButton{
+  margin-top: 10px;
+}
+
+
+@media only screen and (max-width: 480px) {
+  /* CSS styles specifically for mobile screens go here */
+  
+  .responsiveContainer{
+    display: flex;
+    align-items: center;
+  }
+  /* Example styles */}
