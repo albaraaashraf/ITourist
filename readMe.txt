@@ -19,6 +19,10 @@ import "~slick-carousel/slick/slick-theme.css";
 10- axois => npm i axios
 
 11- react-search-autocomplete = > npm i react-search-autocomplete
+
+12- material mui => npm install @mui/material @emotion/react @emotion/styled
+
+
 ------
 
 create .env.local file (without name)
