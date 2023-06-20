@@ -209,7 +209,7 @@ const SideBar = (props) => {
         <div className="hrContainer">
           <hr></hr>
         </div>
-        <div id="secRow">
+        {/* <div id="secRow">
           <p className="filterHeader">Raiting</p>
           <div className="filterItems">
             <p>One Star</p>
@@ -234,7 +234,7 @@ const SideBar = (props) => {
         </div>
         <div className="hrContainer">
           <hr></hr>
-        </div>
+        </div> */}
         <div id="fourthRow">
           <p onClick={() => handleCategoryClick("Gardens")}>Gardens</p>
           <p onClick={() => handleCategoryClick("Resturants")}>Resturants</p>
@@ -245,9 +245,9 @@ const SideBar = (props) => {
         </div>
       </div>
 
-      <div id="button__container">
+      {/* <div id="button__container">
         <div className="searchButton">Search</div>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -25,7 +25,6 @@ const TourRequest = () => {
   const [femaleIsClicked, setFemaleIsClicked] = useState(false);
   const [carClicked, setCarClicked] = useState(false);
   const [noCarClicked, setNoCarClicked] = useState(false);
-
   const handleCurrencyChange = (event) => {
     const selectedValue = event.target.value;
     setCurrecny(selectedValue);
@@ -141,6 +140,7 @@ const TourRequest = () => {
     setShowError(false);
     console.log(formData);
   };
+ 
   return (
     <>
       <div className={classes.formImgContainer}>
