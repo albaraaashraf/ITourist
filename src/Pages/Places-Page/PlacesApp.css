@@ -1,9 +1,12 @@
 #overAll__container{
     display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
 }
 #leftSide__container{
-    width: 20%;
-    /* background-color: #e7f7ff; */
+
+    width: 100%;
+    display: flex;    /* background-color: #e7f7ff; */
 }
 #rightSide__container{
     width: 100%;
@@ -15,7 +18,7 @@
 
 @media only screen and (max-width: 480px) {
     /* Your CSS rules for mobile screens here */
-    #overAll__Container{
+    #overAll__container{
         display: flex;
         flex-direction: column;
         /* margin-top: 2rem; */

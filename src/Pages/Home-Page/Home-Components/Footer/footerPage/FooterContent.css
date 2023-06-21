@@ -28,3 +28,10 @@
 .footerFA > *{
     margin-left: 1rem;
 }
+
+@media only screen and (max-width: 480px) {
+    /* Your CSS rules for mobile screens here */
+    .footFirst__column, .footSecond__column {
+        padding: 0rem !important;
+    }
+  }

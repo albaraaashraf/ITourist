@@ -1,19 +1,4 @@
-/* .firstDiv {
-  background-image: url("https://images.pexels.com/photos/3021382/pexels-photo-3021382.jpeg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 35rem;
-  filter: brightness(70%) blur(3px);
-}
 
-
-  .firstDiv h3 {
-    position: relative;
-    z-index: 1;
-  }
-https://images.pexels.com/photos/15125180/pexels-photo-15125180.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
- */
 .firstDiv::before{
     background-image: url('https://images.pexels.com/photos/2676642/pexels-photo-2676642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
 
@@ -101,7 +86,7 @@ https://images.pexels.com/photos/15125180/pexels-photo-15125180.jpeg?auto=compre
         align-items: center;
     }
   }
-  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+  @media only screen and (min-width: 767px) and (max-width: 1024px) {
     /* styles to be applied on tablet screens */
     .picHeader{
       width: 100%;
@@ -112,6 +97,7 @@ https://images.pexels.com/photos/15125180/pexels-photo-15125180.jpeg?auto=compre
     .backgroundImg{
       align-items: center;
     }
+    
 
   }
   
