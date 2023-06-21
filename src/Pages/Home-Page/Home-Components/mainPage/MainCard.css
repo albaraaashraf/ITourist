@@ -2,8 +2,8 @@
     width: 40%;
     background-color: rgba(255, 255, 255, 0);
     border-radius: 1.5rem;
-    position: absolute;
-    top: 27rem;
+    position: relative;
+    bottom:16rem;
     color: #ecf6f9;
 }
 .cardData{
@@ -45,6 +45,7 @@
 .fa__container p {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
+    width: 10rem;
 }
 ::placeholder{
     text-align: center;

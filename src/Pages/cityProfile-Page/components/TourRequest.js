@@ -32,7 +32,6 @@ const TourRequest = () => {
   const [carClicked, setCarClicked] = useState(false);
   const [noCarClicked, setNoCarClicked] = useState(false);
 
-
   const { countryId } = useContext(CityContext);
   const { cityName } = useContext(CityContext);
 
@@ -43,12 +42,11 @@ const TourRequest = () => {
       ...prevFormData,
       Price: value, // Add the Slider value to the form data
     }));
-    console.log(formData.Price)
+    console.log(formData.Price);
     setValue(500);
     console.log("Selected option:", selectedValue);
   };
   const handleChange = (event, newValue) => {
-
     setValue(newValue);
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -142,7 +140,7 @@ const TourRequest = () => {
     event.preventDefault();
     if (!formData.Number || !formData.Date || !formData.Currency) {
       setShowError(true);
-      
+
       return;
     }
 
@@ -160,11 +158,11 @@ const TourRequest = () => {
     }).then(() => {
       form.reset();
     });
-    console.log(formData)
+    console.log(formData);
 
     setShowError(false);
   };
- 
+
   return (
     <>
       <div className={classes.formImgContainer}>
