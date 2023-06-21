@@ -39,10 +39,16 @@ const TourRequest = () => {
   const handleCurrencyChange = (event) => {
     const selectedValue = event.target.value;
     setCurrecny(selectedValue);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      Price: value, // Add the Slider value to the form data
+    }));
+    console.log(formData.Price)
     setValue(500);
     console.log("Selected option:", selectedValue);
   };
   const handleChange = (event, newValue) => {
+
     setValue(newValue);
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -136,6 +142,7 @@ const TourRequest = () => {
     event.preventDefault();
     if (!formData.Number || !formData.Date || !formData.Currency) {
       setShowError(true);
+      
       return;
     }
 
@@ -153,6 +160,7 @@ const TourRequest = () => {
     }).then(() => {
       form.reset();
     });
+    console.log(formData)
 
     setShowError(false);
   };
