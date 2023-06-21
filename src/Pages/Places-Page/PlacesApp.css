@@ -12,3 +12,20 @@
     flex-direction: column;
     margin-top: 1rem;
 }
+
+@media only screen and (max-width: 480px) {
+    /* Your CSS rules for mobile screens here */
+    #overAll__Container{
+        display: flex;
+        flex-direction: column;
+        /* margin-top: 2rem; */
+        gap: 2rem;
+        background-color: #F5F5F5;
+    }
+    #leftSide__container{
+        width: 100%;
+    /* background-color: #e7f7ff; */
+    /* height: 10rem; */
+    display: flex;
+    }
+  }
