@@ -32,6 +32,10 @@ const TourRequest = () => {
   const [carClicked, setCarClicked] = useState(false);
   const [noCarClicked, setNoCarClicked] = useState(false);
 
+
+  const { countryId } = useContext(CityContext);
+  const { cityName } = useContext(CityContext);
+
   const handleCurrencyChange = (event) => {
     const selectedValue = event.target.value;
     setCurrecny(selectedValue);
