@@ -9,6 +9,7 @@ import { Slider } from "@mui/material";
 
 import { useContext } from "react";
 import CityContext from "../../../Context/CityContext";
+// firebase
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 
@@ -32,6 +33,7 @@ const TourRequest = () => {
   const [carClicked, setCarClicked] = useState(false);
   const [noCarClicked, setNoCarClicked] = useState(false);
 
+  // city details
   const { countryId } = useContext(CityContext);
   const { cityName } = useContext(CityContext);
 
@@ -44,7 +46,7 @@ const TourRequest = () => {
     }));
     console.log(formData.Price);
     setValue(500);
-    console.log("Selected option:", selectedValue);
+    // console.log("Selected option:", selectedValue);
   };
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -92,7 +94,7 @@ const TourRequest = () => {
       }
     }
   };
-  console.log(femaleIsClicked);
+  // console.log(femaleIsClicked);
 
   const handleCar = (value) => {
     if (value === 1) {
@@ -144,7 +146,7 @@ const TourRequest = () => {
       return;
     }
 
-    // add form data to firbase
+    // add form data to firebase
     const colRef = collection(
       db,
       `/requests/Pending/Countries/${countryId}/request`
@@ -158,7 +160,7 @@ const TourRequest = () => {
     }).then(() => {
       form.reset();
     });
-    console.log(formData);
+    // console.log(formData);
 
     setShowError(false);
   };
@@ -351,6 +353,7 @@ const TourRequest = () => {
         <img
           className={classes.tourImg} alt="Tour Guide"
           src="https://img.freepik.com/free-vector/group-tourists-travelling-with-guide-holding-flag-flat-illustration_74855-18752.jpg?w=1380&t=st=1687267995~exp=1687268595~hmac=ec0d86394ea4c26659587cb41f7d75c2e84cbcdbf8e9acecd9661a3a6b8c6f6c"
+          alt="cover"
         />
       </div>
       {showError && <p>Error Please Submit the required fields</p>}

@@ -25,7 +25,6 @@ function Profile() {
       {/* this this show the subRoots of the parent page */}
       <Outlet context={{ user: [user, setUser], show: [show, setShow] }} />
       {/* context => to share probs to child components */}
-      <TopScreenButton />
     </>
   );
 }

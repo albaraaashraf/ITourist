@@ -8,6 +8,7 @@ import { StorageProvider } from "../../Context/StorageContext";
 import { UserProvider } from "../../Context/UserContext";
 import { AuthProvider } from "../../Context/AuthContext";
 import Footer from "../Home-Page/Home-Components/Footer/Footer";
+import TopScreenButton from "../../components/ToolOnPage/TopScreenButton";
 
 function RootLayout() {
   return (
@@ -28,6 +29,8 @@ function RootLayout() {
           </main>
         </AuthProvider>
       </UserProvider>
+
+      <TopScreenButton />
 
       <div className="footer__container">
         <Footer />

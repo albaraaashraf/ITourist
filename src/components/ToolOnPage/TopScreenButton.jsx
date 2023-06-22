@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 
+import "./Top.css";
+
+import { AiOutlineToTop } from "react-icons/ai";
+
 export default function TopScreenButton() {
   let [style, setStyle] = useState({
     position: "fixed",
     right: "30px",
     bottom: "30px",
-    display: "none",
-    transitionDuration: "500ms",
+    opacity: "1",
   });
 
   const clickHandler = () => {
@@ -19,9 +22,9 @@ export default function TopScreenButton() {
   useEffect(() => {
     const scrollHandling = () => {
       if (window.scrollY >= 500) {
-        setStyle({ ...style, display: "block" });
+        setStyle({ ...style, opacity: "1.0" });
       } else {
-        setStyle({ ...style, display: "none" });
+        setStyle({ ...style, opacity: "0.0" });
       }
     };
     window.addEventListener("scroll", scrollHandling);
@@ -36,10 +39,10 @@ export default function TopScreenButton() {
       <button
         id="topBTN"
         style={style}
-        className="btn btn-outline-primary"
+        className="toUp-btn"
         onClick={clickHandler}
       >
-        ^
+        <AiOutlineToTop />
       </button>
     </>
   );

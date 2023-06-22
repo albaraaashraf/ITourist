@@ -37,8 +37,13 @@ function Info() {
                 <InfoData label="Phone" data={theUser.Phone} />
               </div>
             )}
-
-            <button onClick={logout}>Sing Out</button>
+          </div>
+          <div className="row">
+            <div className="col d-flex justify-content-end">
+              <button onClick={logout} className="btn singOut-btn">
+                Sing Out
+              </button>
+            </div>
           </div>
         </div>
       </div>
