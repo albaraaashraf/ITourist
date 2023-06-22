@@ -1,20 +1,46 @@
-import { useState, useEffect } from "react";
-import { AiFillStar } from "react-icons/ai";
-import { ImLocation2, ImNext2, ImPrevious2 } from "react-icons/im";
+import { useState, useEffect, useContext } from "react";
+import { ImLocation2 } from "react-icons/im";
 import "./PlaceCard.css";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import CityDataContext from '../../../../Context/CityDataContext'
+import CityDataContext from "../../../../Context/CityDataContext";
 const PlaceCard = (props) => {
-  const {setCardData}=useContext(CityDataContext);
-  
-  const fetchedData = props.data; 
-  
-  console.log(fetchedData)
-  const navigate=useNavigate();
+  const { setCardData } = useContext(CityDataContext);
+
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   const [pageRange, setPageRange] = useState([]); // starting page range as empty array
+  const [placeImg, setPlaceImg] = useState("Resturant");
+
+  const fetchedData = props.data;
+  const displayPlaceName = fetchedData.map((item) => item.header);
+  
+  useEffect(() => {
+    // complete the remaining cases with the remaining images , museums historic markets and hospitals and more
+
+    if (
+      displayPlaceName.every((item) => item.toLowerCase().includes("beach"))
+    ) {
+      console.log("Beach Image");
+      setPlaceImg("Beach");
+    } else if (
+      fetchedData.every((item) =>
+        item.class.toLowerCase().includes("restaurant")
+      ) ||
+      displayPlaceName.every((item) =>
+        item.toLowerCase().includes("resturant")
+      ) ||
+      displayPlaceName.every((item) =>
+        item.toLowerCase().includes("restaurant")
+      )
+    ) {
+      console.log("Resturant Image");
+      setPlaceImg("Restaurant");
+    } else {
+      console.log("not parks nor resturants");
+      setPlaceImg("2");
+    }
+  }, [displayPlaceName, fetchedData]);
 
   // Define the scrollToTop function inside the component
   const scrollToTop = () => {
@@ -59,16 +85,43 @@ const PlaceCard = (props) => {
 
   const isLastPage = indexOfLastItem >= fetchedData.length;
   const isFirstPage = indexOfLastItem === itemsPerPage;
-  const discoverClickHandler=(item)=>{
-    setCardData(item)
-    navigate('profile')
-  }
+  const discoverClickHandler = (item) => {
+    setCardData(item);
+    navigate("profile");
+  };
   return (
     <>
       {finalItems.map((item) => (
         <div key={item.id} id="card__container">
           <div id="card__leftCol">
-            <img src="/assets/images/Nearby__images/1.jpg" alt="img"></img>
+          {
+  (() => {
+    switch (placeImg) {
+      case "Beach":
+        return (
+          <img
+            src="/assets/images/Nearby__images/Beach.jpg"
+            alt="beach"
+          />
+        );
+      case "Restaurant":
+        return (
+          <img
+            src="/assets/images/Nearby__images/Restaurant.jpg"
+            alt="restaurant"
+          />
+        );
+      default:
+        return (
+          <img
+            src="/assets/images/Nearby__images/1.jpg"
+            alt="default"
+          />
+        );
+    }
+  })()
+}
+
           </div>
           <div className="rightCol">
             <div className="rightCol__adress">
@@ -79,25 +132,21 @@ const PlaceCard = (props) => {
                 <p style={{ marginLeft: "1rem" }}>{item.street}</p>
               </div>
             </div>
-            {/* <div className="star__container">
-              <AiFillStar></AiFillStar>
-              <AiFillStar></AiFillStar>
-              <AiFillStar></AiFillStar>
-              <AiFillStar></AiFillStar>
-              <AiFillStar></AiFillStar>
-            </div> */}
+
             <button
               style={{
                 padding: "10px",
                 backgroundColor: "#072c3d",
                 color: "white",
-                borderRadius:'10px',
-                width:'5rem',
-                cursor:'pointer'
+                borderRadius: "10px",
+                width: "5rem",
+                cursor: "pointer",
               }}
-              onClick={()=>{discoverClickHandler(item)}}
-            > 
-              Discover 
+              onClick={() => {
+                discoverClickHandler(item);
+              }}
+            >
+              Discover
             </button>
           </div>
         </div>

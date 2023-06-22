@@ -32,6 +32,8 @@ function PlacesApp() {
         city: takeAwayData.address.localName,
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
+        class: takeAwayData.poi.classifications[0].code,
+
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
@@ -55,6 +57,8 @@ function PlacesApp() {
         city: takeAwayData.address.localName,
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
+        class: takeAwayData.poi.classifications[0].code,
+
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +

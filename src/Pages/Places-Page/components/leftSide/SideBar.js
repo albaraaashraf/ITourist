@@ -86,13 +86,14 @@ const SideBar = (props) => {
         city: takeAwayData.address.localName,
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
+        class: takeAwayData.poi.classifications[0].code,
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
           takeAwayData.address.municipality,
       };
     });
-
+    console.log(transformedData);
     setResturantPlaces(transformedData);
     props.onShowResturant(transformedData);
   }
@@ -110,6 +111,8 @@ const SideBar = (props) => {
         city: takeAwayData.address.localName,
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
+        class: takeAwayData.poi.classifications[0].code,
+
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
@@ -136,6 +139,8 @@ const SideBar = (props) => {
         city: takeAwayData.address.localName,
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
+        class: takeAwayData.poi.classifications[0].code,
+
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
@@ -162,6 +167,8 @@ const SideBar = (props) => {
         city: takeAwayData.address.localName,
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
+        class: takeAwayData.poi.classifications[0].code,
+
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
@@ -187,6 +194,8 @@ const SideBar = (props) => {
         city: takeAwayData.address.localName,
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
+        class: takeAwayData.poi.classifications[0].code,
+
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
@@ -210,6 +219,8 @@ const SideBar = (props) => {
         city: takeAwayData.address.localName,
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
+        class: takeAwayData.poi.classifications[0].code,
+
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
@@ -232,9 +243,8 @@ const SideBar = (props) => {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 700);
-      if(window.innerWidth>=700){
+      if (window.innerWidth >= 700) {
         setMobileFilterClicked((prevFilterRes) => !prevFilterRes);
-
       }
     };
 
@@ -248,7 +258,8 @@ const SideBar = (props) => {
     <>
       <div id="sidebar__container">
         <div className={filterRes ? "responsiveFilter" : null} id="firstRow">
-          <p className="mobileFilterText"
+          <p
+            className="mobileFilterText"
             onClick={
               isMobile
                 ? () => {
@@ -260,7 +271,8 @@ const SideBar = (props) => {
           >
             Filter
           </p>
-          <AiFillFilter className="mobileFilterText"
+          <AiFillFilter
+            className="mobileFilterText"
             oonClick={
               isMobile
                 ? () => {
