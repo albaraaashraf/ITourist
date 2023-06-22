@@ -16,6 +16,14 @@
   width: 50%;
 }
 
+.singOut-btn {
+  background-color: var(--main_color) !important;
+  color: #eee !important;
+  opacity: 0.9;
+}
+.singOut-btn:hover {
+  opacity: 1;
+}
 /* very small screens */
 
 @media (max-width: 320px) {

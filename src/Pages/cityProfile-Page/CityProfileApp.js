@@ -1,30 +1,40 @@
 import CityNotes from "./components/CityNotes";
 import CityCover from "./components/CityCover";
 import CityImageSlider from "./components/CityImageSlider";
-import DiscoverButton from "./assets/DiscoverButton"
+import DiscoverButton from "./assets/DiscoverButton";
 import TourRequest from "./components/TourRequest";
 import TourButton from "./assets/TourButton";
 import { useState } from "react";
-import classes from "./CityProfileApp.module.css"
+import classes from "./CityProfileApp.module.css";
+
+import { useUser } from "../../Context/UserContext";
+
 const CityProfileApp = (props) => {
   const [showForm, setShowForm] = useState(false);
 
+  // sign in State
+  const { signedUp } = useUser();
   return (
     <>
-
       <CityCover />
       <CityNotes />
       <CityImageSlider />
-          <div className={classes.buttonFormContainer}>
-      <DiscoverButton />
-      <TourButton onClick={() => {
-          setShowForm(!showForm);
-        }} />
-      <div className={`${classes.tourRequest} ${showForm ? classes.show : ''}`}>
-        {showForm && <TourRequest />}
+      <div className={classes.buttonFormContainer}>
+        <DiscoverButton />
+        {signedUp && (
+          <TourButton
+            onClick={() => {
+              setShowForm(!showForm);
+              console.log("askldmnalskdnalksndaklsndlaksda");
+            }}
+          />
+        )}
+        <div
+          className={`${classes.tourRequest} ${showForm ? classes.show : ""}`}
+        >
+          {showForm && <TourRequest />}
+        </div>
       </div>
-          </div>
-
     </>
   );
 };

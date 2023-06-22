@@ -21,7 +21,8 @@ export default function AddImages() {
 
   const [showLoadingScreen, setShowLoadingScreen] = useState(false);
   const [text, setText] = useState("");
-  const [upload, setUpload] = useState(false);
+  const [upload, setUpload] = useState(true);
+
   const { theUser } = useUser();
 
   // uploading imagesto firebase Storage
@@ -36,8 +37,12 @@ export default function AddImages() {
     return getDownloadURL(storageRef);
   }
 
-  let preview = acceptedFiles.map((file) => {
-    return <li> {file.name} </li>;
+  let preview = acceptedFiles.map((file, index) => {
+    return (
+      <div index={index} className="preview">
+        <div>{file.name}</div>
+      </div>
+    );
   });
 
   function uploadImagesToStorage() {
@@ -54,7 +59,6 @@ export default function AddImages() {
 
         await downloadImage(imagePath).then((downloadURL) => {
           person.Imgs.push(downloadURL);
-          // console.log("downloaded");
         });
 
         const docRef = doc(db, "users", person.id);
@@ -82,21 +86,23 @@ export default function AddImages() {
           </button>
         </div>
 
-        <div className="separator"></div>
+        {/* <div className="separator"></div> */}
 
-        <div className="preview">{preview}</div>
+        <div>{preview}</div>
       </section>
 
-      <div className="container text-center my-2">
-        <button
-          className="btn btn-success"
-          onClick={uploadImagesToStorage}
-          disabled={upload}
-        >
-          {" "}
-          Upload
-        </button>
-      </div>
+      {acceptedFiles.length && (
+        <div className="container text-center my-2">
+          <button
+            className="btn btn-success"
+            onClick={uploadImagesToStorage}
+            disabled={!upload}
+          >
+            {" "}
+            Upload
+          </button>
+        </div>
+      )}
     </>
   );
 }

@@ -66,7 +66,7 @@ function Gallery() {
 
       <div className="container-fluid text-center">
         <div className="container-lg p-3 rounded-3 d-flex flex-row img-container">
-          <div className="row g-3">
+          <div className="row g-3" style={{ minHeight: "10rem" }}>
             {theUser.Imgs &&
               theUser.Imgs.map((img, index) => {
                 return (
@@ -89,7 +89,7 @@ function Gallery() {
         </div>
 
         <Link to="/Profile/Gallery/AddImages">
-          <button className="btn btn-primary mt-2">Add Images</button>
+          <button className="btn my-2 addImgbtn">Add Images</button>
         </Link>
       </div>
     </>

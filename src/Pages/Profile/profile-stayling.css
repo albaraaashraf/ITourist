@@ -10,13 +10,14 @@
 }
 
 .img-cover {
-  width: 10rem;
-  height: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 13rem !important;
+  height: 13rem !important;
 }
 .img-cover img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+  clip-path: circle();
   object-fit: cover;
 }
 
@@ -35,13 +36,20 @@
   color: var(--main_color);
 }
 
-.option-edit {
-  position: absolute;
-  right: 0px;
-}
+/* 
+
+
+*/
 
 .btn-border {
   border-right: 0.15rem solid var(--main_color);
+}
+
+@media (max-width: 768px) {
+  .img-cover {
+    width: 8rem !important;
+    height: 8rem !important;
+  }
 }
 
 /* Edit Page */
@@ -59,7 +67,20 @@
   opacity: 0.8;
 }
 
-/* small screens */
+.option-edit {
+  position: absolute;
+  right: 0px;
+}
+
+/* 4k screens */
+@media (min-width: 1500px) {
+  .option-edit {
+    position: absolute;
+    right: 0px;
+  }
+}
+
+/* large screens */
 @media (max-width: 768px) {
   .coverStyle {
     height: 10rem;
@@ -77,10 +98,11 @@
 
   .option button {
     font-size: 1rem;
+    padding: 0.5rem;
   }
 }
 
-/*  small screens */
+/*  medium screens */
 @media (max-width: 375px) {
   .cover-info,
   .cover-info #cover-name,
@@ -91,6 +113,10 @@
   .option button {
     font-size: 0.65rem;
   }
+
+  .option-edit {
+    position: relative;
+  }
 }
 /* very small screens */
 @media (max-width: 320px) {
@@ -98,9 +124,5 @@
   .cover-info #cover-name,
   .followers {
     font-size: 0.69rem;
-  }
-
-  .option button {
-    font-size: 0.65rem;
   }
 }
