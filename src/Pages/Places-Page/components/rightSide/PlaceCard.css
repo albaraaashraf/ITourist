@@ -70,6 +70,9 @@ margin-left: 0.3rem;
     cursor: pointer;
 }
 @media (max-width:920px) {
+    .labelPages {
+        display: none !important;
+    }
 #card__container{
     display: flex;
     flex-direction: column;

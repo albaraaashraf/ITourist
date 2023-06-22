@@ -62,17 +62,38 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path="CityProfile/:cityId" element={<CityProfileApp />}></Route>
+      <Route path="/Places" element={<PlacesApp />} />
+
       <Route path="CityProfile/:cityId/Places" element={<PlacesApp />} />
       <Route path="CityProfile/Places" element={<PlacesApp />} />
-      <Route path="CityProfile/:cityId/Places/museums" element={<PlacesApp />} />
-      <Route path="CityProfile/:cityId/Places/resturants" element={<PlacesApp />} />
-      <Route path="CityProfile/:cityId/Places/beaches" element={<PlacesApp />} />
-      <Route path="CityProfile/:cityId/Places/historic buildings" element={<PlacesApp />} />
-      <Route path="CityProfile/:cityId/Places/markets" element={<PlacesApp />} />
-      <Route path="CityProfile/:cityId/Places/gardens" element={<PlacesApp />} />
-
-
-      <Route path="/cityProfile/Places/Profile" element={<PlaceProfileApp />} />
+      <Route
+        path="CityProfile/:cityId/Places/museums"
+        element={<PlacesApp />}
+      />
+      <Route
+        path="CityProfile/:cityId/Places/resturants"
+        element={<PlacesApp />}
+      />
+      <Route
+        path="CityProfile/:cityId/Places/beaches"
+        element={<PlacesApp />}
+      />
+      <Route
+        path="CityProfile/:cityId/Places/historic buildings"
+        element={<PlacesApp />}
+      />
+      <Route
+        path="CityProfile/:cityId/Places/markets"
+        element={<PlacesApp />}
+      />
+      <Route
+        path="CityProfile/:cityId/Places/gardens"
+        element={<PlacesApp />}
+      />
+      <Route
+        path="/cityProfile/:cityId/Places/markets/Profile"
+        element={<PlaceProfileApp />}
+      />
       {/* profile root components */}
       <Route path="Profile" element={<Profile />}>
         <Route path="Info" element={<Info />} />
@@ -110,7 +131,7 @@ function App() {
   const [countryId, setCountryId] = useState();
   const [cardData, setCardData] = useState();
   const [categoryName, setCategoryName] = useState();
-  const [cityId,setCityId] = useState();
+  const [cityId, setCityId] = useState();
 
   return (
     <>
@@ -128,7 +149,7 @@ function App() {
             countryId,
             setCountryId,
             cityId,
-            setCityId
+            setCityId,
           }}
         >
           <RouterProvider router={router}>

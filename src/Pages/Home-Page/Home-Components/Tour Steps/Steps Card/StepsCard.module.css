@@ -26,8 +26,11 @@ transition: transform 0.2s ease-in-out; /* Add a transition effect */
     color: #072c3d;
     font-size: xx-large;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 770px) {
     /* CSS rules for mobile screens */
+    .stepsCardContainer{
+        width: 33%;
+    }
     .cardContainer{
         width: auto;
         height: auto;
