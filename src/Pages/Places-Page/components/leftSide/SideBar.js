@@ -12,7 +12,7 @@ const SideBar = (props) => {
   const [filterRes, setFilterRes] = useState(false);
   const [beachPlaces, setBeachPlaces] = useState([]);
   const [museumPlaces, setMuseumPlaces] = useState([]);
-  const [resturantPlaces, setResturantPlaces] = useState([]);
+  const [RestaurantPlaces, setRestaurantPlaces] = useState([]);
   const [historicPlaces, setHistoricPlaces] = useState([]);
   const [marketPlaces, setMarketPlaces] = useState([]);
   const [gardenPlaces, setGardenPlaces] = useState([]);
@@ -31,8 +31,8 @@ const SideBar = (props) => {
           setMobileFilterClicked((prevFilterRes) => !prevFilterRes);
         }
         break;
-      case "Resturants":
-        await fetchResturantPlaces();
+      case "Restaurants":
+        await fetchRestaurantPlaces();
         if (isMobile) {
           setFilterRes((prevFilterRes) => !prevFilterRes);
           setMobileFilterClicked((prevFilterRes) => !prevFilterRes);
@@ -73,9 +73,9 @@ const SideBar = (props) => {
     // Updating the URL path with the selected category
     navigate(`/CityProfile/${cityId}/Places/${category.toLowerCase()}`);
   };
-  async function fetchResturantPlaces() {
+  async function fetchRestaurantPlaces() {
     const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/Resturant.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      `https://api.tomtom.com/search/2/poiSearch/Restaurant.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
     );
     const data = await response.json();
     const transformedData = data.results.map((takeAwayData) => {
@@ -93,9 +93,10 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
-    console.log(transformedData);
-    setResturantPlaces(transformedData);
-    props.onShowResturant(transformedData);
+    const filteredData = transformedData.filter((obj) => obj.class === "RESTAURANT");
+
+    setRestaurantPlaces(filteredData);
+    props.onShowRestaurant(filteredData);
   }
 
   async function fetchMuseumPlaces() {
@@ -119,9 +120,10 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
+    const filteredData = transformedData.filter((obj) => obj.class === "MUSEUM");
 
-    setMuseumPlaces(transformedData);
-    props.onShowMuseum(transformedData);
+    setMuseumPlaces(filteredData);
+    props.onShowMuseum(filteredData);
   }
 
   async function fetchBeachPlaces() {
@@ -147,14 +149,16 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
+    const filteredData = transformedData.filter((obj) => obj.class === "BEACH");
 
-    setBeachPlaces(transformedData);
-    props.onShowBeach(transformedData);
+
+    setBeachPlaces(filteredData);
+    props.onShowBeach(filteredData);
   }
 
   async function fetchHistoricPlaces() {
     const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/historic.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      `https://api.tomtom.com/search/2/poiSearch/tourist attraction.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
     );
 
     const data = await response.json();
@@ -175,7 +179,7 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
-
+    
     setHistoricPlaces(transformedData);
     props.onShowHistoric(transformedData);
   }
@@ -202,9 +206,10 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
+    const filteredData = transformedData.filter((obj) => obj.type === "market");
 
-    setMarketPlaces(transformedData);
-    props.onShowMarket(transformedData);
+    setMarketPlaces(filteredData);
+    props.onShowMarket(filteredData);
   }
   async function fetchGardenPlaces() {
     const response = await fetch(
@@ -227,6 +232,7 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
+    console.log(transformedData);
     setGardenPlaces(transformedData);
     props.onShowGarden(transformedData);
   }
@@ -285,8 +291,8 @@ const SideBar = (props) => {
           {mobileFilterClicked && (
             <div id="mobileFilterMenu">
               <p onClick={() => handleCategoryClick("Gardens")}>Gardens</p>
-              <p onClick={() => handleCategoryClick("Resturants")}>
-                Resturants
+              <p onClick={() => handleCategoryClick("Restaurants")}>
+                Restaurants
               </p>
               <p onClick={() => handleCategoryClick("Museums")}>Museums</p>
               <p onClick={() => handleCategoryClick("Historic Buildings")}>
@@ -304,7 +310,9 @@ const SideBar = (props) => {
         {
           <div id="fourthRow">
             <p onClick={() => handleCategoryClick("Gardens")}>Gardens</p>
-            <p onClick={() => handleCategoryClick("Resturants")}>Resturants</p>
+            <p onClick={() => handleCategoryClick("Restaurants")}>
+              Restaurants
+            </p>
             <p onClick={() => handleCategoryClick("Museums")}>Museums</p>
             <p onClick={() => handleCategoryClick("Historic Buildings")}>
               Historic Buildings

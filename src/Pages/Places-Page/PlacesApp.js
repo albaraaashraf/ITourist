@@ -19,65 +19,69 @@ function PlacesApp() {
 
   console.log(displayData.length);
   console.log(categoryName);
-  async function fetchAllPlaces() {
-    const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/resturant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
-    );
-    const data = await response.json();
-    const transformedData = data.results.map((takeAwayData) => {
-      return {
-        id: takeAwayData.id,
-        header: takeAwayData.poi.name,
-        street: takeAwayData.address.streetName,
-        city: takeAwayData.address.localName,
-        type: takeAwayData.poi.categories[0],
-        distance: takeAwayData.dist,
-        class: takeAwayData.poi.classifications[0].code,
-
-        info:
-          takeAwayData.address.municipalitySubdivision +
-          "  ,   " +
-          takeAwayData.address.municipality,
-      };
-    });
-    setAllData(transformedData);
-    // setResturantPlaces(transformedData);
-    // props.onShowResturant(transformedData);
-  }
-  async function fetchCategoryPlaces() {
-    const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/${categoryName}.json?limit=1000&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
-    );
-    const data = await response.json();
-    const transformedData = data.results.map((takeAwayData) => {
-      return {
-        id: takeAwayData.id,
-        header: takeAwayData.poi.name,
-        street: takeAwayData.address.streetName,
-        city: takeAwayData.address.localName,
-        type: takeAwayData.poi.categories[0],
-        distance: takeAwayData.dist,
-        class: takeAwayData.poi.classifications[0].code,
-
-        info:
-          takeAwayData.address.municipalitySubdivision +
-          "  ,   " +
-          takeAwayData.address.municipality,
-      };
-    });
-    setAllData(transformedData);
-    // setResturantPlaces(transformedData);
-    // props.onShowResturant(transformedData);
-  }
+  
   useEffect(() => {
     console.log(categoryName);
+    async function fetchAllPlaces() {
+      const response = await fetch(
+        `https://api.tomtom.com/search/2/poiSearch/Restaurant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      );
+      const data = await response.json();
+      const transformedData = data.results.map((takeAwayData) => {
+        return {
+          id: takeAwayData.id,
+          header: takeAwayData.poi.name,
+          street: takeAwayData.address.streetName,
+          city: takeAwayData.address.localName,
+          type: takeAwayData.poi.categories[0],
+          distance: takeAwayData.dist,
+          class: takeAwayData.poi.classifications[0].code,
+  
+          info:
+            takeAwayData.address.municipalitySubdivision +
+            "  ,   " +
+            takeAwayData.address.municipality,
+        };
+      });
+      setAllData(transformedData);
+      console.log(transformedData);
+      // setRestaurantPlaces(transformedData);
+      // props.onShowRestaurant(transformedData);
+    }
+    async function fetchCategoryPlaces() {
+      const response = await fetch(
+        `https://api.tomtom.com/search/2/poiSearch/${categoryName}.json?limit=1000&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      );
+      const data = await response.json();
+      const transformedData = data.results.map((takeAwayData) => {
+        return {
+          id: takeAwayData.id,
+          header: takeAwayData.poi.name,
+          street: takeAwayData.address.streetName,
+          city: takeAwayData.address.localName,
+          type: takeAwayData.poi.categories[0],
+          distance: takeAwayData.dist,
+          class: takeAwayData.poi.classifications[0].code,
+  
+          info:
+            takeAwayData.address.municipalitySubdivision +
+            "  ,   " +
+            takeAwayData.address.municipality,
+        };
+      });
+      setAllData(transformedData);
+      console.log(transformedData);
+      // setRestaurantPlaces(transformedData);
+      // props.onShowRestaurant(transformedData);
+    }
     if (categoryName) {
       fetchCategoryPlaces();
     } else {
       fetchAllPlaces();
+      
+      
     }
-  }, []);
-  console.log(allData);
+  }, [categoryName,lat,lon]);
   const showGardenHandler = (garden) => {
     setDisplayData(garden);
     setCurrentPage(1);
@@ -93,10 +97,10 @@ function PlacesApp() {
     setCurrentPage(1);
     console.log(museum);
   };
-  const showResturantHandler = (resturant) => {
-    setDisplayData(resturant);
+  const showRestaurantHandler = (Restaurant) => {
+    setDisplayData(Restaurant);
     setCurrentPage(1);
-    console.log(resturant);
+    console.log(Restaurant);
   };
   const showHistoricHandler = (historic) => {
     setDisplayData(historic);
@@ -117,7 +121,7 @@ function PlacesApp() {
             onShowGarden={showGardenHandler}
             onShowBeach={showBeachHandler}
             onShowMuseum={showMuseumHandler}
-            onShowResturant={showResturantHandler}
+            onShowRestaurant={showRestaurantHandler}
             onShowHistoric={showHistoricHandler}
             onShowMarket={showMarketHandler}
           ></SideBar>

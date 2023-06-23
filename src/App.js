@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import CityContext from "./Context/CityContext";
 import CityDataContext from "./Context/CityDataContext";
+import PlaceImageContext from "./Context/PlaceImageContext";
 // Layouts
 import RootLayout from "./Pages/LayOut/rootLayout";
 import NotFound from "./Pages/Not Found/NotFound";
@@ -63,7 +64,6 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="CityProfile/:cityId" element={<CityProfileApp />}></Route>
       <Route path="/Places" element={<PlacesApp />} />
-
       <Route path="CityProfile/:cityId/Places" element={<PlacesApp />} />
       <Route path="CityProfile/Places" element={<PlacesApp />} />
       <Route
@@ -71,7 +71,7 @@ const router = createBrowserRouter(
         element={<PlacesApp />}
       />
       <Route
-        path="CityProfile/:cityId/Places/resturants"
+        path="CityProfile/:cityId/Places/restaurants"
         element={<PlacesApp />}
       />
       <Route
@@ -90,8 +90,41 @@ const router = createBrowserRouter(
         path="CityProfile/:cityId/Places/gardens"
         element={<PlacesApp />}
       />
+      {/* Place Profile Page Routes */}
       <Route
+        path="/cityProfile/:cityId/Places/restaurants/Profile"
+        element={<PlaceProfileApp />}
+      />
+      <Route
+        path="/cityProfile/:cityId/Places/restaurants/Profile"
+        element={<PlaceProfileApp />}
+      />
+       <Route
         path="/cityProfile/:cityId/Places/markets/Profile"
+        element={<PlaceProfileApp />}
+      />
+       <Route
+        path="/cityProfile/:cityId/Places/beaches/Profile"
+        element={<PlaceProfileApp />}
+      />
+       <Route
+        path="/cityProfile/:cityId/Places/gardens/Profile"
+        element={<PlaceProfileApp />}
+      />
+       <Route
+        path="/cityProfile/:cityId/Places/historic buildings/Profile"
+        element={<PlaceProfileApp />}
+      />
+       <Route
+        path="/cityProfile/:cityId/Places/museums/Profile"
+        element={<PlaceProfileApp />}
+      />
+      <Route
+        path="/cityProfile/:cityId/Places/Profile"
+        element={<PlaceProfileApp />}
+      />
+       <Route
+        path="/places/Profile"
         element={<PlaceProfileApp />}
       />
       {/* profile root components */}
@@ -104,20 +137,14 @@ const router = createBrowserRouter(
         </Route>
         <Route path="Edit" element={<Edit />} />
       </Route>
-
       <Route path="Us" element={<ContactUs />} />
-
       <Route path="About" element={<About />} />
-
       <Route path="SingUp" element={<SignUp />} />
-
       <Route path="SignIn" element={<SignIn />}>
         <Route index element={<SignInContent />} />
         <Route path="RecoverPassword" element={<RecoverPassword />} />
       </Route>
-
       <Route path="test" element={<RequestTourGuide />} />
-
       {/* for not found Page */}
       <Route path="*" element={<NotFound />} />
     </Route>
@@ -132,9 +159,11 @@ function App() {
   const [cardData, setCardData] = useState();
   const [categoryName, setCategoryName] = useState();
   const [cityId, setCityId] = useState();
+  const[placeImage,setPlaceImage]=useState();
 
   return (
     <>
+    <PlaceImageContext.Provider value={{placeImage,setPlaceImage}}>
       <CityDataContext.Provider
         value={{ cardData, setCardData, categoryName, setCategoryName }}
       >
@@ -157,6 +186,7 @@ function App() {
           </RouterProvider>
         </CityContext.Provider>
       </CityDataContext.Provider>
+      </PlaceImageContext.Provider>
     </>
   );
 }
