@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.8.0",
+    "react-rating": "^2.0.5",
     "react-router-dom": "6.4",
     "react-scripts": "^5.0.1",
     "react-search-autocomplete": "^8.5.2",

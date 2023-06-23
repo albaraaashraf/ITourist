@@ -1,6 +1,17 @@
 /* html {
     scroll-behavior: smooth;
   } */
+  #info__container{
+    height: 23rem;
+    width: 21rem;
+    background-color: #ffffff;
+    border-radius: 2rem;
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    gap: 14px;
+  }
   .active{
     color: #072c3d61;
   }
@@ -26,12 +37,21 @@
 .star__container{
     padding: 2rem;
 }
+.rightCol__adress{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
 .rightCol{
     display: flex;
     text-align: center;
     align-items: center;
     width: 100%;
-    justify-content: space-around;}
+    flex-direction: column;
+    height: 100%;
+}
 .imageInfo{
     height: fit-content;
     width: 100%;
@@ -46,7 +66,7 @@
 #cardHeader{
     font-size: 17px;
     font-weight: bold;
-    padding: 2rem;
+    margin: 0rem !important;
     max-width: 16rem;
 }
 #card__par{
@@ -54,7 +74,7 @@
     align-items: center;
 }
 #card__par p {
-margin-left: 0.3rem;    
+    margin: 0rem 0rem 0rem 0.3rem !important;
 }
 .card__like{
     width: 100%;
@@ -72,6 +92,16 @@ margin-left: 0.3rem;
 @media (max-width:920px) {
     .labelPages {
         display: none !important;
+    }
+    #info__container{
+        height: 20rem;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 2rem;
+        display: flex;
+        padding: 1rem;
+        flex-direction: column;
+        gap: 15px;
     }
 #card__container{
     display: flex;

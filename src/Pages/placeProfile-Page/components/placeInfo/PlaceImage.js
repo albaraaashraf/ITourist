@@ -18,9 +18,8 @@ const PlaceImage = () => {
           alt="bla bla"
         ></img>
         <div id="tag__container">
-          <PlaceTags name={"Monument"}></PlaceTags>
-          <PlaceTags name="Sea"></PlaceTags>
-          <PlaceTags name="Touring"></PlaceTags>
+          <PlaceTags></PlaceTags>
+         
         </div>
       </div>
     </>

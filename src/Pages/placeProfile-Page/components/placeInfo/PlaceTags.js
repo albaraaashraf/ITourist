@@ -1,10 +1,23 @@
 import './PlaceTags.css'
+import CityDataContext from '../../../../Context/CityDataContext';
+import { useContext } from 'react';
 const PlaceTags=(props)=>{
+    const{cardData}=useContext(CityDataContext);
+    // console.log(cardData.categories)
+    const imageTags=cardData.categories;
+    imageTags.map((item)=>{console.log(item)})
     const name=props.name;
     return<>
-    <div id='image__tag'>
+   {
+    imageTags.map(item => {
+        return<div id='image__tag'>
+        {item}
+        </div>;
+      })
+   }
+    {/* <div id='image__tag'>
     {name}
-    </div>
+    </div> */}
     </>
 }
 export default PlaceTags

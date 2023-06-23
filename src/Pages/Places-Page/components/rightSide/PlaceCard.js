@@ -217,7 +217,7 @@ const PlaceCard = (props) => {
               <p id="cardHeader">{item.header}</p>
               <div id="card__par">
                 <ImLocation2 />
-                <p>{item.info}</p>
+                {/* <p>{item.info}</p> */}
                 <p style={{ marginLeft: "1rem" }}>{item.street}</p>
               </div>
             </div>
@@ -230,6 +230,7 @@ const PlaceCard = (props) => {
                 borderRadius: "10px",
                 width: "5rem",
                 cursor: "pointer",
+                marginTop:"2rem"
               }}
               onClick={() => {
                 discoverClickHandler(item);

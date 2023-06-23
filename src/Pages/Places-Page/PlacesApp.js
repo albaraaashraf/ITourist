@@ -31,11 +31,13 @@ function PlacesApp() {
         return {
           id: takeAwayData.id,
           header: takeAwayData.poi.name,
-          street: takeAwayData.address.streetName,
+          street: takeAwayData.address.freeformAddress,
           city: takeAwayData.address.localName,
           type: takeAwayData.poi.categories[0],
           distance: takeAwayData.dist,
           class: takeAwayData.poi.classifications[0].code,
+          categories: takeAwayData.poi.categories, 
+
   
           info:
             takeAwayData.address.municipalitySubdivision +
@@ -57,11 +59,13 @@ function PlacesApp() {
         return {
           id: takeAwayData.id,
           header: takeAwayData.poi.name,
-          street: takeAwayData.address.streetName,
+          street: takeAwayData.address.freeformAddress,
           city: takeAwayData.address.localName,
           type: takeAwayData.poi.categories[0],
           distance: takeAwayData.dist,
           class: takeAwayData.poi.classifications[0].code,
+          categories: takeAwayData.poi.categories, 
+
   
           info:
             takeAwayData.address.municipalitySubdivision +

@@ -1,36 +1,43 @@
-import './PlaceCard.css'
-import {AiFillStar} from 'react-icons/ai'
-import CityDataContext from '../../../../Context/CityDataContext';
-import { useContext } from 'react';
+import "./PlaceCard.css";
+import CityDataContext from "../../../../Context/CityDataContext";
+import Rating from "@mui/material/Rating";
+
+import { useContext, useEffect, useState } from "react";
 const PlaceCard = () => {
-const{cardData} = useContext(CityDataContext)
-console.log(cardData)
-  return <>
-  <div id="info__container">
-    <div id="info__header">
-    <p id='place__header'>{cardData.header}</p>
-    <p id='place__distance'>{cardData.distance}</p>
+  const [value, setValue] =useState(2);
 
-    </div>
-    <div id='rating__container'>
-    <AiFillStar></AiFillStar>
-    <AiFillStar></AiFillStar>
-    <AiFillStar></AiFillStar>
-    <AiFillStar></AiFillStar>
-    <AiFillStar></AiFillStar>
-    </div>
+  const { cardData } = useContext(CityDataContext);
+  const aproxDistance = Math.round(cardData.distance * 100) / 100;
+  const handleRatingChange = (event, newValue) => {
+    setValue(newValue);
+  }
+  useEffect(()=>{
+    console.log(value)
+  },[value])
 
-    <div id='info__par'>
-      <p>
-    {cardData.info}
+  return (
+    <>
+      <div id="info__container">
+        <div id="info__header">
+          <p id="place__header">{cardData.header}</p>
+          <p id="place__distance">{aproxDistance}m</p>
+        </div>
+        <div id="rating__container">
+          <Rating
+            name="simple-controlled"
+            defaultValue={3}
+            precision={1}
+            style={{ color: "#072c3d" }}
+            onChange={handleRatingChange}
+          />
+        </div>
 
-      </p>
-      <button className='review__button'>
-        Tour guide
-      </button>
-    </div>
-    </div>
-   
-  </>;
+        <div id="info__par">
+          <p>{cardData.info}</p>
+          <button className="review__button">Review this place</button>
+        </div>
+      </div>
+    </>
+  );
 };
 export default PlaceCard;
