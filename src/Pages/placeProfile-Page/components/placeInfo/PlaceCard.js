@@ -4,16 +4,18 @@ import Rating from "@mui/material/Rating";
 
 import { useContext, useEffect, useState } from "react";
 const PlaceCard = () => {
-  const [value, setValue] =useState(2);
+  const [value, setValue] = useState(2);
 
   const { cardData } = useContext(CityDataContext);
   const aproxDistance = Math.round(cardData.distance * 100) / 100;
   const handleRatingChange = (event, newValue) => {
     setValue(newValue);
-  }
-  useEffect(()=>{
-    console.log(value)
-  },[value])
+  };
+
+  //asynchronous effect to the change of value raiting
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
 
   return (
     <>
