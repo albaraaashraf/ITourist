@@ -9,7 +9,7 @@ export default function TopScreenButton() {
     position: "fixed",
     right: "30px",
     bottom: "30px",
-    opacity: "1",
+    opacity: "0",
   });
 
   const clickHandler = () => {

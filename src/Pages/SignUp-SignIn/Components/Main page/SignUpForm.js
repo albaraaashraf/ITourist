@@ -1,9 +1,15 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useState, useEffect } from "react";
 import { Alert } from "react-bootstrap";
+
+import { useNavbarAndFooterState } from "../../../../Context/NavbarAndFooterContext";
+
+// Styling and icons
+
+//// css
 import "./SignInForm.css";
 import "./Verification.css";
 
-// Styling and icons
+//
 import Input from "../UI/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -28,6 +34,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { StateContext } from "../../Pages/SignUp";
 
 function SignInForm() {
+  const { setShowNavbarAndFooter } = useNavbarAndFooterState();
+
   const [registerEmail, setRegisterEmail] = useState("");
 
   const [registerPassword, setRegisterPassword] = useState("");
@@ -125,7 +133,6 @@ function SignInForm() {
       let imagePath = `Images/${user.uid}/ProfileImgs/${file.name}`;
 
       try {
-        setText("uploading Image");
         await uploadFile(imagePath, file).then(async () => {
           await downloadImg(imagePath).then((downloadURL) => {
             person = { ...person, ProfileImg: downloadURL };
@@ -138,7 +145,7 @@ function SignInForm() {
         navigate("/");
         window.location.reload();
       } catch (e) {
-        setError("Error adding data: "); //, e);
+        setError("Error adding data: ");
       }
     } catch (error) {
       setError(error.code.replace("-", " ").slice(5));
@@ -146,6 +153,14 @@ function SignInForm() {
 
     setLoadingScreen(false);
   }
+
+  useEffect(() => {
+    setShowNavbarAndFooter(false);
+
+    return () => {
+      setShowNavbarAndFooter(true);
+    };
+  });
 
   return (
     <Fragment>
@@ -274,7 +289,7 @@ function SignInForm() {
         <div className="my-3">
           <Input
             label="Profile Image"
-            labelStyle="btn btn-primary"
+            labelStyle="profile-img-btn"
             input={{
               id: "profileImg",
               type: "file",

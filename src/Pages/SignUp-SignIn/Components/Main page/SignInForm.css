@@ -67,3 +67,19 @@
   font-size: 20px;
   margin: 0px 9px;
 }
+
+/* signUp page */
+
+.profile-img-btn {
+  padding: 9px;
+  border: none;
+  border-radius: 6px;
+  background-image: linear-gradient(to right, #310255, #581501);
+  color: #eee !important;
+  transition-duration: 0.6s !important;
+  transform: scale(1) !important;
+}
+
+.profile-img-btn:hover {
+  transform: scale(1.2) !important;
+}

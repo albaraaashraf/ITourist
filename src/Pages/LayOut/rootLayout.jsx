@@ -9,16 +9,17 @@ import { UserProvider } from "../../Context/UserContext";
 import { AuthProvider } from "../../Context/AuthContext";
 import Footer from "../Home-Page/Home-Components/Footer/Footer";
 import TopScreenButton from "../../components/ToolOnPage/TopScreenButton";
+import { useNavbarAndFooterState } from "../../Context/NavbarAndFooterContext";
 
 function RootLayout() {
+  const { showNavbarAndFooter } = useNavbarAndFooterState();
+
   return (
     <>
       <UserProvider>
         <AuthProvider>
           <header>
-            <nav>
-              <Navbar />
-            </nav>
+            <Navbar />
           </header>
 
           {/* The main content */}
@@ -32,9 +33,11 @@ function RootLayout() {
 
       <TopScreenButton />
 
-      <div className="footer__container">
-        <Footer />
-      </div>
+      {showNavbarAndFooter && (
+        <div className="footer__container">
+          <Footer />
+        </div>
+      )}
     </>
   );
 }

@@ -9,7 +9,6 @@ import OptionBtn from "./optionsBtn";
 // Css
 import "./profile-stayling.css";
 import "./details/details.css";
-import TopScreenButton from "../../components/ToolOnPage/TopScreenButton";
 
 function Profile() {
   const [user, setUser] = useState(() => {

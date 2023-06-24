@@ -1,12 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-// import "./test.css";
-
 function OptionBtn() {
   return (
     <>
-      {/* justify-content-md-center */}
       <div className="container-lg text-center my-3 ">
         <div className="btn-group d-flex justify-content-center  align-items-center w-100 ">
           <div className="btn-border option">

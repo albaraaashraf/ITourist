@@ -1,23 +1,30 @@
+import { Fragment, useContext, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useNavbarAndFooterState } from "../../../../Context/NavbarAndFooterContext";
+
+// bootstrap
+import { Alert } from "react-bootstrap";
+
+// css
 import "./SignInForm.css";
 
-import Input from "../UI/Input";
-
-import { Fragment, useContext, useState } from "react";
-
+// icons and Components
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BiUser } from "react-icons/bi";
 import { BsLinkedin, BsGoogle, BsFacebook } from "react-icons/bs";
-
-import { auth } from "../../../../firebase-config";
-import { signInWithEmailAndPassword } from "firebase/auth";
-
-import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../../../../Context/UserContext";
-import { Alert } from "react-bootstrap";
-
+import Input from "../UI/Input";
 import { LoadState } from "../../Pages/SignIn";
 
+// firebase
+import { auth } from "../../../../firebase-config";
+import { signInWithEmailAndPassword } from "firebase/auth";
+//// the USER
+import { useUser } from "../../../../Context/UserContext";
+
 function SignInForm() {
+  const { setShowNavbarAndFooter } = useNavbarAndFooterState();
+
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
 
@@ -55,6 +62,14 @@ function SignInForm() {
     setLoadScreen(false);
     setLoading(false);
   }
+
+  useEffect(() => {
+    setShowNavbarAndFooter(false);
+
+    return () => {
+      setShowNavbarAndFooter(true);
+    };
+  });
 
   return (
     <Fragment>

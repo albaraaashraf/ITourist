@@ -3,7 +3,6 @@ import "../Components/Main page/HomePage.css";
 
 import { Fragment, createContext, useState } from "react";
 
-import TopScreenButton from "../../../components/ToolOnPage/TopScreenButton";
 import LoadingScreen from "../../../components/LoadingScreen/LoadingScreen";
 
 import { Outlet } from "react-router-dom";
@@ -26,7 +25,6 @@ function SingIn(props) {
             <Outlet />
           </LoadState.Provider>
         </div>
-        <TopScreenButton />
       </div>
     </Fragment>
   );

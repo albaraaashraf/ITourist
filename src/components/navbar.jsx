@@ -52,15 +52,7 @@ function Navbar() {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  style={{ textTransform: "capitalize" }}
-                  to="/Places"
-                >
-                  places
-                </NavLink>
-              </li>
+
               <li className="nav-item">
                 <NavLink className="nav-link" to="/About">
                   About

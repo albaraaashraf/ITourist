@@ -6,7 +6,7 @@ import "../Components/Main page/HomePage.css";
 // Components
 import SignUpForm from "../Components/Main page/SignUpForm";
 import Description from "../Components/Main page/Description";
-import TopScreenButton from "../../../components/ToolOnPage/TopScreenButton";
+
 import LoadingScreen from "../../../components/LoadingScreen/LoadingScreen";
 
 export const StateContext = createContext();
@@ -30,7 +30,6 @@ function SignUp(props) {
             <Description />
             <SignUpForm />
           </div>
-          <TopScreenButton />
         </div>
       </Fragment>
     </StateContext.Provider>
