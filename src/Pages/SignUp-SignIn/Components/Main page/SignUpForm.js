@@ -106,7 +106,6 @@ function SignInForm() {
       }
 
       let data = document.querySelector("#singUp").elements;
-
       const file = data.profileImg.files[0];
 
       let person = {
@@ -130,14 +129,20 @@ function SignInForm() {
       const user = userCredential.user;
       const docRef = doc(db, "users", user.uid);
 
-      let imagePath = `Images/${user.uid}/ProfileImgs/${file.name}`;
-
       try {
-        await uploadFile(imagePath, file).then(async () => {
-          await downloadImg(imagePath).then((downloadURL) => {
-            person = { ...person, ProfileImg: downloadURL };
+        if (file) {
+          let imagePath = `Images/${user.uid}/ProfileImgs/${file.name}`;
+
+          await uploadFile(imagePath, file).then(async () => {
+            await downloadImg(imagePath).then((downloadURL) => {
+              person = { ...person, ProfileImg: downloadURL };
+            });
           });
-        });
+        } else {
+          const imgpath =
+            "https://firebasestorage.googleapis.com/v0/b/itourist-auth-development.appspot.com/o/default%20imgs%2Fprofile-icon.png?alt=media&token=38683df4-0e51-4d19-ad4a-c669dcd71223";
+          person = { ...person, ProfileImg: imgpath };
+        }
 
         setText("Finalizing");
         await setDoc(docRef, { ...person, CreatedAt: serverTimestamp() });

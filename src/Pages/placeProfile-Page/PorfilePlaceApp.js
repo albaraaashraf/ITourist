@@ -14,7 +14,7 @@ import ReviewInput from "./components/reviews/ReviewInput";
 import CityDataContext from "../../Context/CityDataContext";
 import { useEffect } from "react";
 
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase-config";
 
 function ProfilePlaceApp() {
