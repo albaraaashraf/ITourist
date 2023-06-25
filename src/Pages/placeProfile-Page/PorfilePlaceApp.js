@@ -7,14 +7,14 @@ import CityContext from "../../Context/CityContext";
 import PlaceCard from "./components/placeInfo/PlaceCard";
 import PlaceImage from "./components/placeInfo/PlaceImage";
 import ReviewCard from "./components/reviews/ReviewCard";
-// import ReviewCardButton from "./components/reviews/ReviewCardButton";
+import ReviewCardButton from "./components/reviews/ReviewCardButton";
 import ReviewHeader from "./components/reviews/ReviewHeader";
 import SliderContainer from "./components/Slider/SliderContainer";
 import ReviewInput from "./components/reviews/ReviewInput";
 import CityDataContext from "../../Context/CityDataContext";
 import { useEffect } from "react";
 
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../../firebase-config";
 
 function ProfilePlaceApp() {
@@ -24,7 +24,6 @@ function ProfilePlaceApp() {
   const { cardData } = useContext(CityDataContext);
 
   const [reviews, setReviews] = useState();
-  const [added, setAdded] = useState(true);
 
   const reviewData = {
     country: countryId,
@@ -38,13 +37,16 @@ function ProfilePlaceApp() {
       `places/${countryId}/${cardData.city}/${cardData.header}/reviews`
     );
 
-    const subscribe = onSnapshot(colRef, (snapshot) => {
+    const q = query(colRef, orderBy("time", "desc"));
+
+    const subscribe = onSnapshot(q, (snapshot) => {
       let reviews = [];
+
       snapshot.docs.forEach((doc) => {
         reviews.push(doc.data());
       });
-      setReviews(reviews);
 
+      setReviews(reviews);
       console.log("once updated");
     });
 
@@ -65,25 +67,24 @@ function ProfilePlaceApp() {
           <SliderContainer />
         </div>
         <div id="third__part">
-          <ReviewHeader />
+          <ReviewHeader length={reviews.length} />
 
-          {reviews &&
-            reviews.map((review) => {
-              return (
-                <ReviewCard user={review.userName} value={review.review} />
-              );
-            })}
+          <div s>
+            {reviews &&
+              reviews.map((review) => {
+                return (
+                  <ReviewCard
+                    user={review.userName}
+                    time={review.time}
+                    review={review.review}
+                  />
+                );
+              })}
+          </div>
 
-          {/* <ReviewCard /> */}
-          {signedUp && (
-            <ReviewInput
-              reviewData={reviewData}
-              update={setAdded}
-              val={added}
-            />
-          )}
+          {/* <ReviewCardButton /> */}
 
-          {/* <ReviewCardButton/> */}
+          {signedUp && <ReviewInput reviewData={reviewData} />}
         </div>
       </div>
     </>

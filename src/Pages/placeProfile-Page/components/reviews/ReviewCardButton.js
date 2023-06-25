@@ -1,9 +1,9 @@
-import './ReviewCardButton.css'
-const ReviewCardButton=()=>{
-    return<>
-    <div id='buttonReview'>
-    See More
-    </div>
+import "./ReviewCardButton.css";
+const ReviewCardButton = (probs) => {
+  return (
+    <>
+      <div id="buttonReview">See More</div>
     </>
-}
-export default ReviewCardButton
+  );
+};
+export default ReviewCardButton;
