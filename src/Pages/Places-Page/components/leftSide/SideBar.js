@@ -87,14 +87,18 @@ const SideBar = (props) => {
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
+        categories: takeAwayData.poi.categories,
+        img : "/assets/images/Nearby__images/Restaurant.jpg",
+
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
           takeAwayData.address.municipality,
       };
     });
-    const filteredData = transformedData.filter((obj) => obj.class === "RESTAURANT");
+    const filteredData = transformedData.filter(
+      (obj) => obj.class === "RESTAURANT"
+    );
     setRestaurantPlaces(filteredData);
     props.onShowRestaurant(filteredData);
   }
@@ -113,7 +117,8 @@ const SideBar = (props) => {
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
+        categories: takeAwayData.poi.categories,
+        img : "/assets/images/Nearby__images/Museum.jpg",
 
 
         info:
@@ -122,7 +127,9 @@ const SideBar = (props) => {
           takeAwayData.address.municipality,
       };
     });
-    const filteredData = transformedData.filter((obj) => obj.class === "MUSEUM");
+    const filteredData = transformedData.filter(
+      (obj) => obj.class === "MUSEUM"
+    );
 
     setMuseumPlaces(filteredData);
     props.onShowMuseum(filteredData);
@@ -144,8 +151,8 @@ const SideBar = (props) => {
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
-
+        categories: takeAwayData.poi.categories,
+        img : "/assets/images/Nearby__images/Beach.jpg",
 
         info:
           takeAwayData.address.municipalitySubdivision +
@@ -154,7 +161,6 @@ const SideBar = (props) => {
       };
     });
     const filteredData = transformedData.filter((obj) => obj.class === "BEACH");
-
 
     setBeachPlaces(filteredData);
     props.onShowBeach(filteredData);
@@ -176,16 +182,15 @@ const SideBar = (props) => {
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
-
-
+        categories: takeAwayData.poi.categories,
+        img: "/assets/images/Nearby__images/Historic.jpg",
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
           takeAwayData.address.municipality,
       };
     });
-    
+
     setHistoricPlaces(transformedData);
     props.onShowHistoric(transformedData);
   }
@@ -205,7 +210,8 @@ const SideBar = (props) => {
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
+        categories: takeAwayData.poi.categories,
+        img : "/assets/images/Nearby__images/Market.jpg",
 
 
         info:
@@ -233,7 +239,8 @@ const SideBar = (props) => {
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
+        categories: takeAwayData.poi.categories,
+        img : "/assets/images/Nearby__images/Garden.jpg",
 
 
         info:

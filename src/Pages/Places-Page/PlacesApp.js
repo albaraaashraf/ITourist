@@ -19,7 +19,7 @@ function PlacesApp() {
 
   console.log(displayData.length);
   console.log(categoryName);
-  
+
   useEffect(() => {
     console.log(categoryName);
     async function fetchAllPlaces() {
@@ -28,6 +28,31 @@ function PlacesApp() {
       );
       const data = await response.json();
       const transformedData = data.results.map((takeAwayData) => {
+        let img = "";
+        switch (takeAwayData.poi.classifications[0].code) {
+          case "RESTAURANT":
+            img = "/assets/images/Nearby__images/Restaurant.jpg";
+            break;
+          case "BEACH":
+            img = "/assets/images/Nearby__images/Beach.jpg";
+            break;
+          case "PARK_RECREATION_AREA":
+            img = "/assets/images/Nearby__images/Garden.jpg";
+            break;
+          case "MARKET":
+          case "SHOPPING_CENTER":
+          case "SHOP":
+            img = "/assets/images/Nearby__images/Market.jpg";
+            break;
+          case "IMPORTANT_TOURIST_ATTRACTION":
+            img = "/assets/images/Nearby__images/Historic.jpg";
+            break;
+            case "MUSEUM":
+              img = "/assets/images/Nearby__images/Museum.jpg";
+              break;
+          default:
+            break;
+        }
         return {
           id: takeAwayData.id,
           header: takeAwayData.poi.name,
@@ -36,9 +61,9 @@ function PlacesApp() {
           type: takeAwayData.poi.categories[0],
           distance: takeAwayData.dist,
           class: takeAwayData.poi.classifications[0].code,
-          categories: takeAwayData.poi.categories, 
+          categories: takeAwayData.poi.categories,
+          img: img,
 
-  
           info:
             takeAwayData.address.municipalitySubdivision +
             "  ,   " +
@@ -46,7 +71,6 @@ function PlacesApp() {
         };
       });
       setAllData(transformedData);
-      console.log(transformedData);
       // setRestaurantPlaces(transformedData);
       // props.onShowRestaurant(transformedData);
     }
@@ -56,6 +80,24 @@ function PlacesApp() {
       );
       const data = await response.json();
       const transformedData = data.results.map((takeAwayData) => {
+        let img = "";
+        switch (categoryName) {
+          case "Resturants":
+            img = "assets/images/Nearby__images/Restaurant.jpg";
+            break;
+          case "Coffe":
+            img = "/assets/images/Nearby__images/Coffeshop.jpg"
+            break;
+          case "Cinema":
+            img = "assets/images/Nearby__images/Cinema.jpg";
+            break;
+          case "Parks&Recreation":
+            img = "assets/images/Nearby__images/Garden.jpg";
+            break;
+         
+          default:
+            break;
+        }
         return {
           id: takeAwayData.id,
           header: takeAwayData.poi.name,
@@ -64,9 +106,9 @@ function PlacesApp() {
           type: takeAwayData.poi.categories[0],
           distance: takeAwayData.dist,
           class: takeAwayData.poi.classifications[0].code,
-          categories: takeAwayData.poi.categories, 
+          categories: takeAwayData.poi.categories,
+          img: img,
 
-  
           info:
             takeAwayData.address.municipalitySubdivision +
             "  ,   " +
@@ -82,10 +124,8 @@ function PlacesApp() {
       fetchCategoryPlaces();
     } else {
       fetchAllPlaces();
-      
-      
     }
-  }, [categoryName,lat,lon]);
+  }, [categoryName, lat, lon]);
   const showGardenHandler = (garden) => {
     setDisplayData(garden);
     setCurrentPage(1);
