@@ -32,44 +32,26 @@ function ProfilePlaceApp() {
     placeName: cardData.header,
   };
 
-  // useEffect(() => {
-  //   const colRef = collection(
-  //     db,
-  //     `places/${countryId}/${cardData.city}/${cardData.header}/reviews`
-  //   );
-  //   getDocs(colRef)
-  //     .then((docs) => {
-  //       let reviews = [];
-  //       docs.forEach((doc) => {
-  //         reviews.push(doc.data());
-  //       });
-  //       return reviews;
-  //     })
-  //     .then((reviews) => {
-  //       setReviews(reviews);
-  //     })
-  //     .then(() => {
-  //       console.log("done");
-  //     });
-  // }, []);
-
   useEffect(() => {
     const colRef = collection(
       db,
       `places/${countryId}/${cardData.city}/${cardData.header}/reviews`
     );
 
-    onSnapshot(colRef, (snapshot) => {
+    const subscribe = onSnapshot(colRef, (snapshot) => {
       let reviews = [];
       snapshot.docs.forEach((doc) => {
         reviews.push(doc.data());
       });
       setReviews(reviews);
-      console.log(reviews);
 
-      // setReviews(reviews);
       console.log("once updated");
     });
+
+    return () => {
+      subscribe();
+      console.log("left the page");
+    };
   }, []);
 
   return (
