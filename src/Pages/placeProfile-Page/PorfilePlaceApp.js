@@ -67,7 +67,7 @@ function ProfilePlaceApp() {
           <SliderContainer />
         </div>
         <div id="third__part">
-          <ReviewHeader length={reviews.length} />
+          <ReviewHeader length={reviews && reviews.length} />
 
           <div s>
             {reviews &&
