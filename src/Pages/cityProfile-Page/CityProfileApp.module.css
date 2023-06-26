@@ -11,6 +11,10 @@
   .show {
     opacity: 1;
   }
+  .buttonContainer{
+    text-align: center;
+    margin-top: 5rem;
+  }
   @media only screen and (max-width: 480px) {
     /* CSS styles specifically for mobile screens go here */
     

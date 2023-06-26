@@ -19,12 +19,16 @@ function PlacesApp() {
 
   console.log(displayData.length);
   console.log(categoryName);
+  const storedLat = localStorage.getItem('lat');
+  const storedLon = localStorage.getItem('lon');
+const storedCategory=localStorage.getItem('category')
+console.log(storedCategory)
 
   useEffect(() => {
-    console.log(categoryName);
+    console.log();
     async function fetchAllPlaces() {
       const response = await fetch(
-        `https://api.tomtom.com/search/2/poiSearch/Restaurant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+        `https://api.tomtom.com/search/2/poiSearch/Restaurant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${storedLat}&lon=${storedLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
       );
       const data = await response.json();
       const transformedData = data.results.map((takeAwayData) => {
@@ -63,7 +67,8 @@ function PlacesApp() {
           class: takeAwayData.poi.classifications[0].code,
           categories: takeAwayData.poi.categories,
           img: img,
-
+          lon: takeAwayData.position.lon,
+          lat: takeAwayData.position.lat,
           info:
             takeAwayData.address.municipalitySubdivision +
             "  ,   " +
@@ -76,23 +81,23 @@ function PlacesApp() {
     }
     async function fetchCategoryPlaces() {
       const response = await fetch(
-        `https://api.tomtom.com/search/2/poiSearch/${categoryName}.json?limit=1000&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+        `https://api.tomtom.com/search/2/poiSearch/${storedCategory}.json?limit=1000&lat=${storedLat}&lon=${storedLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
       );
       const data = await response.json();
       const transformedData = data.results.map((takeAwayData) => {
         let img = "";
-        switch (categoryName) {
+        switch (storedCategory) {
           case "Resturants":
-            img = "assets/images/Nearby__images/Restaurant.jpg";
+            img = "/assets/images/Nearby__images/Restaurant.jpg";
             break;
           case "Coffe":
             img = "/assets/images/Nearby__images/Coffeshop.jpg"
             break;
           case "Cinema":
-            img = "assets/images/Nearby__images/Cinema.jpg";
+            img = "/assets/images/Nearby__images/Cinema.jpg";
             break;
           case "Parks&Recreation":
-            img = "assets/images/Nearby__images/Garden.jpg";
+            img = "/assets/images/Nearby__images/Garden.jpg";
             break;
          
           default:
@@ -108,7 +113,8 @@ function PlacesApp() {
           class: takeAwayData.poi.classifications[0].code,
           categories: takeAwayData.poi.categories,
           img: img,
-
+          lon: takeAwayData.position.lon,
+          lat: takeAwayData.position.lat,
           info:
             takeAwayData.address.municipalitySubdivision +
             "  ,   " +
@@ -120,12 +126,12 @@ function PlacesApp() {
       // setRestaurantPlaces(transformedData);
       // props.onShowRestaurant(transformedData);
     }
-    if (categoryName) {
+    if (storedCategory) {
       fetchCategoryPlaces();
     } else {
       fetchAllPlaces();
     }
-  }, [categoryName, lat, lon]);
+  }, [storedCategory, storedLat, storedLon]);
   const showGardenHandler = (garden) => {
     setDisplayData(garden);
     setCurrentPage(1);

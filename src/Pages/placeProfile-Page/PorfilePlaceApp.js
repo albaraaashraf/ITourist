@@ -7,7 +7,6 @@ import CityContext from "../../Context/CityContext";
 import PlaceCard from "./components/placeInfo/PlaceCard";
 import PlaceImage from "./components/placeInfo/PlaceImage";
 import ReviewCard from "./components/reviews/ReviewCard";
-import ReviewCardButton from "./components/reviews/ReviewCardButton";
 import ReviewHeader from "./components/reviews/ReviewHeader";
 import SliderContainer from "./components/Slider/SliderContainer";
 import ReviewInput from "./components/reviews/ReviewInput";

@@ -63,6 +63,7 @@ const CategorySlider = () => {
     setLat(categoryLat);
     setLon(categoryLon);
     setCategoryName(item.title);
+    localStorage.setItem("category",item.title);
     navigate('places');
     
   };

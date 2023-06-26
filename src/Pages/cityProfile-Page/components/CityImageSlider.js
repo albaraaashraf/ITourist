@@ -6,6 +6,8 @@ import CityContext from "../../../Context/CityContext";
 const CityImageSlider = () => {
   const [unSplash, setUnSplash] = useState([]);
   const { cityName } = useContext(CityContext);
+  const storedCityName=localStorage.getItem('searchedCityName');
+
   useEffect(() => {
     async function fetchUnsplash() {
       try {

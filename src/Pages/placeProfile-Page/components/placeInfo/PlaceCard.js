@@ -7,6 +7,7 @@ const PlaceCard = () => {
   const [value, setValue] = useState(2);
 
   const { cardData } = useContext(CityDataContext);
+  console.log(cardData)
   const aproxDistance = Math.round(cardData.distance * 100) / 100;
   const handleRatingChange = (event, newValue) => {
     setValue(newValue);

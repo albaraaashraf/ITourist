@@ -65,6 +65,12 @@ const Search = () => {
     setCityName(item.name);
     setCountryId(item.countryId);
     setCityId(item.id);
+    localStorage.setItem("searchedCityLat",item.lat);
+    localStorage.setItem("searchedCityLon",item.lon);
+    localStorage.setItem("searchedCityName",item.name);
+    localStorage.setItem("searchedCountryId",item.countryId);
+    localStorage.setItem("searchedCityId",item.id);
+
     console.log(item.id);
     navigate(`CityProfile/${item.id}`);
   };

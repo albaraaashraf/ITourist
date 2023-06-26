@@ -253,8 +253,8 @@ const TourRequest = () => {
               <div className={classes.formButton}>
                 <button
                   style={{
-                    backgroundColor: maleIsClicked ? "aliceblue" : "#072c3d",
-                    color: maleIsClicked ? "#072c3d" : "aliceblue",
+                    backgroundColor: maleIsClicked ? "aliceblue" : "#00bcd4",
+                    color: maleIsClicked ? "#00bcd4" : "aliceblue",
                   }}
                   className={classes.checkButton}
                   type="button"
@@ -266,8 +266,8 @@ const TourRequest = () => {
                 </button>
                 <button
                   style={{
-                    backgroundColor: femaleIsClicked ? "aliceblue" : "#072c3d",
-                    color: femaleIsClicked ? "#072c3d" : "aliceblue",
+                    backgroundColor: femaleIsClicked ? "aliceblue" : "hotpink",
+                    color: femaleIsClicked ? "hotpink" : "aliceblue",
                   }}
                   className={classes.checkButton}
                   type="button"
@@ -316,10 +316,11 @@ const TourRequest = () => {
               </div>
               <div className={classes.formButton}>
                 <button
-                  style={{
-                    backgroundColor: carClicked ? "aliceblue" : "#072c3d",
-                    color: carClicked ? "#072c3d" : "aliceblue",
-                  }}
+                    style={{
+                      backgroundColor: carClicked ? "aliceblue" : "#072c3d",
+                      color: carClicked ? "#072c3d" : "aliceblue",
+                      
+                    }}
                   className={classes.checkButton}
                   type="button"
                   onClick={() => {

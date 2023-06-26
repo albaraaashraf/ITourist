@@ -5,6 +5,9 @@ import { useContext, useEffect, useState } from "react";
 const CityNotes=(props)=>{
     const [cityData, setCityData] = useState([]);
     const { cityName } = useContext(CityContext);
+    const storedCityName=localStorage.getItem('searchedCityName');
+    const storedCountryId=localStorage.getItem('searchedCountryId');
+  
     const words = cityName.split(" ");
     let processedName = cityName;
     if (words.length === 2) {
@@ -17,7 +20,7 @@ const CityNotes=(props)=>{
         async function fetchCityIntro() {
             try {
               const response = await fetch(
-                `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${processedName}&formatversion=2&exsentences=9&exlimit=1&origin=*&explaintext=1`
+                `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${cityName}&formatversion=2&exsentences=9&exlimit=1&origin=*&explaintext=1`
               );
       
               const data = await response.json();
@@ -29,7 +32,7 @@ const CityNotes=(props)=>{
             setCityData(x);
           }
           fetchCityIntro();
-    },[])
+    },[cityName])
     return <>
     <p className={classes.cityPar}>{cityData}</p>
     </>

@@ -7,6 +7,9 @@ const CityCover = (props) => {
   const [cityImg, setCityImg] = useState([]);
   const { cityName } = useContext(CityContext);
   const { countryId } = useContext(CityContext);
+  const storedCityName=localStorage.getItem('searchedCityName');
+  const storedCountryId=localStorage.getItem('searchedCountryId');
+ 
   const words = cityName.split(" ");
   let processedName = cityName;
   if (words.length === 2) {
@@ -16,7 +19,7 @@ const CityCover = (props) => {
     processedName = capitalizedWords.join("_");
   }
 
-  console.log(countryId);
+  // console.log(countryId);
 
   useEffect(() => {
     async function fetchCityImg() {

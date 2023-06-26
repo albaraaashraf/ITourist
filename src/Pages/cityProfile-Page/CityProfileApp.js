@@ -20,6 +20,7 @@ const CityProfileApp = (props) => {
       <CityNotes />
       <CityImageSlider />
       <div className={classes.buttonFormContainer}>
+        <div className={classes.buttonContainer}>
         <DiscoverButton />
         {signedUp && (
           <TourButton
@@ -29,6 +30,7 @@ const CityProfileApp = (props) => {
             }}
           />
         )}
+        </div>
         <div
           className={`${classes.tourRequest} ${showForm ? classes.show : ""}`}
         >

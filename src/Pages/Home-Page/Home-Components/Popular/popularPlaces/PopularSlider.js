@@ -27,7 +27,8 @@ const{setCategoryLon}=useContext(CityNameContext);
     });
   }, []);
   console.log("lat= "+lat + "  lon = "+ lon);
-
+localStorage.setItem('lat',lat);
+localStorage.setItem('lon',lon);
 
   useEffect(() => {
     async function fetchNearbyHandler() {
@@ -101,14 +102,7 @@ const{setCategoryLon}=useContext(CityNameContext);
       },
     ],
   };
-    // let valuesToRemove=['company','shop']
-    // console.log(
-    //   takeAway.filter(
-    //     (takeAwayData) =>
-    //       !takeAwayData.type.includes("company") &&
-    //       !takeAwayData.type.includes("shop")
-    //   )
-    // );
+ 
   const filteredData = takeAway.filter(
     (takeAwayData) => !takeAwayData.type.includes("company")
   );

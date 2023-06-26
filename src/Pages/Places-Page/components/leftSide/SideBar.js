@@ -88,8 +88,9 @@ const SideBar = (props) => {
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
         categories: takeAwayData.poi.categories,
-        img : "/assets/images/Nearby__images/Restaurant.jpg",
-
+        img: "/assets/images/Nearby__images/Restaurant.jpg",
+        lon: takeAwayData.position.lon,
+        lat: takeAwayData.position.lat,
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
@@ -116,10 +117,11 @@ const SideBar = (props) => {
         city: takeAwayData.address.localName,
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
+        lon: takeAwayData.position.lon,
+        lat: takeAwayData.position.lat,
         class: takeAwayData.poi.classifications[0].code,
         categories: takeAwayData.poi.categories,
-        img : "/assets/images/Nearby__images/Museum.jpg",
-
+        img: "/assets/images/Nearby__images/Museum.jpg",
 
         info:
           takeAwayData.address.municipalitySubdivision +
@@ -152,8 +154,9 @@ const SideBar = (props) => {
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
         categories: takeAwayData.poi.categories,
-        img : "/assets/images/Nearby__images/Beach.jpg",
-
+        img: "/assets/images/Nearby__images/Beach.jpg",
+        lon: takeAwayData.position.lon,
+        lat: takeAwayData.position.lat,
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
@@ -184,6 +187,8 @@ const SideBar = (props) => {
         class: takeAwayData.poi.classifications[0].code,
         categories: takeAwayData.poi.categories,
         img: "/assets/images/Nearby__images/Historic.jpg",
+        lon: takeAwayData.position.lon,
+        lat: takeAwayData.position.lat,
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
@@ -211,8 +216,9 @@ const SideBar = (props) => {
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
         categories: takeAwayData.poi.categories,
-        img : "/assets/images/Nearby__images/Market.jpg",
-
+        img: "/assets/images/Nearby__images/Market.jpg",
+        lon: takeAwayData.position.lon,
+        lat: takeAwayData.position.lat,
 
         info:
           takeAwayData.address.municipalitySubdivision +
@@ -240,8 +246,9 @@ const SideBar = (props) => {
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
         categories: takeAwayData.poi.categories,
-        img : "/assets/images/Nearby__images/Garden.jpg",
-
+        img: "/assets/images/Nearby__images/Garden.jpg",
+        lon: takeAwayData.position.lon,
+        lat: takeAwayData.position.lat,
 
         info:
           takeAwayData.address.municipalitySubdivision +
