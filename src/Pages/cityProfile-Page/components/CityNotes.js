@@ -8,8 +8,8 @@ const CityNotes=(props)=>{
     const storedCityName=localStorage.getItem('searchedCityName');
     const storedCountryId=localStorage.getItem('searchedCountryId');
   
-    const words = cityName.split(" ");
-    let processedName = cityName;
+    const words = storedCityName.split(" ");
+    let processedName = storedCityName;
     if (words.length === 2) {
       const capitalizedWords = words.map(
         (word) => word.charAt(0).toUpperCase() + word.slice(1)
@@ -20,7 +20,7 @@ const CityNotes=(props)=>{
         async function fetchCityIntro() {
             try {
               const response = await fetch(
-                `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${cityName}&formatversion=2&exsentences=9&exlimit=1&origin=*&explaintext=1`
+                `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${processedName}&formatversion=2&exsentences=9&exlimit=1&origin=*&explaintext=1`
               );
       
               const data = await response.json();
@@ -32,7 +32,7 @@ const CityNotes=(props)=>{
             setCityData(x);
           }
           fetchCityIntro();
-    },[cityName])
+    },[processedName])
     return <>
     <p className={classes.cityPar}>{cityData}</p>
     </>

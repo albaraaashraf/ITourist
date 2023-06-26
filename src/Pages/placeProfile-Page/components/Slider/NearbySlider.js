@@ -12,13 +12,16 @@ import { useEffect, useState } from "react";
 const NearbySlider = () => {
   const { cardData } = useContext(CityDataContext);
   const [data, setData] = useState([]);
-  console.log(cardData.lon);
-  console.log(cardData.lat);
+  // console.log(cardData.lon);
+  // console.log(cardData.lat);
+  const storageData=JSON.parse(localStorage.getItem("storedCardData"));
+
+
 
   useEffect(() => {
     async function fetchNearbyHandler() {
       const response =
-        await fetch(`https://api.tomtom.com/search/2/nearbySearch/.json?lat=${cardData.lat}&lon=${cardData.lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H
+        await fetch(`https://api.tomtom.com/search/2/nearbySearch/.json?lat=${storageData.lat}&lon=${storageData.lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H
         `);
 
       const data = await response.json();
@@ -44,7 +47,7 @@ const NearbySlider = () => {
       setData(transformedData);
     }
     fetchNearbyHandler();
-  }, [cardData.lat, cardData.lon]);
+  }, [storageData.lat, storageData.lon]);
   data.map((item) => {
     console.log(Math.ceil(item.score / 50));
   });

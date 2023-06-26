@@ -11,6 +11,7 @@ import CityDataContext from "../../../../../Context/CityDataContext";
 const CategorySlider = () => {
   const{categoryLon}=useContext(CityNameContext);
   const{categoryLat}=useContext(CityNameContext);
+  const{setCategoryClicked}=useContext(CityContext);
   const{setCategoryName}=useContext(CityDataContext)
   const{setLon}=useContext(CityContext);
   const{setLat}=useContext(CityContext)
@@ -63,6 +64,7 @@ const CategorySlider = () => {
     setLat(categoryLat);
     setLon(categoryLon);
     setCategoryName(item.title);
+    localStorage.setItem('categoryClick',1);
     localStorage.setItem("category",item.title);
     navigate('places');
     

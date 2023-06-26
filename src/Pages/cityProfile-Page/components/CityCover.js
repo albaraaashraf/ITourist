@@ -9,9 +9,9 @@ const CityCover = (props) => {
   const { countryId } = useContext(CityContext);
   const storedCityName=localStorage.getItem('searchedCityName');
   const storedCountryId=localStorage.getItem('searchedCountryId');
- 
-  const words = cityName.split(" ");
-  let processedName = cityName;
+
+  const words = storedCityName.split(" ");
+  let processedName = storedCityName;
   if (words.length === 2) {
     const capitalizedWords = words.map(
       (word) => word.charAt(0).toUpperCase() + word.slice(1)
@@ -38,7 +38,7 @@ const CityCover = (props) => {
     }
     fetchCityImg();
   }, [processedName]);
-  const imageId = `https://flagsapi.com/${countryId}/shiny/64.png`;
+  const imageId = `https://flagsapi.com/${storedCountryId}/shiny/64.png`;
 
   return (
     <>
@@ -46,7 +46,7 @@ const CityCover = (props) => {
         <img className={classes.coverImage} src={cityImg} alt=""></img>
         <div className={classes.imageText}>
           <div className={classes.cityName}>
-          <h1>{cityName}</h1>
+          <h1>{storedCityName}</h1>
           <img src={imageId} alt="country ID"></img>
           </div>
           <div className={classes.favAndTour}>

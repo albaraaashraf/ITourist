@@ -36,6 +36,9 @@ const TourRequest = () => {
   // city details
   const { countryId } = useContext(CityContext);
   const { cityName } = useContext(CityContext);
+  const storedCityName=localStorage.getItem('searchedCityName');
+  const storedCountryId=localStorage.getItem('searchedCountryId');
+
 
   const handleCurrencyChange = (event) => {
     const selectedValue = event.target.value;
@@ -149,13 +152,13 @@ const TourRequest = () => {
     // add form data to firebase
     const colRef = collection(
       db,
-      `/requests/Pending/Countries/${countryId}/request`
+      `/requests/Pending/Countries/${storedCountryId}/request`
     );
 
     const form = document.querySelector("#req-form");
     await addDoc(colRef, {
       ...formData,
-      CityName: cityName,
+      storedCityName: storedCityName,
       time: serverTimestamp(),
     }).then(() => {
       form.reset();

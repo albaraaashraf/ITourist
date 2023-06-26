@@ -14,22 +14,31 @@ function PlacesApp() {
   const [allData, setAllData] = useState([]);
   const { lon } = useContext(CityContext);
   const { lat } = useContext(CityContext);
-
+  // const{categoryClicked}=useContext(CityContext);
   const { categoryName } = useContext(CityDataContext);
-
+  // console.log(categoryClicked);
   console.log(displayData.length);
   console.log(categoryName);
-  const storedLat = localStorage.getItem('lat');
-  const storedLon = localStorage.getItem('lon');
-const storedCategory=localStorage.getItem('category')
-console.log(storedCategory)
 
+
+  //items from the local storage
+  const storedLat = localStorage.getItem("lat");
+  const storedLon = localStorage.getItem("lon");
+  const storedCityLat = localStorage.getItem("searchedCityLat");
+  const storedCityLon = localStorage.getItem("searchedCityLon");
+  const storedCategory = localStorage.getItem("category");
+  const popularPlaceName=localStorage.getItem("popularPlaceClicked")
+  const popularPlaceLat=localStorage.getItem("popularLat");
+  const popularPlaceLon=localStorage.getItem("popularLon")
+
+  console.log(storedCategory);
+  console.log(storedCityLat, storedCityLon);
+  console.log(storedLat, storedLon);
   useEffect(() => {
-    console.log();
     async function fetchAllPlaces() {
-      const response = await fetch(
-        `https://api.tomtom.com/search/2/poiSearch/Restaurant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${storedLat}&lon=${storedLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
-      );
+      const response = await fetch(!popularPlaceName?
+        `https://api.tomtom.com/search/2/poiSearch/Restaurant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${storedCityLat}&lon=${storedCityLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+     : `https://api.tomtom.com/search/2/poiSearch/Restaurant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${popularPlaceLat}&lon=${popularPlaceLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` );
       const data = await response.json();
       const transformedData = data.results.map((takeAwayData) => {
         let img = "";
@@ -51,9 +60,9 @@ console.log(storedCategory)
           case "IMPORTANT_TOURIST_ATTRACTION":
             img = "/assets/images/Nearby__images/Historic.jpg";
             break;
-            case "MUSEUM":
-              img = "/assets/images/Nearby__images/Museum.jpg";
-              break;
+          case "MUSEUM":
+            img = "/assets/images/Nearby__images/Museum.jpg";
+            break;
           default:
             break;
         }
@@ -76,6 +85,7 @@ console.log(storedCategory)
         };
       });
       setAllData(transformedData);
+      console.log(transformedData);
       // setRestaurantPlaces(transformedData);
       // props.onShowRestaurant(transformedData);
     }
@@ -91,7 +101,7 @@ console.log(storedCategory)
             img = "/assets/images/Nearby__images/Restaurant.jpg";
             break;
           case "Coffe":
-            img = "/assets/images/Nearby__images/Coffeshop.jpg"
+            img = "/assets/images/Nearby__images/Coffeshop.jpg";
             break;
           case "Cinema":
             img = "/assets/images/Nearby__images/Cinema.jpg";
@@ -99,7 +109,7 @@ console.log(storedCategory)
           case "Parks&Recreation":
             img = "/assets/images/Nearby__images/Garden.jpg";
             break;
-         
+
           default:
             break;
         }
@@ -131,7 +141,13 @@ console.log(storedCategory)
     } else {
       fetchAllPlaces();
     }
-  }, [storedCategory, storedLat, storedLon]);
+  }, [
+    storedCategory,
+    storedLat,
+    storedLon,
+    storedCityLat,
+    storedCityLon,
+  ]);
   const showGardenHandler = (garden) => {
     setDisplayData(garden);
     setCurrentPage(1);

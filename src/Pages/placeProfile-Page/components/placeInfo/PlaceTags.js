@@ -3,8 +3,10 @@ import CityDataContext from "../../../../Context/CityDataContext";
 import { useContext } from "react";
 const PlaceTags = (props) => {
   const { cardData } = useContext(CityDataContext);
+  const storageData=JSON.parse(localStorage.getItem("storedCardData"));
+
   // console.log(cardData.categories)
-  const imageTags = cardData.categories;
+  const imageTags = storageData.categories;
   imageTags.map((item) => {
     console.log(item);
   });

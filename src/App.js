@@ -164,6 +164,7 @@ function App() {
   const [categoryName, setCategoryName] = useState();
   const [cityId, setCityId] = useState();
   const [placeImage, setPlaceImage] = useState();
+  const [categoryClicked,setCategoryClicked]=useState();
 
   return (
     <>
@@ -183,6 +184,8 @@ function App() {
               setCountryId,
               cityId,
               setCityId,
+              categoryClicked,
+              setCategoryClicked
             }}
           >
             {/* for navbar and footer  */}

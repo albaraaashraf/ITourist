@@ -23,17 +23,21 @@ function ProfilePlaceApp() {
   const { cardData } = useContext(CityDataContext);
 
   const [reviews, setReviews] = useState();
-
+  const storageData=JSON.parse(localStorage.getItem("storedCardData"));
+  const storedCountryId=localStorage.getItem('searchedCountryId');
+  console.log(storageData);
+  
   const reviewData = {
-    country: countryId,
-    city: cardData.city,
-    placeName: cardData.header,
+    // used local storage instead of context
+    country: storedCountryId,
+    city: storageData.city,
+    placeName: storageData.header,
   };
-
+  
   useEffect(() => {
     const colRef = collection(
       db,
-      `places/${countryId}/${cardData.city}/${cardData.header}/reviews`
+      `places/${storedCountryId}/${storageData.city}/${storageData.header}/reviews`
     );
 
     const q = query(colRef, orderBy("time", "desc"));

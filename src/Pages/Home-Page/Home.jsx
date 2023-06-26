@@ -21,6 +21,22 @@ const Home = () => {
   const [cityName, setCityName] = useState();
   const [categoryLon, setCategoryLon] = useState();
   const [categoryLat, setCategoryLat] = useState();
+  const keysToRemove = [
+    "storedCardData",
+    "searchedCountryId",
+    "searchedCityName",
+    "searchedCityLat",
+    "searchedCityLon",
+    "searchedCityLat",
+    "searchedCityId",
+    "category",
+    "popularPlaceClicked",
+    "popularLat",
+    "popularLon"
+  ]; // Array of keys to remove
+  keysToRemove.forEach((key) => {
+    localStorage.removeItem(key);
+  });
 
   return (
     <>

@@ -10,6 +10,7 @@ const Search = () => {
   const { setCityName } = useContext(CityContext);
   const { setCountryId } = useContext(CityContext);
   const {setCityId} =useContext(CityContext);
+  const{setCategoryClicked}=useContext(CityContext)
 
   const navigate = useNavigate();
   const [searchItem, setSearchItem] = useState();
@@ -65,6 +66,7 @@ const Search = () => {
     setCityName(item.name);
     setCountryId(item.countryId);
     setCityId(item.id);
+    setCategoryClicked(0);
     localStorage.setItem("searchedCityLat",item.lat);
     localStorage.setItem("searchedCityLon",item.lon);
     localStorage.setItem("searchedCityName",item.name);

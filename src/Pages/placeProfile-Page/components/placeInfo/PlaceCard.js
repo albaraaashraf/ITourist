@@ -5,10 +5,11 @@ import Rating from "@mui/material/Rating";
 import { useContext, useEffect, useState } from "react";
 const PlaceCard = () => {
   const [value, setValue] = useState(2);
+  const storageData=JSON.parse(localStorage.getItem("storedCardData"));
 
   const { cardData } = useContext(CityDataContext);
   console.log(cardData)
-  const aproxDistance = Math.round(cardData.distance * 100) / 100;
+  const aproxDistance = Math.round(storageData.distance * 100) / 100;
   const handleRatingChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -22,7 +23,7 @@ const PlaceCard = () => {
     <>
       <div id="info__container">
         <div id="info__header">
-          <p id="place__header">{cardData.header}</p>
+          <p id="place__header">{storageData.header}</p>
           <p id="place__distance">{aproxDistance}m</p>
         </div>
         <div id="rating__container">
@@ -36,7 +37,7 @@ const PlaceCard = () => {
         </div>
 
         <div id="info__par">
-          <p>{cardData.info}</p>
+          <p>{storageData.info}</p>
           <button className="review__button">Review this place</button>
         </div>
       </div>

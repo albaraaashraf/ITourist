@@ -59,6 +59,7 @@ const PlaceCard = (props) => {
   const isFirstPage = indexOfLastItem === itemsPerPage;
   const discoverClickHandler = (item) => {
     setCardData(item);
+    localStorage.setItem("storedCardData",JSON.stringify(item));
     navigate("profile");
   };
   return (

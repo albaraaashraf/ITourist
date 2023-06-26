@@ -4,10 +4,11 @@ import { useContext } from "react";
 import CityDataContext from "../../../../Context/CityDataContext";
 const PlaceImage = () => {
   const { cardData } = useContext(CityDataContext);
-  const x = cardData.img;
+  const storageData=JSON.parse(localStorage.getItem("storedCardData"));
+  const x = storageData.img;
   console.log(cardData);
 const handleMap=()=>{
-  window.open(`https://www.google.com/maps/@${cardData.lat},${cardData.lon},14z?entry=ttu`, '_blank');
+  window.open(`https://www.google.com/maps/@${storageData.lat},${storageData.lon},14z?entry=ttu`, '_blank');
 
 }
 
