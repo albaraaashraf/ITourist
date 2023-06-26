@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./PlaceProfileApp.css";
 
 import { useUser } from "../../Context/UserContext";
@@ -11,7 +11,6 @@ import ReviewHeader from "./components/reviews/ReviewHeader";
 import SliderContainer from "./components/Slider/SliderContainer";
 import ReviewInput from "./components/reviews/ReviewInput";
 import CityDataContext from "../../Context/CityDataContext";
-import { useEffect } from "react";
 
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../../firebase-config";
