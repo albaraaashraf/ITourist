@@ -79,9 +79,9 @@ const PlaceCard = (props) => {
         reference: `places/${cardData.id}`,
         xid: `${cardData.id}`,
       });
-      console.log("have an account");
+      console.log("tracked");
     } else {
-      console.log("have not an account");
+      console.log("must have an account to be tracked");
     }
   };
   return (
