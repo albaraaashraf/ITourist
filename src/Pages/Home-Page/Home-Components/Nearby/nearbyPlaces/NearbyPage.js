@@ -18,6 +18,8 @@ const NearbyPage = () => {
     localStorage.setItem("popularPlaceClicked","Rome");
     localStorage.setItem("popularLat",lat);
     localStorage.setItem("popularLon",lon);
+    localStorage.removeItem("category");
+
     navigate("places");
   };
   const handleClickDubai = () => {
@@ -27,6 +29,7 @@ const NearbyPage = () => {
     localStorage.setItem("popularPlaceClicked","Dubai");
     localStorage.setItem("popularLat",lat);
     localStorage.setItem("popularLon",lon);
+    localStorage.removeItem("category");
 
     setLat(25.269722222);
     setLon(55.309444444);
@@ -39,7 +42,7 @@ const NearbyPage = () => {
     localStorage.setItem("popularPlaceClicked","Istanbul");
     localStorage.setItem("popularLat",lat);
     localStorage.setItem("popularLon",lon);
-
+    localStorage.removeItem("category");
     setLat(41.01);
     setLon(28.960277777);
     navigate("places");
@@ -51,6 +54,7 @@ const NearbyPage = () => {
     localStorage.setItem("popularPlaceClicked","Luxor");
     localStorage.setItem("popularLat",lat);
     localStorage.setItem("popularLon",lon);
+    localStorage.removeItem("category");
 
     setLat(25.696944444);
     setLon(32.642222222);
@@ -63,6 +67,7 @@ const NearbyPage = () => {
     localStorage.setItem("popularPlaceClicked","Tokyo");
     localStorage.setItem("popularLat",lat);
     localStorage.setItem("popularLon",lon);
+    localStorage.removeItem("category");
 
     setLat(35.689444444);
     setLon(139.691666666);
@@ -75,7 +80,8 @@ const NearbyPage = () => {
         localStorage.setItem("popularPlaceClicked","Paris");
         localStorage.setItem("popularLat",lat);
         localStorage.setItem("popularLon",lon);
-    
+        localStorage.removeItem("category");
+
     setLat(48.8574);
     setLon(2.3795);
     navigate("places");

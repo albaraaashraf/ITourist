@@ -72,8 +72,16 @@ const Search = () => {
     localStorage.setItem("searchedCityName",item.name);
     localStorage.setItem("searchedCountryId",item.countryId);
     localStorage.setItem("searchedCityId",item.id);
-
     console.log(item.id);
+
+    const keysToRemove = [
+  
+      "category",
+      "popularPlaceClicked",
+    ];
+    keysToRemove.forEach((key) => {
+      localStorage.removeItem(key);
+    });
     navigate(`CityProfile/${item.id}`);
   };
   // console.log(lat,lon)
