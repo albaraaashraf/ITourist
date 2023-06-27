@@ -3,10 +3,16 @@ import {HiMagnifyingGlassPlus} from 'react-icons/hi2'
 import './MainCard.css'
 import SearchInput from '../Inputs/SearchInput';
 import CityNameContext from '../../../../Context/CityNameContext';
+import CityContext from '../../../../Context/CityContext';
 import { useContext } from 'react';
 const MainCard=(props)=>{
+    const{setCategoryClicked}=useContext(CityContext);
+    const{categoryClicked}=useContext(CityContext)
     const{cityName}=useContext(CityNameContext);
     console.log(cityName)
+    setCategoryClicked(0);
+    console.log(categoryClicked);
+    
     return<>
 
 <div className='card__container'>

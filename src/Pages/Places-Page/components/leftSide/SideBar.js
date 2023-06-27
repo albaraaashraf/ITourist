@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import CityContext from "../../../../Context/CityContext";
 import { useNavigate } from "react-router-dom";
 const SideBar = (props) => {
+  const{categoryClicked}=useContext(CityContext);
   const { cityId } = useContext(CityContext);
   const { lon } = useContext(CityContext);
   const { lat } = useContext(CityContext);
@@ -16,6 +17,14 @@ const SideBar = (props) => {
   const [historicPlaces, setHistoricPlaces] = useState([]);
   const [marketPlaces, setMarketPlaces] = useState([]);
   const [gardenPlaces, setGardenPlaces] = useState([]);
+  const storedLat = localStorage.getItem('lat');
+  const storedLon = localStorage.getItem('lon');
+const searchStoreLat=localStorage.getItem('searchedCityLat');
+const searchStoreLon=localStorage.getItem('searchedCityLon')
+  const storedCategory=localStorage.getItem('category');
+  const popularPlaceName=localStorage.getItem('popularPlaceClicked');
+  const popularPlaceLat=localStorage.getItem('popularLat');
+  const popularPlaceLon=localStorage.getItem('popularLon');
   const [isMobile, setIsMobile] = useState(
     window.matchMedia("(max-width: 767px)").matches
   );
@@ -74,10 +83,14 @@ const SideBar = (props) => {
     navigate(`/CityProfile/${cityId}/Places/${category.toLowerCase()}`);
   };
   async function fetchRestaurantPlaces() {
-    const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/Restaurant.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+    const response = await fetch(storedCategory ?
+      `https://api.tomtom.com/search/2/poiSearch/Restaurant.json?limit=100&lat=${storedLat}&lon=${storedLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+      (popularPlaceName?
+        `https://api.tomtom.com/search/2/poiSearch/Restaurant.json?limit=100&lat=${popularPlaceLat}&lon=${popularPlaceLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+        `https://api.tomtom.com/search/2/poiSearch/Restaurant.json?limit=100&lat=${searchStoreLat}&lon=${searchStoreLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      )
     );
-    const data = await response.json();
+        const data = await response.json();
     const transformedData = data.results.map((takeAwayData) => {
       return {
         id: takeAwayData.id,
@@ -87,52 +100,70 @@ const SideBar = (props) => {
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
+        categories: takeAwayData.poi.categories,
+        img: "/assets/images/Nearby__images/Restaurant.jpg",
+        lon: takeAwayData.position.lon,
+        lat: takeAwayData.position.lat,
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
           takeAwayData.address.municipality,
       };
     });
-    const filteredData = transformedData.filter((obj) => obj.class === "RESTAURANT");
+    const filteredData = transformedData.filter(
+      (obj) => obj.class === "RESTAURANT"
+    );
     setRestaurantPlaces(filteredData);
     props.onShowRestaurant(filteredData);
+
+   
+    
   }
 
   async function fetchMuseumPlaces() {
-    const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/Museum.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+   
+    const response = await fetch(storedCategory ?
+      `https://api.tomtom.com/search/2/poiSearch/Museum.json?limit=100&lat=${storedLat}&lon=${storedLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+      (popularPlaceName?
+        `https://api.tomtom.com/search/2/poiSearch/Museum.json?limit=100&lat=${popularPlaceLat}&lon=${popularPlaceLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+        `https://api.tomtom.com/search/2/poiSearch/Museum.json?limit=100&lat=${searchStoreLat}&lon=${searchStoreLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      )
     );
     const data = await response.json();
-    const transformedData = data.results.map((takeAwayData) => {
-      return {
-        id: takeAwayData.id,
-        header: takeAwayData.poi.name,
-        street: takeAwayData.address.freeformAddress,
-        city: takeAwayData.address.localName,
-        type: takeAwayData.poi.categories[0],
-        distance: takeAwayData.dist,
-        class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
 
-
-        info:
-          takeAwayData.address.municipalitySubdivision +
-          "  ,   " +
-          takeAwayData.address.municipality,
-      };
-    });
-    const filteredData = transformedData.filter((obj) => obj.class === "MUSEUM");
-
-    setMuseumPlaces(filteredData);
-    props.onShowMuseum(filteredData);
+  const transformedData = data.results.map((takeAwayData) => {
+    return {
+      id: takeAwayData.id,
+      header: takeAwayData.poi.name,
+      street: takeAwayData.address.freeformAddress,
+      city: takeAwayData.address.localName,
+      type: takeAwayData.poi.categories[0],
+      distance: takeAwayData.dist,
+      class: takeAwayData.poi.classifications[0].code,
+      categories: takeAwayData.poi.categories,
+      img: "/assets/images/Nearby__images/Museum.jpg",
+      lon: takeAwayData.position.lon,
+      lat: takeAwayData.position.lat,
+      info:
+        takeAwayData.address.municipalitySubdivision +
+        "  ,   " +
+        takeAwayData.address.municipality,
+    };
+  });
+  
+  setMuseumPlaces(transformedData);
+  props.onShowMuseum(transformedData);
+    
   }
 
   async function fetchBeachPlaces() {
-    const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/beach.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+    const response = await fetch(storedCategory ?
+      `https://api.tomtom.com/search/2/poiSearch/Beach.json?limit=100&lat=${storedLat}&lon=${storedLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+      (popularPlaceName?
+        `https://api.tomtom.com/search/2/poiSearch/Beach.json?limit=100&lat=${popularPlaceLat}&lon=${popularPlaceLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+        `https://api.tomtom.com/search/2/poiSearch/Beach.json?limit=100&lat=${searchStoreLat}&lon=${searchStoreLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      )
     );
-
     const data = await response.json();
 
     const transformedData = data.results.map((takeAwayData) => {
@@ -144,9 +175,10 @@ const SideBar = (props) => {
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
-
-
+        categories: takeAwayData.poi.categories,
+        img: "/assets/images/Nearby__images/Beach.jpg",
+        lon: takeAwayData.position.lon,
+        lat: takeAwayData.position.lat,
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
@@ -155,16 +187,18 @@ const SideBar = (props) => {
     });
     const filteredData = transformedData.filter((obj) => obj.class === "BEACH");
 
-
     setBeachPlaces(filteredData);
     props.onShowBeach(filteredData);
   }
 
   async function fetchHistoricPlaces() {
-    const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/tourist attraction.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+    const response = await fetch(storedCategory ?
+      `https://api.tomtom.com/search/2/poiSearch/tourist attraction.json?limit=100&lat=${storedLat}&lon=${storedLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+      (popularPlaceName?
+        `https://api.tomtom.com/search/2/poiSearch/tourist attraction.json?limit=100&lat=${popularPlaceLat}&lon=${popularPlaceLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+        `https://api.tomtom.com/search/2/poiSearch/tourist attraction.json?limit=100&lat=${searchStoreLat}&lon=${searchStoreLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      )
     );
-
     const data = await response.json();
 
     const transformedData = data.results.map((takeAwayData) => {
@@ -176,22 +210,27 @@ const SideBar = (props) => {
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
-
-
+        categories: takeAwayData.poi.categories,
+        img: "/assets/images/Nearby__images/Historic.jpg",
+        lon: takeAwayData.position.lon,
+        lat: takeAwayData.position.lat,
         info:
           takeAwayData.address.municipalitySubdivision +
           "  ,   " +
           takeAwayData.address.municipality,
       };
     });
-    
+
     setHistoricPlaces(transformedData);
     props.onShowHistoric(transformedData);
   }
   async function fetchMarketPlaces() {
-    const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/market.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+    const response = await fetch(storedCategory ?
+      `https://api.tomtom.com/search/2/poiSearch/Market.json?limit=100&lat=${storedLat}&lon=${storedLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+      (popularPlaceName?
+        `https://api.tomtom.com/search/2/poiSearch/Market.json?limit=100&lat=${popularPlaceLat}&lon=${popularPlaceLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+        `https://api.tomtom.com/search/2/poiSearch/Market.json?limit=100&lat=${searchStoreLat}&lon=${searchStoreLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      )
     );
 
     const data = await response.json();
@@ -205,8 +244,10 @@ const SideBar = (props) => {
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
-
+        categories: takeAwayData.poi.categories,
+        img: "/assets/images/Nearby__images/Market.jpg",
+        lon: takeAwayData.position.lon,
+        lat: takeAwayData.position.lat,
 
         info:
           takeAwayData.address.municipalitySubdivision +
@@ -220,9 +261,14 @@ const SideBar = (props) => {
     props.onShowMarket(filteredData);
   }
   async function fetchGardenPlaces() {
-    const response = await fetch(
-      `https://api.tomtom.com/search/2/poiSearch/Park%26Recreation%20Area.json?limit=100&lat=${lat}&lon=${lon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+    const response = await fetch(storedCategory ?
+      `https://api.tomtom.com/search/2/poiSearch/Garden.json?limit=100&lat=${storedLat}&lon=${storedLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+      (popularPlaceName?
+        `https://api.tomtom.com/search/2/poiSearch/Garden.json?limit=100&lat=${popularPlaceLat}&lon=${popularPlaceLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` :
+        `https://api.tomtom.com/search/2/poiSearch/Garden.json?limit=100&lat=${searchStoreLat}&lon=${searchStoreLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      )
     );
+      
     const data = await response.json();
     const transformedData = data.results.map((takeAwayData) => {
       return {
@@ -233,8 +279,10 @@ const SideBar = (props) => {
         type: takeAwayData.poi.categories[0],
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
-        categories: takeAwayData.poi.categories, 
-
+        categories: takeAwayData.poi.categories,
+        img: "/assets/images/Nearby__images/Garden.jpg",
+        lon: takeAwayData.position.lon,
+        lat: takeAwayData.position.lat,
 
         info:
           takeAwayData.address.municipalitySubdivision +

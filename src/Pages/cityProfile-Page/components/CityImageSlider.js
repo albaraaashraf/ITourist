@@ -6,11 +6,13 @@ import CityContext from "../../../Context/CityContext";
 const CityImageSlider = () => {
   const [unSplash, setUnSplash] = useState([]);
   const { cityName } = useContext(CityContext);
+  const storedCityName=localStorage.getItem('searchedCityName');
+
   useEffect(() => {
     async function fetchUnsplash() {
       try {
         const response = await fetch(
-          `https://api.unsplash.com/search/photos?query=${cityName}&orientation=landscape&client_id=4BZf0SyW_btl141ZgSFJridUrU9F1M5OZYQJlT5iWK8`
+          `https://api.unsplash.com/search/photos?query=${storedCityName}&orientation=landscape&client_id=4BZf0SyW_btl141ZgSFJridUrU9F1M5OZYQJlT5iWK8`
         );
 
         const data = await response.json();
@@ -24,7 +26,7 @@ const CityImageSlider = () => {
     }
 
     fetchUnsplash();
-  }, [cityName]);
+  }, [storedCityName]);
   const CustomPrevArrow = (props) => {
     const { onClick } = props;
     return (

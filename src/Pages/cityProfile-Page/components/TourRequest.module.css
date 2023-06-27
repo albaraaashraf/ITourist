@@ -45,9 +45,16 @@
   border-radius: 10px;
   transition: background-color 0.2s;
   margin-left: 0.8rem;
+} 
+.submitButton:hover{
+  background-color:  aliceblue;
+  color: #072c3d;
 }
 .formButton {
   margin-top: 10px;
+}
+.checkButton:hover{
+  background-color: gray !important;
 }
 .formImgContainer {
   display: flex;
@@ -65,6 +72,9 @@
   .responsiveContainer {
     display: flex;
     align-items: center;
+  }
+  .tourImg{
+    width: 100%;
   }
   .formImgContainer {
     display: flex;

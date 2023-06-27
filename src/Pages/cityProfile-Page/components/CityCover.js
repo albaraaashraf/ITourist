@@ -7,16 +7,19 @@ const CityCover = (props) => {
   const [cityImg, setCityImg] = useState([]);
   const { cityName } = useContext(CityContext);
   const { countryId } = useContext(CityContext);
-  const words = cityName.split(" ");
-  let processedName = cityName;
-  if (words.length === 2) {
+  const storedCityName = localStorage.getItem("searchedCityName");
+  const storedCountryId = localStorage.getItem("searchedCountryId");
+
+  const words = storedCityName && storedCityName.split(" ");
+  let processedName = storedCityName;
+  if (words && words.length === 2) {
     const capitalizedWords = words.map(
       (word) => word.charAt(0).toUpperCase() + word.slice(1)
     );
     processedName = capitalizedWords.join("_");
   }
 
-  console.log(countryId);
+  // console.log(countryId);
 
   useEffect(() => {
     async function fetchCityImg() {
@@ -35,7 +38,7 @@ const CityCover = (props) => {
     }
     fetchCityImg();
   }, [processedName]);
-  const imageId = `https://flagsapi.com/${countryId}/shiny/64.png`;
+  const imageId = `https://flagsapi.com/${storedCountryId}/shiny/64.png`;
 
   return (
     <>
@@ -43,13 +46,13 @@ const CityCover = (props) => {
         <img className={classes.coverImage} src={cityImg} alt=""></img>
         <div className={classes.imageText}>
           <div className={classes.cityName}>
-          <h1>{cityName}</h1>
-          <img src={imageId} alt="country ID"></img>
+            <h1>{storedCityName}</h1>
+            <img src={imageId} alt="country ID"></img>
           </div>
           <div className={classes.favAndTour}>
-            <HiOutlineHeart className={classes.favourite}/>
+            <HiOutlineHeart className={classes.favourite} />
             <div className={classes.tour}>
-              <TbMap/>
+              <TbMap />
               <p>254 Tours Taken</p>
             </div>
           </div>

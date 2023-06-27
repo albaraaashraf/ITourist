@@ -36,6 +36,9 @@ const TourRequest = () => {
   // city details
   const { countryId } = useContext(CityContext);
   const { cityName } = useContext(CityContext);
+  const storedCityName=localStorage.getItem('searchedCityName');
+  const storedCountryId=localStorage.getItem('searchedCountryId');
+
 
   const handleCurrencyChange = (event) => {
     const selectedValue = event.target.value;
@@ -149,13 +152,13 @@ const TourRequest = () => {
     // add form data to firebase
     const colRef = collection(
       db,
-      `/requests/Pending/Countries/${countryId}/request`
+      `/requests/Pending/Countries/${storedCountryId}/request`
     );
 
     const form = document.querySelector("#req-form");
     await addDoc(colRef, {
       ...formData,
-      CityName: cityName,
+      storedCityName: storedCityName,
       time: serverTimestamp(),
     }).then(() => {
       form.reset();
@@ -253,8 +256,8 @@ const TourRequest = () => {
               <div className={classes.formButton}>
                 <button
                   style={{
-                    backgroundColor: maleIsClicked ? "aliceblue" : "#072c3d",
-                    color: maleIsClicked ? "#072c3d" : "aliceblue",
+                    backgroundColor: maleIsClicked ? "aliceblue" : "#00bcd4",
+                    color: maleIsClicked ? "#00bcd4" : "aliceblue",
                   }}
                   className={classes.checkButton}
                   type="button"
@@ -266,8 +269,8 @@ const TourRequest = () => {
                 </button>
                 <button
                   style={{
-                    backgroundColor: femaleIsClicked ? "aliceblue" : "#072c3d",
-                    color: femaleIsClicked ? "#072c3d" : "aliceblue",
+                    backgroundColor: femaleIsClicked ? "aliceblue" : "hotpink",
+                    color: femaleIsClicked ? "hotpink" : "aliceblue",
                   }}
                   className={classes.checkButton}
                   type="button"
@@ -316,10 +319,11 @@ const TourRequest = () => {
               </div>
               <div className={classes.formButton}>
                 <button
-                  style={{
-                    backgroundColor: carClicked ? "aliceblue" : "#072c3d",
-                    color: carClicked ? "#072c3d" : "aliceblue",
-                  }}
+                    style={{
+                      backgroundColor: carClicked ? "aliceblue" : "#072c3d",
+                      color: carClicked ? "#072c3d" : "aliceblue",
+                      
+                    }}
                   className={classes.checkButton}
                   type="button"
                   onClick={() => {

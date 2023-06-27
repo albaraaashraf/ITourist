@@ -8,32 +8,74 @@ const NearbyPage = () => {
   const { setLon } = useContext(CityContext);
   const { setLat } = useContext(CityContext);
   const navigate = useNavigate(); // initialize history
-  const handleClickRome = () => {
+  const handleClickRome = () => 
+  {
+    let lat=41.893055555;
+    let lon = 12.482777777
     setLat(41.893055555);
     setLon(12.482777777);
+    //storage
+    localStorage.setItem("popularPlaceClicked","Rome");
+    localStorage.setItem("popularLat",lat);
+    localStorage.setItem("popularLon",lon);
     navigate("places");
   };
   const handleClickDubai = () => {
+    let lat = 25.269722222;
+    let lon = 55.309444444;
+    //storage
+    localStorage.setItem("popularPlaceClicked","Dubai");
+    localStorage.setItem("popularLat",lat);
+    localStorage.setItem("popularLon",lon);
+
     setLat(25.269722222);
     setLon(55.309444444);
     navigate("places");
   };
   const handleClickIstanbul = () => {
+    //storage
+    let lat= 41.01;
+    let lon = 28.960277777;
+    localStorage.setItem("popularPlaceClicked","Istanbul");
+    localStorage.setItem("popularLat",lat);
+    localStorage.setItem("popularLon",lon);
+
     setLat(41.01);
     setLon(28.960277777);
     navigate("places");
   };
   const handleClickLuxor = () => {
+    //storage
+    let lat =25.696944444;
+    let lon =32.642222222;
+    localStorage.setItem("popularPlaceClicked","Luxor");
+    localStorage.setItem("popularLat",lat);
+    localStorage.setItem("popularLon",lon);
+
     setLat(25.696944444);
     setLon(32.642222222);
     navigate("places");
   };
   const handleClickTokyo = () => {
+    //storage
+    let lat=35.689444444;
+    let lon=139.691666666;
+    localStorage.setItem("popularPlaceClicked","Tokyo");
+    localStorage.setItem("popularLat",lat);
+    localStorage.setItem("popularLon",lon);
+
     setLat(35.689444444);
     setLon(139.691666666);
     navigate("places");
   };
   const handleClickParis = () => {
+        //storage
+        let lat=48.8574;
+        let lon=2.3795;
+        localStorage.setItem("popularPlaceClicked","Paris");
+        localStorage.setItem("popularLat",lat);
+        localStorage.setItem("popularLon",lon);
+    
     setLat(48.8574);
     setLon(2.3795);
     navigate("places");
