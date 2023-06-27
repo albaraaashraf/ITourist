@@ -7,12 +7,12 @@ const CityCover = (props) => {
   const [cityImg, setCityImg] = useState([]);
   const { cityName } = useContext(CityContext);
   const { countryId } = useContext(CityContext);
-  const storedCityName=localStorage.getItem('searchedCityName');
-  const storedCountryId=localStorage.getItem('searchedCountryId');
+  const storedCityName = localStorage.getItem("searchedCityName");
+  const storedCountryId = localStorage.getItem("searchedCountryId");
 
-  const words = storedCityName.split(" ");
+  const words = storedCityName && storedCityName.split(" ");
   let processedName = storedCityName;
-  if (words.length === 2) {
+  if (words && words.length === 2) {
     const capitalizedWords = words.map(
       (word) => word.charAt(0).toUpperCase() + word.slice(1)
     );
@@ -46,13 +46,13 @@ const CityCover = (props) => {
         <img className={classes.coverImage} src={cityImg} alt=""></img>
         <div className={classes.imageText}>
           <div className={classes.cityName}>
-          <h1>{storedCityName}</h1>
-          <img src={imageId} alt="country ID"></img>
+            <h1>{storedCityName}</h1>
+            <img src={imageId} alt="country ID"></img>
           </div>
           <div className={classes.favAndTour}>
-            <HiOutlineHeart className={classes.favourite}/>
+            <HiOutlineHeart className={classes.favourite} />
             <div className={classes.tour}>
-              <TbMap/>
+              <TbMap />
               <p>254 Tours Taken</p>
             </div>
           </div>
