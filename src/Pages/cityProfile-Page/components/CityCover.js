@@ -3,10 +3,17 @@ import { useState, useEffect, useContext } from "react";
 import CityContext from "../../../Context/CityContext";
 import { HiOutlineHeart } from "react-icons/hi";
 import { TbMap } from "react-icons/tb";
+import { useUser } from "../../../Context/UserContext";
+import { deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "../../../firebase-config";
+
 const CityCover = (props) => {
   const [cityImg, setCityImg] = useState([]);
+
   const { cityName } = useContext(CityContext);
   const { countryId } = useContext(CityContext);
+  const { theUser, signedUp } = useUser();
+
   const storedCityName = localStorage.getItem("searchedCityName");
   const storedCountryId = localStorage.getItem("searchedCountryId");
 
@@ -19,7 +26,48 @@ const CityCover = (props) => {
     processedName = capitalizedWords.join("_");
   }
 
-  // console.log(countryId);
+  async function manegeFavourite() {
+    const userRef = doc(
+      db,
+      `Users/${theUser.id}/Liked Cities/${cityName.toUpperCase()}`
+    );
+
+    const cityRef = doc(db, `City/${cityName.toUpperCase()}`);
+
+    let city,
+      likedNum,
+      toursNum = null;
+
+    const check = await getDoc(userRef);
+
+    if (check.exists()) {
+      await getDoc(cityRef).then(async (snapshot) => {
+        city = snapshot.data();
+        likedNum = city.liked - 1;
+        toursNum = city.tours;
+      });
+
+      deleteDoc(userRef);
+    } else {
+      await setDoc(userRef, { reference: `City/${cityName.toUpperCase()}` });
+
+      await getDoc(cityRef).then(async (snapshot) => {
+        if (snapshot.exists()) {
+          city = snapshot.data();
+          likedNum = city.liked + 1;
+          toursNum = city.tours;
+        } else {
+          likedNum = 1;
+          toursNum = 0;
+        }
+      });
+    }
+
+    await setDoc(cityRef, {
+      liked: likedNum,
+      tours: toursNum,
+    });
+  }
 
   useEffect(() => {
     async function fetchCityImg() {
@@ -49,8 +97,14 @@ const CityCover = (props) => {
             <h1>{storedCityName}</h1>
             <img src={imageId} alt="country ID"></img>
           </div>
+
           <div className={classes.favAndTour}>
-            <HiOutlineHeart className={classes.favourite} />
+            {signedUp && (
+              <HiOutlineHeart
+                className={classes.favourite}
+                onClick={manegeFavourite}
+              />
+            )}
             <div className={classes.tour}>
               <TbMap />
               <p>254 Tours Taken</p>

@@ -21,7 +21,7 @@ export function UserProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        getDoc(doc(db, "users", user.uid)).then((snapshot) => {
+        getDoc(doc(db, "Users", user.uid)).then((snapshot) => {
           setTheUser({ ...snapshot.data(), id: user.uid });
         });
 

@@ -3,8 +3,14 @@ import { ImLocation2 } from "react-icons/im";
 import "./PlaceCard.css";
 import { useNavigate } from "react-router-dom";
 import CityDataContext from "../../../../Context/CityDataContext";
+import PlaceImageContext from "../../../../Context/PlaceImageContext";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../../../firebase-config";
+import { useUser } from "../../../../Context/UserContext";
 const PlaceCard = (props) => {
-  const { setCardData } = useContext(CityDataContext);
+  const { setCardData, cardData } = useContext(CityDataContext);
+  const { setPlaceImage } = useContext(PlaceImageContext);
+  const { theUser, signedUp } = useUser();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -59,8 +65,24 @@ const PlaceCard = (props) => {
   const isFirstPage = indexOfLastItem === itemsPerPage;
   const discoverClickHandler = (item) => {
     setCardData(item);
-    localStorage.setItem("storedCardData",JSON.stringify(item));
+    localStorage.setItem("storedCardData", JSON.stringify(item));
     navigate("profile");
+
+    // add some data to the user
+    //// only when the user have an account
+    if (signedUp) {
+      const userRef = doc(
+        db,
+        `/Users/${theUser.id}/Places clicked/${cardData.id}`
+      );
+      setDoc(userRef, {
+        reference: `places/${cardData.id}`,
+        xid: `${cardData.id}`,
+      });
+      console.log("have an account");
+    } else {
+      console.log("have not an account");
+    }
   };
   return (
     <>

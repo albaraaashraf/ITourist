@@ -127,7 +127,7 @@ function SignInForm() {
       );
 
       const user = userCredential.user;
-      const docRef = doc(db, "users", user.uid);
+      const docRef = doc(db, "Users", user.uid);
 
       try {
         if (file) {
@@ -140,12 +140,12 @@ function SignInForm() {
           });
         } else {
           const imgpath =
-            "https://firebasestorage.googleapis.com/v0/b/itourist-auth-development.appspot.com/o/default%20imgs%2Fprofile-icon.png?alt=media&token=38683df4-0e51-4d19-ad4a-c669dcd71223";
+            "https://firebasestorage.googleapis.com/v0/b/itourist-c5583.appspot.com/o/default%20imgs%2Fprofile-icon.png?alt=media&token=57ae903e-847c-49ae-bac6-6bd45635782a";
           person = { ...person, ProfileImg: imgpath };
         }
 
         setText("Finalizing");
-        await setDoc(docRef, { ...person, CreatedAt: serverTimestamp() });
+        await setDoc(docRef, { ...person });
 
         navigate("/");
         window.location.reload();
