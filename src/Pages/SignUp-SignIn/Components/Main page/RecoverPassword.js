@@ -36,19 +36,23 @@ function RecoverPassword() {
           )}
           {error && <Alert variant="danger">Somthing Wrong Happened</Alert>}
 
-          <div className="recover--title">Identify Your Account</div>
-          <div className="recover--description">
-            Which account do you have trouble accessing?
-          </div>
-          <input
-            type="text"
-            className="recover--input"
-            placeholder="Please enter your email"
-            ref={emailRef}
-          />
-          <button className="recover--button" onClick={resetHandler}>
-            Reset Password
-          </button>
+          {!success && (
+            <>
+              <div className="recover--title">Identify Your Account</div>
+              <div className="recover--description">
+                Which account do you have trouble accessing?
+              </div>
+              <input
+                type="text"
+                className="recover--input"
+                placeholder="Please enter your email"
+                ref={emailRef}
+              />
+              <button className="recover--button" onClick={resetHandler}>
+                Reset Password
+              </button>
+            </>
+          )}
 
           {success && (
             <Link

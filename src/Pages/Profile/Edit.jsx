@@ -26,7 +26,7 @@ function Edit() {
   const { downloadImg } = useStorage();
 
   function updateProfile(data) {
-    const docref = doc(db, "users", theUser.id);
+    const docref = doc(db, "Users", theUser.id);
     return setDoc(docref, data, { merge: true }); //  { merge: true } => enable updating without overWrite
   }
 
@@ -73,7 +73,7 @@ function Edit() {
 
   return (
     <>
-      {loading && <LoadingScreen title={text} textColor="#FFF" />}
+      <LoadingScreen show={loading} title={text} textColor="#FFF" />
 
       {/*  the main section */}
       <section className="get-in-touch">

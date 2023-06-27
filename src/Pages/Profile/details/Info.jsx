@@ -8,6 +8,8 @@ import { auth } from "../../../firebase-config";
 import InfoData from "./InfoData";
 import { useNavigate } from "react-router-dom";
 
+import Bio from "./Bio";
+
 function Info() {
   const { theUser } = useUser();
   const { setSignedUp } = useUser();
@@ -35,6 +37,8 @@ function Info() {
                 <InfoData label="Gender" data={theUser.Gender} />
                 <InfoData label="Email" data={theUser.Email} />
                 <InfoData label="Phone" data={theUser.Phone} />
+                <InfoData label="Bio" />
+                <Bio />
               </div>
             )}
           </div>

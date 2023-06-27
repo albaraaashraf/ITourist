@@ -2,7 +2,6 @@ import { useContext, useState, useEffect } from "react";
 import "./PlaceProfileApp.css";
 
 import { useUser } from "../../Context/UserContext";
-import CityContext from "../../Context/CityContext";
 
 import PlaceCard from "./components/placeInfo/PlaceCard";
 import PlaceImage from "./components/placeInfo/PlaceImage";
@@ -12,51 +11,32 @@ import SliderContainer from "./components/Slider/SliderContainer";
 import ReviewInput from "./components/reviews/ReviewInput";
 import CityDataContext from "../../Context/CityDataContext";
 
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../../firebase-config";
 
 function ProfilePlaceApp() {
   const { signedUp } = useUser();
 
-  const { countryId } = useContext(CityContext);
-  const { cardData } = useContext(CityDataContext);
+  // const { cardData } = useContext(CityDataContext);
+  // const { theUser } = useUser();
 
   const [reviews, setReviews] = useState();
-  const storageData=JSON.parse(localStorage.getItem("storedCardData"));
-  const storedCountryId=localStorage.getItem('searchedCountryId');
+  const storageData = JSON.parse(localStorage.getItem("storedCardData"));
+  const storedCountryId = localStorage.getItem("searchedCountryId");
   console.log(storageData);
-  
+
   const reviewData = {
     // used local storage instead of context
     country: storedCountryId,
     city: storageData.city,
     placeName: storageData.header,
   };
-  
-  useEffect(() => {
-    const colRef = collection(
-      db,
-      `places/${storedCountryId}/${storageData.city}/${storageData.header}/reviews`
-    );
-
-    const q = query(colRef, orderBy("time", "desc"));
-
-    const subscribe = onSnapshot(q, (snapshot) => {
-      let reviews = [];
-
-      snapshot.docs.forEach((doc) => {
-        reviews.push(doc.data());
-      });
-
-      setReviews(reviews);
-      console.log("once updated");
-    });
-
-    return () => {
-      subscribe();
-      console.log("left the page");
-    };
-  }, []);
 
   return (
     <>
@@ -86,7 +66,7 @@ function ProfilePlaceApp() {
 
           {/* <ReviewCardButton /> */}
 
-          {signedUp && <ReviewInput reviewData={reviewData} />}
+          {signedUp && <ReviewInput />}
         </div>
       </div>
     </>

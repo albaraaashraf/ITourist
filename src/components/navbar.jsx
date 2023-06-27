@@ -69,16 +69,16 @@ function Navbar() {
                   <NavLink className="nav-link" to="/Profile/Info">
                     <div
                       style={{
-                        width: "2.5rem",
-                        height: "2.5rem",
+                        width: "2.8rem",
+                        height: "2.8rem",
                       }}
                     >
                       <img
                         src={theUser.ProfileImg}
                         alt=""
                         style={{
-                          width: "100%",
-                          height: "100%",
+                          maxWidth: "100%",
+                          maxHeight: "100%",
                           borderRadius: "50%",
                           objectFit: "cover",
                         }}

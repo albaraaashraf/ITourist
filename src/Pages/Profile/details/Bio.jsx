@@ -9,12 +9,12 @@ function Bio() {
 
   return (
     <>
-      <div className="container-md p-3">
-        <div className="row">
-          <div className="col">
+      <div className="container-md p-3 ">
+        <div className="row  ">
+          <div className="col d-flex justify-content-center align-items-center  ">
             <div
               className="text-center rounded-3 d-flex justify-content-center align-items-center bio-style"
-              style={{ minHeight: "15rem" }}
+              style={{ maxHeight: "22rem" }}
             >
               {person.map((user) => {
                 return (
@@ -24,13 +24,6 @@ function Bio() {
                 );
               })}
             </div>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col my-3 px-5 rounded-3 bio-style">
-            <span className="px-0">Skills : </span>
-            <Skills person={person} />
           </div>
         </div>
       </div>
