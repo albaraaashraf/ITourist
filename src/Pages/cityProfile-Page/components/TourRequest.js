@@ -320,8 +320,8 @@ const TourRequest = () => {
               <div className={classes.formButton}>
                 <button
                     style={{
-                      backgroundColor: carClicked ? "aliceblue" : "#072c3d",
-                      color: carClicked ? "#072c3d" : "aliceblue",
+                      backgroundColor: carClicked ? "aliceblue" : "#100D4C",
+                      color: carClicked ? "#100D4C" : "aliceblue",
                       
                     }}
                   className={classes.checkButton}
@@ -334,8 +334,8 @@ const TourRequest = () => {
                 </button>
                 <button
                   style={{
-                    backgroundColor: noCarClicked ? "aliceblue" : "#072c3d",
-                    color: noCarClicked ? "#072c3d" : "aliceblue",
+                    backgroundColor: noCarClicked ? "aliceblue" : "#100D4C",
+                    color: noCarClicked ? "#100D4C" : "aliceblue",
                   }}
                   className={classes.checkButton}
                   type="button"

@@ -104,7 +104,7 @@ const PlaceCard = (props) => {
             <button
               style={{
                 padding: "10px",
-                backgroundColor: "#072c3d",
+                backgroundColor: "#100D4C",
                 color: "white",
                 borderRadius: "10px",
                 width: "5rem",
@@ -127,6 +127,13 @@ const PlaceCard = (props) => {
             className="placePageButton"
             onClick={handlePrev}
             disabled={isFirstPage}
+            style={{
+              backgroundColor: "#100D4C",
+              color: "aliceblue",
+              textAlign: "center",
+              width:"6rem",
+              borderRadius:"12px"
+            }}
           >
             Previous
           </button>
@@ -154,6 +161,13 @@ const PlaceCard = (props) => {
             className="placePageButton"
             onClick={handleNext}
             disabled={isLastPage}
+            style={{
+              backgroundColor: "#100D4C",
+              color: "aliceblue",
+              textAlign: "center",
+              width:"6rem",
+              borderRadius:"12px"
+            }}
           >
             Next
           </button>

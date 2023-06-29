@@ -5,8 +5,8 @@
 #first__part {
   margin: 1rem;
   display: flex;
+  gap: 15px;
   justify-content: space-around;
-  margin-top: 8rem;
 }
 #second__part {
   margin-top: 2rem;

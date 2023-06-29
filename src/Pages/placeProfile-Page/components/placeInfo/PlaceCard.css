@@ -1,12 +1,15 @@
 #info__container{
-    height: 29rem;
-    width: 20rem;
+    height: 23rem;
+    width: 21rem;
     background-color: #ffffff;
     border-radius: 2rem;
     display: flex;
     padding: 1rem;
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    gap: 14px;
+    box-shadow: 1px 2px 20px 0px;
+    margin-top: 2rem;
 }
 
 #info__header{
@@ -36,14 +39,16 @@
 }
 
 .review__button{
-    background-color:#072c3d;
-    color: #ECF6F9;
+    background-color:#100D4C;
+    color: aliceblue;
     border-radius: 2rem;
     width: fit-content;
     text-align: center;
     padding: 0.5rem;
     margin-top: 2rem;
     font-weight: normal;
+    font-size: 15px;
+    font-weight: bold;
 }
 .review__button:hover{
     cursor: pointer;

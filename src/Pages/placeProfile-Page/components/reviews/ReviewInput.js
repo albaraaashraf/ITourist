@@ -7,6 +7,9 @@ import { useUser } from "../../../../Context/UserContext";
 import CityDataContext from "../../../../Context/CityDataContext";
 
 export default function ReviewInput() {
+  //stored place data from local storage
+  const storageData=JSON.parse(localStorage.getItem("storedCardData"));
+console.log(storageData.id)
   const style = {
     width: "100%",
     border: "1px solid var(--main_color)",
@@ -21,13 +24,14 @@ export default function ReviewInput() {
   const { theUser } = useUser();
   const { cardData } = useContext(CityDataContext);
   const citydata = useContext(CityDataContext);
+  console.log(cardData.id)
 
   async function submitComment(e) {
     e.preventDefault();
-    const usersPath = `Users/${theUser.id}/Places Reviews/${cardData.id}`;
+    const usersPath = `Users/${theUser.id}/Places Reviews/${storageData.id}`;
     const userRef = doc(db, usersPath);
 
-    const placePPath = `Places/${cardData.id}/Reviews/${theUser.id}`;
+    const placePPath = `Places/${storageData.id}/Reviews/${theUser.id}`;
     const PlaceRef = doc(db, placePPath);
 
     if (reviewRef.current.value === "") return;
@@ -53,7 +57,7 @@ export default function ReviewInput() {
         });
 
       await setDoc(userRef, {
-        reference: `Places/${cardData.id}`,
+        reference: `Places/${storageData.id}`,
         describtion: rev,
         Rate: 0,
       })
@@ -69,7 +73,7 @@ export default function ReviewInput() {
   }
 
   useEffect(() => {
-    const placePPath = `Places/${cardData.id}/Reviews/${theUser.id}`;
+    const placePPath = `Places/${storageData.id}/Reviews/${theUser.id}`;
     const PlaceRef = doc(db, placePPath);
 
     onSnapshot(PlaceRef, (snapshot) => {

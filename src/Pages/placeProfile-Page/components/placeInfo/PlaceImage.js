@@ -2,6 +2,7 @@ import "./PlaceImage.css";
 import PlaceTags from "./PlaceTags";
 import { useContext } from "react";
 import CityDataContext from "../../../../Context/CityDataContext";
+import { FaDirections } from "react-icons/fa";
 const PlaceImage = () => {
   const { cardData } = useContext(CityDataContext);
   const storageData=JSON.parse(localStorage.getItem("storedCardData"));
@@ -14,11 +15,14 @@ const handleMap=()=>{
 
   return (
     <>
+    
       <div id="image__container">
         <img id="place__image" src={x} alt="bla bla"></img>
+        <div className="tagButton__container">
         <div id="tag__container">
           <PlaceTags></PlaceTags>
-          <button onClick={handleMap}>Google maps</button>
+        </div>
+        <button onClick={handleMap}> Directions <FaDirections/></button>
         </div>
       </div>
     </>

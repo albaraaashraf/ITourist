@@ -19,8 +19,8 @@
 }
 
 .singOut-btn {
-  background-color: var(--main_color) !important;
-  color: #eee !important;
+  background-color:#100D4C!important;
+  color: aliceblue !important;
   opacity: 0.9;
 }
 .singOut-btn:hover {
