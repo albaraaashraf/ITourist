@@ -24,7 +24,6 @@ console.log(storageData.id)
   const { theUser } = useUser();
   const { cardData } = useContext(CityDataContext);
   const citydata = useContext(CityDataContext);
-  console.log(cardData.id)
 
   async function submitComment(e) {
     e.preventDefault();

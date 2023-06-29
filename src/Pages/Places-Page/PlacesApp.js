@@ -11,6 +11,7 @@ import CityDataContext from "../../Context/CityDataContext";
 function PlacesApp() {
   const [currentPage, setCurrentPage] = useState(1);
   const [displayData, setDisplayData] = useState([]);
+  const [noPlaces, setNoPlaces] = useState(false);
   const [allData, setAllData] = useState([]);
   const { lon } = useContext(CityContext);
   const { lat } = useContext(CityContext);
@@ -20,48 +21,49 @@ function PlacesApp() {
   console.log(displayData.length);
   console.log(categoryName);
 
-
   //items from the local storage
   const storedLat = localStorage.getItem("lat");
   const storedLon = localStorage.getItem("lon");
   const storedCityLat = localStorage.getItem("searchedCityLat");
   const storedCityLon = localStorage.getItem("searchedCityLon");
   const storedCategory = localStorage.getItem("category");
-  const popularPlaceName=localStorage.getItem("popularPlaceClicked")
-  const popularPlaceLat=localStorage.getItem("popularLat");
-  const popularPlaceLon=localStorage.getItem("popularLon")
+  const popularPlaceName = localStorage.getItem("popularPlaceClicked");
+  const popularPlaceLat = localStorage.getItem("popularLat");
+  const popularPlaceLon = localStorage.getItem("popularLon");
 
   console.log(storedCategory);
   console.log(storedCityLat, storedCityLon);
   console.log(storedLat, storedLon);
   useEffect(() => {
     async function fetchAllPlaces() {
-      const response = await fetch(!popularPlaceName?
-        `https://api.tomtom.com/search/2/poiSearch/Restaurant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${storedCityLat}&lon=${storedCityLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
-     : `https://api.tomtom.com/search/2/poiSearch/Restaurant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${popularPlaceLat}&lon=${popularPlaceLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H` );
+      const response = await fetch(
+        !popularPlaceName
+          ? `https://api.tomtom.com/search/2/poiSearch/Restaurant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${storedCityLat}&lon=${storedCityLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+          : `https://api.tomtom.com/search/2/poiSearch/Restaurant%2Fmuseum%2Fbeach%2Fmarket%2Fhistoric.json?limit=1000&lat=${popularPlaceLat}&lon=${popularPlaceLon}&radius=10000&view=Unified&relatedPois=all&key=6xSTnZiuQ9q3oaOLOIyVbzH8fjqKOA1H`
+      );
       const data = await response.json();
       const transformedData = data.results.map((takeAwayData) => {
         let img = "";
         switch (takeAwayData.poi.classifications[0].code) {
           case "RESTAURANT":
-            img = "/assets/images/Nearby__images/Restaurant.jpg";
+            img = "/assets/images/Category__images/Restaurant.png";
             break;
           case "BEACH":
-            img = "/assets/images/Nearby__images/Beach.jpg";
+            img = "/assets/images/Category__images/Beach.png";
             break;
           case "PARK_RECREATION_AREA":
-            img = "/assets/images/Nearby__images/Garden.jpg";
+            img = "/assets/images/Category__images/Garden.png";
             break;
           case "MARKET":
           case "SHOPPING_CENTER":
           case "SHOP":
-            img = "/assets/images/Nearby__images/Market.jpg";
+            img = "/assets/images/Category__images/Market.png";
             break;
           case "IMPORTANT_TOURIST_ATTRACTION":
-            img = "/assets/images/Nearby__images/Historic.jpg";
+            img = "/assets/images/Category__images/Historic.png";
             break;
           case "MUSEUM":
-            img = "/assets/images/Nearby__images/Museum.jpg";
+            img = "/assets/images/Category__images/Museum.png";
             break;
           default:
             break;
@@ -98,16 +100,28 @@ function PlacesApp() {
         let img = "";
         switch (storedCategory) {
           case "Resturants":
-            img = "/assets/images/Nearby__images/Restaurant.jpg";
+            img = "/assets/images/Category__images/Restaurant.png";
             break;
           case "Coffe":
-            img = "/assets/images/Nearby__images/Coffeshop.jpg";
+            img = "/assets/images/Category__images/Coffeshop.png";
             break;
           case "Cinema":
-            img = "/assets/images/Nearby__images/Cinema.jpg";
+            img = "/assets/images/Category__images/Cinema.png";
             break;
           case "Parks&Recreation":
-            img = "/assets/images/Nearby__images/Garden.jpg";
+            img = "/assets/images/Category__images/Garden.png";
+            break;
+          case "Hospital":
+            img = "/assets/images/Category__images/Hospital.png";
+            break;
+          case "Museum":
+            img = "/assets/images/Category__images/Museum.png";
+            break;
+          case "Points of interest":
+            img = "/assets/images/Category__images/Historic.png";
+            break;
+          case "Mall":
+            img = "/assets/images/Category__images/Mall.png";
             break;
 
           default:
@@ -147,36 +161,69 @@ function PlacesApp() {
     storedLon,
     storedCityLat,
     storedCityLon,
+    popularPlaceLat,
+    popularPlaceLon,
+    popularPlaceName,
   ]);
   const showGardenHandler = (garden) => {
-    setDisplayData(garden);
-    setCurrentPage(1);
-    console.log(garden);
+    if (garden.length > 0) {
+      setNoPlaces(false);
+      setDisplayData(garden);
+      setCurrentPage(1);
+      console.log(garden);
+    } else {
+      setNoPlaces(true);
+    }
   };
   const showBeachHandler = (beach) => {
-    setDisplayData(beach);
-    setCurrentPage(1);
-    console.log(beach);
+    if (beach.length > 0) {
+      setDisplayData(beach);
+      setNoPlaces(false);
+      setCurrentPage(1);
+      console.log(beach);
+    } else {
+      setNoPlaces(true);
+    }
   };
   const showMuseumHandler = (museum) => {
-    setDisplayData(museum);
-    setCurrentPage(1);
-    console.log(museum);
+    if (museum.length > 0) {
+      setNoPlaces(false);
+      setDisplayData(museum);
+      setCurrentPage(1);
+      console.log(museum);
+    } else {
+      setNoPlaces(true);
+    }
   };
   const showRestaurantHandler = (Restaurant) => {
-    setDisplayData(Restaurant);
-    setCurrentPage(1);
-    console.log(Restaurant);
+    if (Restaurant.length > 0) {
+      setNoPlaces(false);
+      setDisplayData(Restaurant);
+      setCurrentPage(1);
+      console.log(Restaurant);
+    } else {
+      setNoPlaces(true);
+    }
   };
   const showHistoricHandler = (historic) => {
-    setDisplayData(historic);
-    setCurrentPage(1);
-    console.log(historic);
+    if (historic.length > 0) {
+      setNoPlaces(false);
+      setDisplayData(historic);
+      setCurrentPage(1);
+      console.log(historic);
+    } else {
+      setNoPlaces(true);
+    }
   };
   const showMarketHandler = (market) => {
-    setDisplayData(market);
-    setCurrentPage(1);
-    console.log(market);
+    if (market.length > 0) {
+      setNoPlaces(false);
+      setDisplayData(market);
+      setCurrentPage(1);
+      console.log(market);
+    } else {
+      setNoPlaces(true);
+    }
   };
 
   return (
@@ -194,7 +241,12 @@ function PlacesApp() {
         </div>
         {
           <div id="rightSide__container">
-            {displayData.length > 0 ? (
+            {noPlaces? (
+              <div className="noPlaceError">
+                <p>No Places Here ...</p>
+                <img src="/assets/images/404 error.png" alt="No Places" />
+              </div>
+            ) : displayData.length > 0 ? (
               <PlaceCard data={displayData} page={currentPage}></PlaceCard>
             ) : (
               <PlaceCard data={allData} page={currentPage}></PlaceCard>

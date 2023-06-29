@@ -10,12 +10,23 @@
 }
 #rightSide__container{
     width: 100%;
-    margin-left: 2.5rem;
     display: flex;
-    flex-direction: column;
     margin-top: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
-
+.noPlaceError{
+    text-align: center;
+}
+.noPlaceError p{
+    font-size: 20px;
+    font-weight: bold;
+    color: #3b504d;
+}
+.noPlaceError img{
+    width: 50%;
+}
 @media only screen and (max-width: 480px) {
     /* Your CSS rules for mobile screens here */
     #overAll__container{

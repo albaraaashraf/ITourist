@@ -101,7 +101,7 @@ const searchStoreLon=localStorage.getItem('searchedCityLon')
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
         categories: takeAwayData.poi.categories,
-        img: "/assets/images/Nearby__images/Restaurant.jpg",
+        img: "/assets/images/Category__images/Restaurant.png",
         lon: takeAwayData.position.lon,
         lat: takeAwayData.position.lat,
         info:
@@ -141,7 +141,7 @@ const searchStoreLon=localStorage.getItem('searchedCityLon')
       distance: takeAwayData.dist,
       class: takeAwayData.poi.classifications[0].code,
       categories: takeAwayData.poi.categories,
-      img: "/assets/images/Nearby__images/Museum.jpg",
+      img: "/assets/images/Category__images/Museum.png",
       lon: takeAwayData.position.lon,
       lat: takeAwayData.position.lat,
       info:
@@ -176,7 +176,7 @@ const searchStoreLon=localStorage.getItem('searchedCityLon')
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
         categories: takeAwayData.poi.categories,
-        img: "/assets/images/Nearby__images/Beach.jpg",
+        img: "/assets/images/Category__images/Beach.png",
         lon: takeAwayData.position.lon,
         lat: takeAwayData.position.lat,
         info:
@@ -211,7 +211,7 @@ const searchStoreLon=localStorage.getItem('searchedCityLon')
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
         categories: takeAwayData.poi.categories,
-        img: "/assets/images/Nearby__images/Historic.jpg",
+        img: "/assets/images/Category__images/Historic.png",
         lon: takeAwayData.position.lon,
         lat: takeAwayData.position.lat,
         info:
@@ -245,7 +245,7 @@ const searchStoreLon=localStorage.getItem('searchedCityLon')
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
         categories: takeAwayData.poi.categories,
-        img: "/assets/images/Nearby__images/Market.jpg",
+        img: "/assets/images/Category__images/Market.png",
         lon: takeAwayData.position.lon,
         lat: takeAwayData.position.lat,
 
@@ -280,7 +280,7 @@ const searchStoreLon=localStorage.getItem('searchedCityLon')
         distance: takeAwayData.dist,
         class: takeAwayData.poi.classifications[0].code,
         categories: takeAwayData.poi.categories,
-        img: "/assets/images/Nearby__images/Garden.jpg",
+        img: "/assets/images/Category__images/Garden.png",
         lon: takeAwayData.position.lon,
         lat: takeAwayData.position.lat,
 
@@ -354,7 +354,7 @@ const searchStoreLon=localStorage.getItem('searchedCityLon')
               </p>
               <p onClick={() => handleCategoryClick("Museums")}>Museums</p>
               <p onClick={() => handleCategoryClick("Historic Buildings")}>
-                Historic Buildings
+                Points of interest
               </p>
               <p onClick={() => handleCategoryClick("Beaches")}>Beaches</p>
               <p onClick={() => handleCategoryClick("Markets")}>Markets</p>
@@ -373,7 +373,7 @@ const searchStoreLon=localStorage.getItem('searchedCityLon')
             </p>
             <p onClick={() => handleCategoryClick("Museums")}>Museums</p>
             <p onClick={() => handleCategoryClick("Historic Buildings")}>
-              Historic Buildings
+              Points of interest
             </p>
             <p onClick={() => handleCategoryClick("Beaches")}>Beaches</p>
             <p onClick={() => handleCategoryClick("Markets")}>Markets</p>
