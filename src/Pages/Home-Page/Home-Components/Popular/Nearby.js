@@ -1,17 +1,17 @@
-import "./Popular.css";
-import PopularSlider from "./popularPlaces/PopularSlider";
+import "./Nearby.css";
+import NearbySlider from "./NearbyPlaces/NearbySlider";
 
-const Popular = () => {
+const Nearby = () => {
   return (
     <>
       <div className="slick1__container">
         <p className="popular__header">Nearby Places</p>
 
         <div className="slider__container">
-          <PopularSlider />
+          <NearbySlider />
         </div>
       </div>
     </>
   );
 };
-export default Popular;
+export default Nearby;

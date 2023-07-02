@@ -14,9 +14,7 @@ const NearbySlider = () => {
   const [data, setData] = useState([]);
   // console.log(cardData.lon);
   // console.log(cardData.lat);
-  const storageData=JSON.parse(localStorage.getItem("storedCardData"));
-
-
+  const storageData = JSON.parse(localStorage.getItem("storedCardData"));
 
   useEffect(() => {
     async function fetchNearbyHandler() {
@@ -96,22 +94,42 @@ const NearbySlider = () => {
     <>
       <Slider {...settings} className="SliderContainer">
         {data.map((item) => (
-          <div className="card">
-            <div className="card__top">
-              {/* <img src={item.src} alt={item.title}></img> */}
-              <div className="image__content">
+          // <div className="card">
+          //   <div className="card__top">
+          //     {/* <img src={item.src} alt={item.title}></img> */}
+          //     <div className="image__content">
+          //       <p className="city__style">{item.header}</p>
+          //       <p id="distance">{item.distance.toFixed(2)}m</p>
+          //       </div>
+          //       <p className="type">{item.type}</p>
+          //       <div className="star__class">
+          //         <Rating
+          //           name="read-only"
+          //           value={Math.ceil(item.score / 50)}
+          //           readOnly
+          //           style={{ color: "#072c3d" }}
+          //           />
+          //       </div>
+          //   </div>
+          // </div>
+          <div className="cardSlide">
+            <div className="rowsContainer">
+              <div className="firstRow">
                 <p className="city__style">{item.header}</p>
-                <p id="distance">{item.distance.toFixed(2)}m</p>
-                </div>
-                <p className="type">{item.type}</p>
-                <div className="star__class">
-                  <Rating
-                    name="read-only"
-                    value={Math.ceil(item.score / 50)}
-                    readOnly
-                    style={{ color: "#072c3d" }}
-                    />
-                </div>
+                <p id="distance">{item.area}</p>
+              </div>
+              <div className="secRow">
+                <p>{item.distance.toFixed(2)}M</p>
+                <p>{item.type}</p>
+              </div>
+              <div className="thirdRow">
+                <Rating
+                  name="read-only"
+                  value={Math.ceil(item.score / 50)}
+                  readOnly
+                  style={{ color: "#072c3d" }}
+                />
+              </div>
             </div>
           </div>
         ))}

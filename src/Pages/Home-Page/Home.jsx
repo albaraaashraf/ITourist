@@ -1,8 +1,8 @@
 // Components
 // import MainCard from "./Home-Components/mainPage/MainCard";
 // import MainImage from "./Home-Components/mainPage/MainImage";
-import Popular from "./Home-Components/Popular/Popular";
-import NearbyPage from "./Home-Components/Nearby/nearbyPlaces/NearbyPage";
+import Nearby from "./Home-Components/Popular/Nearby";
+import PopularPage from "./Home-Components/Nearby/nearbyPlaces/PopularPage";
 import CategoryPage from "./Home-Components/Category/CategoryPage";
 
 //CSS
@@ -55,11 +55,11 @@ const Home = () => {
         </div>
 
         <div className="secondPage__container">
-          <Popular />
+          <Nearby />
         </div>
 
         <div className="thirdPage__container">
-          <NearbyPage />
+          <PopularPage />
         </div>
 
         <div className="thirdPage__container">

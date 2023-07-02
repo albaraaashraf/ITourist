@@ -1,10 +1,10 @@
 import Nearby from "../Nearby";
-import classes from "./NearbyPage.module.css";
+import classes from "./PopularPage.module.css";
 import Slider from "react-slick";
 import { useContext } from "react";
 import CityContext from "../../../../../Context/CityContext";
 import { Navigate, useNavigate } from "react-router-dom";
-const NearbyPage = () => {
+const PopularPage = () => {
   const { setLon } = useContext(CityContext);
   const { setLat } = useContext(CityContext);
   const navigate = useNavigate(); // initialize history
@@ -250,4 +250,4 @@ const NearbyPage = () => {
     </>
   );
 };
-export default NearbyPage;
+export default PopularPage;
