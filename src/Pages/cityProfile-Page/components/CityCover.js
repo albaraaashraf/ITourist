@@ -19,7 +19,7 @@ const CityCover = (props) => {
 
   const words = storedCityName && storedCityName.split(" ");
   let processedName = storedCityName;
-  if (words && words.length === 2) {
+  if (words && words.length > 1) {
     const capitalizedWords = words.map(
       (word) => word.charAt(0).toUpperCase() + word.slice(1)
     );

@@ -9,8 +9,8 @@ const Search = () => {
   const { setLat } = useContext(CityContext);
   const { setCityName } = useContext(CityContext);
   const { setCountryId } = useContext(CityContext);
-  const {setCityId} =useContext(CityContext);
-  const{setCategoryClicked}=useContext(CityContext)
+  const { setCityId } = useContext(CityContext);
+  const { setCategoryClicked } = useContext(CityContext);
 
   const navigate = useNavigate();
   const [searchItem, setSearchItem] = useState();
@@ -48,6 +48,8 @@ const Search = () => {
     } catch (error) {
       console.error(error);
     }
+
+   
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
     console.log(string, results);
@@ -67,18 +69,14 @@ const Search = () => {
     setCountryId(item.countryId);
     setCityId(item.id);
     setCategoryClicked(0);
-    localStorage.setItem("searchedCityLat",item.lat);
-    localStorage.setItem("searchedCityLon",item.lon);
-    localStorage.setItem("searchedCityName",item.name);
-    localStorage.setItem("searchedCountryId",item.countryId);
-    localStorage.setItem("searchedCityId",item.id);
+    localStorage.setItem("searchedCityLat", item.lat);
+    localStorage.setItem("searchedCityLon", item.lon);
+    localStorage.setItem("searchedCityName", item.name);
+    localStorage.setItem("searchedCountryId", item.countryId);
+    localStorage.setItem("searchedCityId", item.id);
     console.log(item.id);
 
-    const keysToRemove = [
-  
-      "category",
-      "popularPlaceClicked",
-    ];
+    const keysToRemove = ["category", "popularPlaceClicked"];
     keysToRemove.forEach((key) => {
       localStorage.removeItem(key);
     });
