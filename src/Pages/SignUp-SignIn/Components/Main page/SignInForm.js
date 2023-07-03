@@ -52,8 +52,6 @@ function SignInForm() {
       await signInWithEmailAndPassword(auth, signInEmail, signInPassword).then(
         () => {
           navigate("/");
-          setSignedUp(true);
-          window.location.reload();
         }
       );
     } catch (error) {

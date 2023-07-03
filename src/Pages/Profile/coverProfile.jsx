@@ -14,11 +14,7 @@ function CoverProflie(probs) {
           <div className="row h-100 h-md-75 align-items-center ">
             <div className="col col-md-6 d-flex flex-row justify-content-center align-items-center">
               <div className="img-cover">
-                <img
-                  src={theUser && theUser.ProfileImg}
-                  alt="profile-img"
-                  className="py-3 py-md-5"
-                />
+                <img src={theUser && theUser.ProfileImg} alt="profile-img" />
               </div>
               <div className="mx-1 mx-md-3 text-center cover-info">
                 <span id="cover-name">{theUser && theUser.UserName}</span>

@@ -8,7 +8,7 @@ function OptionBtn() {
         <div className="btn-group d-flex justify-content-center  align-items-center w-100 ">
           <div className="btn-border option">
             <NavLink to={"/Profile/Info"}>
-              <button className="btn btn-lg">Person</button>
+              <button className="btn btn-lg">Bio</button>
             </NavLink>
           </div>
           <div className="btn-border option ">
@@ -24,11 +24,6 @@ function OptionBtn() {
           <div className="btn-border option">
             <NavLink to={"/Profile/favorite-places"}>
               <button className="btn btn-lg">Favourite Places</button>
-            </NavLink>
-          </div>
-          <div className="text-end option option-edit">
-            <NavLink to={"/Profile/Edit"}>
-              <button className="btn">Edit</button>
             </NavLink>
           </div>
         </div>

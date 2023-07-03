@@ -77,9 +77,9 @@ function Navbar() {
                         src={theUser.ProfileImg}
                         alt=""
                         style={{
-                          maxWidth: "100%",
-                          maxHeight: "100%",
-                          borderRadius: "50%",
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "100%",
                           objectFit: "cover",
                         }}
                       />

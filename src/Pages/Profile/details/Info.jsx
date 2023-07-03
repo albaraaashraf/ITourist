@@ -1,5 +1,7 @@
 import React from "react";
 
+import { NavLink } from "react-router-dom";
+
 import { useUser } from "../../../Context/UserContext";
 
 import { signOut } from "firebase/auth";
@@ -19,8 +21,6 @@ function Info() {
   async function logout() {
     await signOut(auth).then(() => {
       navigate("/");
-      setSignedUp(false);
-      // window.location.reload();
     });
   }
 
@@ -37,12 +37,17 @@ function Info() {
                 <InfoData label="Gender" data={theUser.Gender} />
                 <InfoData label="Email" data={theUser.Email} />
                 <InfoData label="Phone" data={theUser.Phone} />
-                <InfoData label="Bio" />
+                {/* <InfoData label="Bio" /> */}
                 <Bio />
               </div>
             )}
           </div>
-          <div className="row">
+          <div className="row flex-row">
+            <div className="col d-flex justify-content-start option">
+              <NavLink to={"/Profile/Edit"}>
+                <button className="btn">Edit</button>
+              </NavLink>
+            </div>
             <div className="col d-flex justify-content-end">
               <button onClick={logout} className="btn singOut-btn">
                 Sing Out
