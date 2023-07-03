@@ -1,4 +1,4 @@
-import { doc, onSnapshot, setDoc } from "firebase/firestore";
+import { doc, onSnapshot, serverTimestamp, setDoc } from "firebase/firestore";
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import { db } from "../../../../firebase-config";
@@ -18,16 +18,17 @@ export default function ReviewInput() {
   const [reviewsData, setReviewsData] = useState([]);
   const reviewRef = useRef();
 
-  const { theUser } = useUser();
-  const { cardData } = useContext(CityDataContext);
-  const citydata = useContext(CityDataContext);
+  // const { theUser } = useUser();
+
+  const storageUser = JSON.parse(localStorage.getItem("storedUser"));
+  const storageData = JSON.parse(localStorage.getItem("storedCardData"));
 
   async function submitComment(e) {
     e.preventDefault();
-    const usersPath = `Users/${theUser.id}/Places Reviews/${cardData.id}`;
+    const usersPath = `Users/${storageUser.id}/Places Reviews/${storageData.id}`;
     const userRef = doc(db, usersPath);
 
-    const placePPath = `Places/${cardData.id}/Reviews/${theUser.id}`;
+    const placePPath = `Places/${storageData.id}/Reviews/${storageUser.id}`;
     const PlaceRef = doc(db, placePPath);
 
     if (reviewRef.current.value === "") return;
@@ -40,11 +41,15 @@ export default function ReviewInput() {
           ]
         : [{ review: reviewRef.current.value, createdAt: new Date() }];
 
-      await setDoc(PlaceRef, {
-        reference: `Users/${theUser.id}`,
-        review: rev,
-        Rate: 0,
-      })
+      await setDoc(
+        PlaceRef,
+        {
+          reference: `Users/${storageUser.id}`,
+          review: rev,
+          updated: serverTimestamp(),
+        },
+        { merge: true }
+      )
         .then(() => {
           console.log("added to place ref");
         })
@@ -52,11 +57,14 @@ export default function ReviewInput() {
           console.log(e);
         });
 
-      await setDoc(userRef, {
-        reference: `Places/${cardData.id}`,
-        describtion: rev,
-        Rate: 0,
-      })
+      await setDoc(
+        userRef,
+        {
+          reference: `Places/${storageData.id}`,
+          describtion: rev,
+        },
+        { merge: true }
+      )
         .then(() => {
           console.log("added to user ref");
         })
@@ -69,12 +77,18 @@ export default function ReviewInput() {
   }
 
   useEffect(() => {
-    const placePPath = `Places/${cardData.id}/Reviews/${theUser.id}`;
+    const placePPath = `Places/${storageData.id}/Reviews/${storageUser.id}`;
     const PlaceRef = doc(db, placePPath);
 
-    onSnapshot(PlaceRef, (snapshot) => {
+    const unsubscribe = onSnapshot(PlaceRef, (snapshot) => {
+      console.log("placePPath");
+      console.log(placePPath);
       setReviewsData(snapshot.data());
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (

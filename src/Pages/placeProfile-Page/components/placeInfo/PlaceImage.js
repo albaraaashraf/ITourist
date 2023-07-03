@@ -1,16 +1,16 @@
 import "./PlaceImage.css";
 import PlaceTags from "./PlaceTags";
-import { useContext } from "react";
-import CityDataContext from "../../../../Context/CityDataContext";
-const PlaceImage = () => {
-  const { cardData } = useContext(CityDataContext);
-  const storageData=JSON.parse(localStorage.getItem("storedCardData"));
-  const x = storageData.img;
-  console.log(cardData);
-const handleMap=()=>{
-  window.open(`https://www.google.com/maps/@${storageData.lat},${storageData.lon},14z?entry=ttu`, '_blank');
 
-}
+const PlaceImage = () => {
+  const storageData = JSON.parse(localStorage.getItem("storedCardData"));
+  const x = storageData.img;
+  console.log(storageData);
+  const handleMap = () => {
+    window.open(
+      `https://www.google.com/maps/@${storageData.lat},${storageData.lon},14z?entry=ttu`,
+      "_blank"
+    );
+  };
 
   return (
     <>

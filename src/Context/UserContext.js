@@ -21,14 +21,32 @@ export function UserProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log("signed in and exist");
         getDoc(doc(db, "Users", user.uid)).then((snapshot) => {
           setTheUser({ ...snapshot.data(), id: user.uid });
+          window.localStorage.setItem(
+            "storedUser",
+            JSON.stringify({
+              ...snapshot.data(),
+              id: user.uid,
+            })
+          );
         });
 
         setSignedUp(true);
+      } else {
+        if (window.localStorage.getItem("storedUser")) {
+          window.localStorage.removeItem("storedUser");
+        }
+
+        setSignedUp(false);
+        console.log("signed out or not exist");
       }
     });
-    return unsubscribe();
+    return () => {
+      console.log("user destroyed");
+      unsubscribe();
+    };
   }, []);
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
