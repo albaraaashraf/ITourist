@@ -33,16 +33,33 @@ export default function ReviewInput() {
 
     if (reviewRef.current.value === "") return;
 
-    console.log("placePPath");
-    console.log(placePPath);
+    console.log("usersPath in submitComment");
+    console.log(userRef);
 
+    console.log("placePPath in submitComment");
+    console.log(PlaceRef);
+
+    console.log("reviewsData in submitComment");
+    console.log(reviewsData);
     try {
-      let rev = reviewsData.review
-        ? [
+      let rev = [];
+      // reviewsData
+      //   && reviewsData.review? [
+      //       ...reviewsData.review,
+      //       { review: reviewRef.current.value, createdAt: new Date() },
+      //     ]
+      //   : [{ review: reviewRef.current.value, createdAt: new Date() }];
+
+      if (reviewsData) {
+        if (reviewsData.review) {
+          rev = [
             ...reviewsData.review,
             { review: reviewRef.current.value, createdAt: new Date() },
-          ]
-        : [{ review: reviewRef.current.value, createdAt: new Date() }];
+          ];
+        }
+      } else {
+        rev = [{ review: reviewRef.current.value, createdAt: new Date() }];
+      }
 
       await setDoc(
         PlaceRef,
@@ -76,7 +93,9 @@ export default function ReviewInput() {
         });
 
       reviewRef.current.value = "";
-    } catch {}
+    } catch {
+      console.log("ERRRRRRRROR");
+    }
   }
 
   useEffect(() => {
@@ -84,7 +103,7 @@ export default function ReviewInput() {
     const PlaceRef = doc(db, placePPath);
 
     const unsubscribe = onSnapshot(PlaceRef, (snapshot) => {
-      console.log("placePPath");
+      console.log("placePPath in onSnapshot");
       console.log(placePPath);
       setReviewsData(snapshot.data());
     });
