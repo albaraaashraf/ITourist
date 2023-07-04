@@ -24,13 +24,20 @@ const NearbySlider = () => {
 
       const data = await response.json();
       const transformedData = data.results.map((takeAwayData) => {
+        let type = takeAwayData.poi.categories[0];
+        const words = type.split(" ");
+      
+        if (words.length > 3) {
+          type = words.slice(0, 2).join(" ");
+        }
+      
         return {
           id: takeAwayData.id,
           score: takeAwayData.score,
           header: takeAwayData.poi.name,
           street: takeAwayData.address.streetName,
           city: takeAwayData.address.localName,
-          type: takeAwayData.poi.categories[0],
+          type: type,
           distance: takeAwayData.dist,
           class: takeAwayData.poi.classifications[0].code,
           categories: takeAwayData.poi.categories,
@@ -40,9 +47,12 @@ const NearbySlider = () => {
             takeAwayData.address.municipalitySubdivision +
             "  ,   " +
             takeAwayData.address.municipality,
+            
         };
       });
+      
       setData(transformedData);
+      console.log(transformedData)
     }
     fetchNearbyHandler();
   }, [storageData.lat, storageData.lon]);
@@ -94,24 +104,7 @@ const NearbySlider = () => {
     <>
       <Slider {...settings} className="SliderContainer">
         {data.map((item) => (
-          // <div className="card">
-          //   <div className="card__top">
-          //     {/* <img src={item.src} alt={item.title}></img> */}
-          //     <div className="image__content">
-          //       <p className="city__style">{item.header}</p>
-          //       <p id="distance">{item.distance.toFixed(2)}m</p>
-          //       </div>
-          //       <p className="type">{item.type}</p>
-          //       <div className="star__class">
-          //         <Rating
-          //           name="read-only"
-          //           value={Math.ceil(item.score / 50)}
-          //           readOnly
-          //           style={{ color: "#072c3d" }}
-          //           />
-          //       </div>
-          //   </div>
-          // </div>
+        
           <div className="cardSlide">
             <div className="rowsContainer">
               <div className="firstRow">

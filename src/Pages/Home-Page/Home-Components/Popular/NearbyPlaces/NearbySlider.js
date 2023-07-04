@@ -36,13 +36,21 @@ localStorage.setItem('lon',lon);
 
       const data = await response.json();
       const transformedData = data.results.map((takeAwayData) => {
+        let type = takeAwayData.poi.categories[0];
+        const words = type.split(" ");
+      
+        if (words.length > 3) {
+          type = words.slice(0, 2).join(" ");
+        }
+
         return {
           id: takeAwayData.id,
           header: takeAwayData.poi.name,
           area:takeAwayData.address.municipalitySubdivision,
           street: takeAwayData.address.streetName,
           city: takeAwayData.address.localName,
-          type: takeAwayData.poi.categories[0],
+          type: type,
+          class: takeAwayData.poi.classifications[0].code,
           distance: takeAwayData.dist,
           latitude:takeAwayData.position.lat,
           longitude:takeAwayData.position.lon
@@ -112,23 +120,7 @@ localStorage.setItem('lon',lon);
           
           {takeAway.map((takeAwayData) => (
             
-              // <div className="cardSlide">
-              //   <div className="cardSlide__top">
-              //     <div className="image__content">
-              //       <p className="city__style">{takeAwayData.header}</p>
-              //       <p id="distance">{takeAwayData.area} </p>
-              //       <p> {takeAwayData.distance.toFixed(2)}M</p>
-              //       <p>{takeAwayData.type}</p>
-              //     </div>
-              //     <div className="star__class">
-              //       <AiFillStar></AiFillStar>
-              //       <AiFillStar></AiFillStar>
-              //       <AiOutlineStar></AiOutlineStar>
-              //       <AiOutlineStar></AiOutlineStar>
-              //       <AiOutlineStar></AiOutlineStar>
-              //     </div>
-              //   </div>
-              // </div>
+            
               <div className='cardSlide'>
                 <div className='rowsContainer'>
                 <div className='firstRow'>
