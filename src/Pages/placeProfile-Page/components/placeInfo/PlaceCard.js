@@ -117,7 +117,7 @@ const PlaceCard = () => {
     return () => {
       signedUp && x();
     };
-  }, []);
+  }, [signedUp]);
 
   //asynchronous effect to the change of value raiting
   useEffect(() => {
