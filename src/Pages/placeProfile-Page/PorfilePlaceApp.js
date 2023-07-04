@@ -25,48 +25,28 @@ function ProfilePlaceApp() {
   const { signedUp } = useUser();
 
   const [reviews, setReviews] = useState();
+
   const storageData = JSON.parse(localStorage.getItem("storedCardData"));
-
-  const storedCountryId = localStorage.getItem("searchedCountryId");
-
-  // let reviewData = {
-  //   // used local storage instead of context
-  //   country: storedCountryId,
-  //   city: storageData.city,
-  //   placeName: storageData.header,
-  // };
-
-  function showReviews() {
-    let revData = reviews.map((review) => {
-      return <ReviewCard reviews={review} />;
-    });
-
-    return revData;
-  }
 
   useEffect(() => {
     const revRef = collection(db, `/Places/${storageData.id}/Reviews`);
     const palceRef = doc(db, `/Places/${storageData.id}`);
 
-    const unsubscribe = onSnapshot(revRef, (snapshot) => {
+    const q = query(revRef, orderBy("updated", "desc"));
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       let rev = [];
       snapshot.docs.forEach((doc) => {
         rev.push(doc.data());
       });
 
-      setDoc(palceRef, { numberOfReviews: rev.length }, { merge: true }).then(
-        () => {
-          console.log("length updated");
-        }
-      );
+      setDoc(palceRef, { numberOfReviews: rev.length }, { merge: true });
 
       setReviews(rev);
     });
-    // }
 
     return () => {
       unsubscribe();
-      console.log("destroyed");
     };
   }, []);
 
@@ -83,7 +63,12 @@ function ProfilePlaceApp() {
         <div id="third__part">
           <ReviewHeader length={reviews && reviews.length} />
 
-          <div>{reviews && showReviews()}</div>
+          <div>
+            {reviews &&
+              reviews.map((review) => {
+                return <ReviewCard reviews={review} />;
+              })}
+          </div>
 
           {signedUp && <ReviewInput />}
         </div>

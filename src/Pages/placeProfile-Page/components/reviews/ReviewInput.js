@@ -11,7 +11,6 @@ export default function ReviewInput() {
   const storageData = JSON.parse(localStorage.getItem("storedCardData"));
   const storageUser = JSON.parse(localStorage.getItem("storedUser"));
 
-  console.log(storageData.id);
   const style = {
     width: "100%",
     border: "1px solid var(--main_color)",
@@ -33,14 +32,6 @@ export default function ReviewInput() {
 
     if (reviewRef.current.value === "") return;
 
-    console.log("usersPath in submitComment");
-    console.log(userRef);
-
-    console.log("placePPath in submitComment");
-    console.log(PlaceRef);
-
-    console.log("reviewsData in submitComment");
-    console.log(reviewsData);
     try {
       let rev = [];
       // reviewsData
@@ -103,8 +94,8 @@ export default function ReviewInput() {
     const PlaceRef = doc(db, placePPath);
 
     const unsubscribe = onSnapshot(PlaceRef, (snapshot) => {
-      console.log("placePPath in onSnapshot");
-      console.log(placePPath);
+      // console.log("placePPath in onSnapshot");
+      // console.log(placePPath);
       setReviewsData(snapshot.data());
     });
 
@@ -115,7 +106,7 @@ export default function ReviewInput() {
 
   return (
     <>
-      <div className="reviewCard__container">
+      <div id="revInput" className="reviewCard__container">
         <label style={{ color: "var(--main_color)" }}>
           Write your comment here :
         </label>

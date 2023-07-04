@@ -90,28 +90,26 @@ const PlaceCard = () => {
       const userRate = `Places/${storageData.id}/Reviews/${storageUser.id}`;
       const userRateRef = doc(db, userRate);
 
-      console.log("userRate in place card");
-      console.log(userRate);
-
       x = onSnapshot(userRateRef, (snapshot) => {
         if (snapshot.exists) {
-          setValue(snapshot.data().Rate);
-
-          console.log(snapshot.data());
+          if (snapshot.data().Rate) {
+            setValue(snapshot.data().Rate);
+          } else {
+            setValue(0);
+          }
         }
       });
     } else {
       const placeRate = `Places/${storageData.id}`;
       const placeRateRef = doc(db, placeRate);
 
-      console.log("placeRate because no account");
-      console.log(placeRate);
-
       x = onSnapshot(placeRateRef, (snapshot) => {
         if (snapshot.exists) {
-          console.log("snapshot.data()");
-          console.log(snapshot.data());
-          setValue(snapshot.data().Rate);
+          if (snapshot.data().Rate) {
+            setValue(snapshot.data().Rate);
+          } else {
+            setValue(0);
+          }
         }
       });
     }
@@ -158,7 +156,9 @@ const PlaceCard = () => {
 
         <div id="info__par">
           <p>{storageData.info}</p>
-          <button className="review__button">Review this place</button>
+          <button className="review__button">
+            <a href="#revInput">Review this place</a>
+          </button>
         </div>
       </div>
     </>

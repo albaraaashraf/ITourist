@@ -6,7 +6,7 @@ import { FaDirections } from "react-icons/fa";
 const PlaceImage = () => {
   const storageData = JSON.parse(localStorage.getItem("storedCardData"));
   const x = storageData.img;
-  console.log(storageData);
+  // console.log(storageData);
   const handleMap = () => {
     window.open(
       `https://www.google.com/maps/@${storageData.lat},${storageData.lon},14z?entry=ttu`,

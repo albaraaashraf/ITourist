@@ -9,16 +9,6 @@ import { useState } from "react";
 const ReviewCard = ({ reviews }) => {
   const [user, setUser] = useState();
 
-  // const days = {
-  //   0: "Sun",
-  //   1: "Mon",
-  //   2: "Teus",
-  //   3: "Wed",
-  //   4: "Thurs",
-  //   5: "Fri",
-  //   6: "Sat",
-  // };
-
   function showRate() {
     let rate = [];
     for (let i = 0; i < reviews.Rate; i++) {
@@ -32,11 +22,11 @@ const ReviewCard = ({ reviews }) => {
     getDoc(doc(db, reviews.reference)).then((snapshot) => {
       setUser(snapshot.data());
     });
-  }, []);
+  }, [reviews.reference]);
 
   return (
     <>
-      {reviews.review && (
+      {reviews && (
         <Accordion className="mx-5 my-3 accor">
           <Accordion.Item eventKey="0">
             <Accordion.Header data-bs-theme="dark" className="accor-header">
