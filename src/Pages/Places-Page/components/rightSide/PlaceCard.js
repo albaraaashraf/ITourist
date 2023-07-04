@@ -7,6 +7,7 @@ import PlaceImageContext from "../../../../Context/PlaceImageContext";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { useUser } from "../../../../Context/UserContext";
+
 const PlaceCard = (props) => {
   const { setCardData, cardData } = useContext(CityDataContext);
   const { setPlaceImage } = useContext(PlaceImageContext);
@@ -131,8 +132,8 @@ const PlaceCard = (props) => {
               backgroundColor: "#100D4C",
               color: "aliceblue",
               textAlign: "center",
-              width:"6rem",
-              borderRadius:"12px"
+              width: "6rem",
+              borderRadius: "12px",
             }}
           >
             Previous
@@ -165,8 +166,8 @@ const PlaceCard = (props) => {
               backgroundColor: "#100D4C",
               color: "aliceblue",
               textAlign: "center",
-              width:"6rem",
-              borderRadius:"12px"
+              width: "6rem",
+              borderRadius: "12px",
             }}
           >
             Next

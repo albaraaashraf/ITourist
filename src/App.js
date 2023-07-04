@@ -26,7 +26,7 @@ import PlacesApp from "./Pages/Places-Page/PlacesApp";
 import Profile from "./Pages/Profile/Profile.jsx";
 ////  profile Components
 import Info from "./Pages/Profile/details/Info";
-import Bio from "./Pages/Profile/details/Bio";
+
 import GalleryContainer from "./Pages/Profile/details/GalleryContainer";
 import Gallery from "./Pages/Profile/details/Gallery";
 import AddImages from "./Pages/Profile/details/AddImages";
@@ -52,6 +52,7 @@ import {
 import { library } from "@fortawesome/fontawesome-svg-core";
 import RequestTourGuide from "./Pages/Places/Request Tour Guide/RequestTourGuide";
 import CityProfileApp from "./Pages/cityProfile-Page/CityProfileApp";
+import FavPlaces from "./Pages/Profile/components/favplaces/FavPlaces";
 
 library.add(faEnvelope, faLock, faUser, faCalendar);
 
@@ -134,7 +135,7 @@ const router = createBrowserRouter(
       {/* profile root components */}
       <Route path="Profile" element={<Profile />}>
         <Route path="Info" element={<Info />} />
-        <Route path="Bio" element={<Bio />} />
+        <Route path="favorite-places" element={<FavPlaces />} />
         <Route path="Gallery" element={<GalleryContainer />}>
           <Route index element={<Gallery />} />
           <Route path="AddImages" element={<AddImages />} />
@@ -164,7 +165,7 @@ function App() {
   const [categoryName, setCategoryName] = useState();
   const [cityId, setCityId] = useState();
   const [placeImage, setPlaceImage] = useState();
-  const [categoryClicked,setCategoryClicked]=useState();
+  const [categoryClicked, setCategoryClicked] = useState();
 
   return (
     <>
@@ -185,7 +186,7 @@ function App() {
               cityId,
               setCityId,
               categoryClicked,
-              setCategoryClicked
+              setCategoryClicked,
             }}
           >
             {/* for navbar and footer  */}

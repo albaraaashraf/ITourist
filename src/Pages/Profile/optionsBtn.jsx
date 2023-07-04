@@ -11,11 +11,11 @@ function OptionBtn() {
               <button className="btn btn-lg">Bio</button>
             </NavLink>
           </div>
-          <div className="btn-border option ">
+          {/* <div className="btn-border option ">
             <NavLink to={"/Profile/bio"}>
               <button className="btn btn-lg">Reviews</button>
             </NavLink>
-          </div>
+          </div> */}
           {/* <div className="btn-border option">
             <NavLink to={"/Profile/gallery"}>
               <button className="btn btn-lg">Gallery</button>

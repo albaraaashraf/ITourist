@@ -241,7 +241,7 @@ function PlacesApp() {
         </div>
         {
           <div id="rightSide__container">
-            {noPlaces? (
+            {noPlaces ? (
               <div className="noPlaceError">
                 <p>No Places Here ...</p>
                 <img src="/assets/images/404 error.png" alt="No Places" />

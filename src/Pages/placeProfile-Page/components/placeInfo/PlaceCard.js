@@ -19,7 +19,7 @@ import { useUser } from "../../../../Context/UserContext";
 
 const PlaceCard = () => {
   const [value, setValue] = useState(0);
-  const { signedUp } = useUser();
+  const { signedUp, theUser } = useUser();
 
   const storageUser = JSON.parse(localStorage.getItem("storedUser"));
   const storageData = JSON.parse(localStorage.getItem("storedCardData"));
@@ -67,14 +67,18 @@ const PlaceCard = () => {
   function wishList() {
     const userRef = doc(
       db,
-      `Users/${storageData.id}/Places to visit/${storageData.id}`
+      `Users/${theUser.id}/Places to visit/${storageData.id}`
     );
 
     setDoc(userRef, {
       reference: `Places/${storageData.id}`,
-    }).catch((e) => {
-      console.log(e);
-    });
+    })
+      .then(() => {
+        console.log("added to fave");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 
   // this check is detrmine to show the user rate or the place rate
@@ -147,7 +151,9 @@ const PlaceCard = () => {
               readOnly
             />
           )}
-          <HiOutlineHeart className={classes.favourite} onClick={wishList} />
+          {signedUp && (
+            <HiOutlineHeart className={classes.favourite} onClick={wishList} />
+          )}
         </div>
 
         <div id="info__par">
