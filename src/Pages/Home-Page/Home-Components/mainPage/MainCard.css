@@ -5,6 +5,8 @@
     position: relative;
     bottom:16rem;
     color: #ecf6f9;
+    font-family: 'Open Sans', sans-serif;
+
 }
 .cardData{
     width: 100%;
@@ -45,7 +47,7 @@
 .fa__container p {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    width: 10rem;
+    width: 10.3rem;
 }
 ::placeholder{
     text-align: center;

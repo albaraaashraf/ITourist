@@ -1,8 +1,7 @@
-
-
 .city__style {
   font-weight: bold !important;
   color:#072c3d !important;
+  font-family: 'DM Sans', sans-serif !important;
 
 }
 
@@ -17,6 +16,8 @@
   background-color: white !important;
   height: 10rem !important;
   border-radius: 15px !important;
+  font-family: 'Roboto', sans-serif;
+
 
 }
 

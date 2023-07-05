@@ -30,10 +30,12 @@
     padding-bottom: 3rem;
     padding-top: 2rem;
     background-color: #F5F5F5;
+    
   }
   
   .footer__container{
     background-color: #ECF6F9;
+    font-family: 'Open Sans', sans-serif;
   }
   
   /* .thirdPage__container p{

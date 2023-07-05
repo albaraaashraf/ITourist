@@ -357,7 +357,7 @@ const TourRequest = () => {
         <img
           className={classes.tourImg}
           alt="Tour Guide"
-          src="https://img.freepik.com/free-vector/group-tourists-travelling-with-guide-holding-flag-flat-illustration_74855-18752.jpg?w=1380&t=st=1687267995~exp=1687268595~hmac=ec0d86394ea4c26659587cb41f7d75c2e84cbcdbf8e9acecd9661a3a6b8c6f6c"
+          src="/assets/images/Tour guide-bro.png"
         />
       </div>
       {showError && <p>Error Please Submit the required fields</p>}

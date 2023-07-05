@@ -111,6 +111,7 @@ const PlaceCard = (props) => {
                 width: "5rem",
                 cursor: "pointer",
                 marginTop: "2rem",
+                fontFamily:"font-family: 'Roboto', sans-serif"
               }}
               onClick={() => {
                 discoverClickHandler(item);

@@ -68,13 +68,18 @@
     font-weight: bold;
     margin: 0rem !important;
     max-width: 16rem;
+    font-family: 'DM Sans', sans-serif;
+
 }
 #card__par{
     display: flex;
     align-items: center;
+    
 }
 #card__par p {
     margin: 0rem 0rem 0rem 0.3rem !important;
+    font-family: 'Roboto', sans-serif;
+
 }
 .card__like{
     width: 100%;

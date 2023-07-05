@@ -17,7 +17,7 @@
     color: #ecf6f9;
     font-size: 1.563rem;
     font-weight: bold;
-    font-family: cursive;
+    font-family: 'Kalam', cursive;
 }
 @media (max-width:900px) {
     .header__container{
