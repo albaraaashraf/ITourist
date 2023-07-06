@@ -18,6 +18,7 @@ function Info() {
   async function logout() {
     await signOut(auth).then(() => {
       navigate("/");
+      window.location.reload();
     });
   }
 

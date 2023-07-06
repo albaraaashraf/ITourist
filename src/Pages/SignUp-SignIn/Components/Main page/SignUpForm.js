@@ -401,7 +401,7 @@ function SignInForm() {
           </span>
         </div>
 
-        <button onClick={signup} className="btn btn-sign-in">
+        <button onClick={signup} className="profile-img-btn">
           Sign up
         </button>
       </Form>

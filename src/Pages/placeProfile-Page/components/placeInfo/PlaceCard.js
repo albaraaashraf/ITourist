@@ -73,6 +73,36 @@ const PlaceCard = () => {
       });
   }
 
+  useEffect(() => {
+    const placeRate = `Places/${storageData.id}`;
+    const placeRateRef = doc(db, placeRate);
+
+    const rate = [1, 2, 3, 4, 5];
+    const ratePersisin = [0.0, 0.2, 0.4, 0.5, 0.7, 0.9];
+
+    const unsubscribe = onSnapshot(placeRateRef, (snapshot) => {
+      if (snapshot.exists) {
+        if (snapshot.data().Rate) {
+          setValue(snapshot.data().Rate);
+        } else {
+          let rateVal = rate[parseInt(Math.random() * rate.length)];
+
+          if (rateVal < 5) {
+            rateVal +=
+              +ratePersisin[parseInt(Math.random() * ratePersisin.length)];
+          }
+
+          setValue(rateVal);
+          setDoc(placeRateRef, { Rate: rateVal });
+        }
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [storageData.id]);
+
   // this check is detrmine to show the user rate or the place rate
   //// dependening on the singedup state
   useEffect(() => {

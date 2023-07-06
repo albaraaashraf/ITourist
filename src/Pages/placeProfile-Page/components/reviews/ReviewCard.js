@@ -1,7 +1,7 @@
-import { AiFillDislike, AiFillLike, AiFillStar } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 import "./ReviewCard.css";
 
-import { getDoc, doc, onSnapshot } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import Accordion from "react-bootstrap/Accordion";
 import { useEffect } from "react";
 import { db } from "../../../../firebase-config";

@@ -47,6 +47,8 @@ export default function ReviewInput() {
             ...reviewsData.review,
             { review: reviewRef.current.value, createdAt: new Date() },
           ];
+        } else {
+          rev = [{ review: reviewRef.current.value, createdAt: new Date() }];
         }
       } else {
         rev = [{ review: reviewRef.current.value, createdAt: new Date() }];
@@ -102,7 +104,7 @@ export default function ReviewInput() {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [storageData.id, storageUser.id]);
 
   return (
     <>
