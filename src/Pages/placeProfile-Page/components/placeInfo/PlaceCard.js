@@ -41,13 +41,9 @@ const PlaceCard = () => {
         updated: serverTimestamp(),
       },
       { merge: true }
-    )
-      .then(() => {
-        console.log("added rate to place ref");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    ).catch((e) => {
+      console.log(e);
+    });
 
     await setDoc(
       userRef,
@@ -55,13 +51,9 @@ const PlaceCard = () => {
         Rate: newValue,
       },
       { merge: true }
-    )
-      .then(() => {
-        console.log("added rate to user ref");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    ).catch((e) => {
+      console.log(e);
+    });
   };
 
   function wishList() {
@@ -94,14 +86,11 @@ const PlaceCard = () => {
         if (snapshot.exists) {
           if (snapshot.data()) {
             if (snapshot.data().Rate) {
-              console.log("rate found and updated");
               setValue(snapshot.data().Rate);
             } else {
-              console.log("no rate yet");
               setValue(0);
             }
           } else {
-            console.log("no any data yet");
             setValue(0);
           }
         }

@@ -2,19 +2,16 @@ import React from "react";
 
 import { NavLink } from "react-router-dom";
 
-import { useUser } from "../../../Context/UserContext";
+import { useUser } from "../../../../../Context/UserContext";
 
 import { signOut } from "firebase/auth";
-import { auth } from "../../../firebase-config";
+import { auth } from "../../../../../firebase-config";
 // components
-import InfoData from "./InfoData";
+import InfoData from "./components/InfoData";
 import { useNavigate } from "react-router-dom";
-
-import Bio from "./Bio";
 
 function Info() {
   const { theUser } = useUser();
-  const { setSignedUp } = useUser();
 
   const navigate = useNavigate();
 
@@ -33,12 +30,10 @@ function Info() {
               <div>
                 <InfoData label="User Name" data={theUser.UserName} />
                 <InfoData label="Full Name" data={theUser.FullName} />
-                <InfoData label="Born" data={theUser.Born} />
-                <InfoData label="Gender" data={theUser.Gender} />
                 <InfoData label="Email" data={theUser.Email} />
                 <InfoData label="Phone" data={theUser.Phone} />
-                {/* <InfoData label="Bio" /> */}
-                <Bio />
+                <InfoData label="Born" data={theUser.Born} />
+                <InfoData label="Gender" data={theUser.Gender} />
               </div>
             )}
           </div>

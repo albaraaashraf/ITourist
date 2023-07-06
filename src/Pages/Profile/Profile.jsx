@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 // components
-import CoverProflie from "./coverProfile";
-import OptionBtn from "./optionsBtn";
+import CoverProflie from "./components/coverProfile/coverProfile";
+import OptionBtn from "./components/optionBtns/optionsBtn";
 
 // Css
 import "./profile-stayling.css";
-import "./details/details.css";
+import "./components/details/details.css";
 
 function Profile() {
   const [user, setUser] = useState(() => {

@@ -13,7 +13,7 @@ import PlaceImageContext from "./Context/PlaceImageContext";
 // Layouts
 import RootLayout from "./Pages/LayOut/rootLayout";
 import NotFound from "./Pages/Not Found/NotFound";
-import Edit from "./Pages/Profile/Edit";
+import Edit from "./Pages/Profile/components/Edit/Edit";
 
 import { ShowNavbarAndFooterProvider } from "./Context/NavbarAndFooterContext";
 
@@ -25,11 +25,10 @@ import PlacesApp from "./Pages/Places-Page/PlacesApp";
 // profile page
 import Profile from "./Pages/Profile/Profile.jsx";
 ////  profile Components
-import Info from "./Pages/Profile/details/Info";
-
-import GalleryContainer from "./Pages/Profile/details/GalleryContainer";
-import Gallery from "./Pages/Profile/details/Gallery";
-import AddImages from "./Pages/Profile/details/AddImages";
+import Info from "./Pages/Profile/components/details/info/Info";
+import GalleryContainer from "./Pages/Profile/components/details/gallery/components/GalleryContainer/GalleryContainer";
+import Gallery from "./Pages/Profile/components/details/gallery/Gallery";
+import AddImages from "./Pages/Profile/components/details/gallery/components/AddImages/AddImages";
 
 // ContactUs page
 import ContactUs from "./Pages/Contact Us/contactUs";

@@ -82,10 +82,20 @@
   }
 }
 
+/* larger screens */
+@media (max-width: 960px) {
+  .coverStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 /* large screens */
 @media (max-width: 768px) {
   .coverStyle {
     height: 10rem;
+    background-color: red;
   }
 
   .cover-info,

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-import "./Gallery.css";
+import "../../Gallery.css";
 import { useDropzone } from "react-dropzone";
 
-import { db, storage } from "../../../firebase-config";
+import { db, storage } from "../../../../../../../firebase-config";
 
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { setDoc, doc } from "firebase/firestore";
 
-import { useUser } from "../../../Context/UserContext";
-import LoadingScreen from "../../../components/LoadingScreen/LoadingScreen";
+import { useUser } from "../../../../../../../Context/UserContext";
+import LoadingScreen from "../../../../../../../components/LoadingScreen/LoadingScreen";
 
 export default function AddImages() {
   const { acceptedFiles, getRootProps, getInputProps, open } = useDropzone({
