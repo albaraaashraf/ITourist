@@ -48,7 +48,7 @@ function ProfilePlaceApp() {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [storageData.id]);
 
   return (
     <>
@@ -65,8 +65,9 @@ function ProfilePlaceApp() {
 
           <div>
             {reviews &&
-              reviews.map((review) => {
-                return <ReviewCard reviews={review} />;
+              reviews.map((review, i) => {
+                // return <div> {review.reference} hi</div>;
+                return <ReviewCard review={review} key={i} />;
               })}
           </div>
 

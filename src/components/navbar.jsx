@@ -5,7 +5,7 @@ import { useUser } from "../Context/UserContext";
 
 function Navbar() {
   let navStyle = {
-    backgroundColor: "#EEE",
+    backgroundColor: "#072c3d",
     marginBottom: "0",
     marginLeft: "0",
   };
@@ -15,19 +15,19 @@ function Navbar() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light" style={navStyle}>
+      <nav className="navbar navbar-expand-lg navbar-dark" style={navStyle}>
         <div className="container-fluid ">
           <NavLink
             className="navbar-brand me-auto"
             to="/"
-            style={{ color: "black" }}
+            style={{ color: "white" }}
           >
             <img
               src={logo}
               alt="logo"
               height="40rem"
               className="mx-1"
-              style={{ width: "3rem" }}
+              style={{ width: "2.5rem" }}
             ></img>
             <span>iTourist</span>
           </NavLink>

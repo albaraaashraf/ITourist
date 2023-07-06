@@ -6,12 +6,12 @@ import Accordion from "react-bootstrap/Accordion";
 import { useEffect } from "react";
 import { db } from "../../../../firebase-config";
 import { useState } from "react";
-const ReviewCard = ({ reviews }) => {
+const ReviewCard = ({ review }) => {
   const [user, setUser] = useState();
 
   function showRate() {
     let rate = [];
-    for (let i = 0; i < reviews.Rate; i++) {
+    for (let i = 0; i < review.Rate; i++) {
       rate.push(<AiFillStar />);
     }
 
@@ -19,14 +19,16 @@ const ReviewCard = ({ reviews }) => {
   }
 
   useEffect(() => {
-    getDoc(doc(db, reviews.reference)).then((snapshot) => {
-      setUser(snapshot.data());
-    });
-  }, [reviews.reference]);
+    if (review.reference) {
+      getDoc(doc(db, review.reference)).then((snapshot) => {
+        setUser(snapshot.data());
+      });
+    }
+  }, [review.reference]);
 
   return (
     <>
-      {reviews && (
+      {review.review && (
         <Accordion className="mx-5 my-3 accor">
           <Accordion.Item eventKey="0">
             <Accordion.Header data-bs-theme="dark" className="accor-header">
@@ -44,9 +46,9 @@ const ReviewCard = ({ reviews }) => {
               )}
             </Accordion.Header>
             <Accordion.Body>
-              {reviews.review.map((theReview) => {
+              {review.review.map((theReview, i) => {
                 return (
-                  <div className="review-container">
+                  <div className="review-container" key={i * i}>
                     <div className="date">
                       {theReview.createdAt.toDate().toString().split("GMT")[0]}{" "}
                     </div>

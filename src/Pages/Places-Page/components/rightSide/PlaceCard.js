@@ -72,13 +72,10 @@ const PlaceCard = (props) => {
     // add some data to the user
     //// only when the user have an account
     if (signedUp) {
-      const userRef = doc(
-        db,
-        `/Users/${theUser.id}/Places clicked/${cardData.id}`
-      );
+      const userRef = doc(db, `/Users/${theUser.id}/Places clicked/${item.id}`);
       setDoc(userRef, {
-        reference: `places/${cardData.id}`,
-        xid: `${cardData.id}`,
+        reference: `places/${item.id}`,
+        xid: `${item.id}`,
       });
       console.log("tracked");
     } else {
@@ -111,7 +108,7 @@ const PlaceCard = (props) => {
                 width: "5rem",
                 cursor: "pointer",
                 marginTop: "2rem",
-                fontFamily:"font-family: 'Roboto', sans-serif"
+                fontFamily: "font-family: 'Roboto', sans-serif",
               }}
               onClick={() => {
                 discoverClickHandler(item);

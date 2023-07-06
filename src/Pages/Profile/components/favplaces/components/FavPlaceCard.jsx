@@ -1,10 +1,26 @@
+import { deleteDoc, doc } from "firebase/firestore";
 import React, { useState } from "react";
 import { useEffect } from "react";
 
-import { ImLocation2 } from "react-icons/im";
+import { ImLocation2, ImCancelCircle } from "react-icons/im";
+import { db } from "../../../../../firebase-config";
+import { useUser } from "../../../../../Context/UserContext";
 
-export default function FavPlaceCard({ placeID }) {
+export default function FavPlaceCard({ placeID, listen, setListen }) {
   const [placeInfo, setPlaceInfo] = useState();
+  const { theUser } = useUser();
+
+  function removeFavPlace() {
+    const favRef = doc(
+      db,
+      `/Users/${theUser.id}/Places to visit/${placeID.split("/")[1]}`
+    );
+
+    deleteDoc(favRef).then(() => {
+      console.log("place removed");
+      setListen(!listen);
+    });
+  }
 
   useEffect(() => {
     async function getData() {
@@ -18,7 +34,7 @@ export default function FavPlaceCard({ placeID }) {
         console.log("placeInfo");
         console.log(placeInfo);
 
-        let img = "hi";
+        let img = "";
 
         switch (placeInfo.results[0].poi.classifications[0].code) {
           case "RESTAURANT":
@@ -60,13 +76,13 @@ export default function FavPlaceCard({ placeID }) {
             placeInfo.results[0].address.municipality,
         };
 
-        console.log("finalData");
-        console.log(finalData);
         setPlaceInfo(finalData);
+      } else {
+        setPlaceInfo([]);
       }
     }
     getData();
-  }, []);
+  }, [placeID]);
 
   return (
     <>
@@ -75,32 +91,18 @@ export default function FavPlaceCard({ placeID }) {
           <div id="card__leftCol">
             <img src={placeInfo.img} alt="Header"></img>
           </div>
-          <div className="rightCol">
+          <div className="fav_rightCol">
+            <div className="fav_remove" onClick={removeFavPlace}>
+              <ImCancelCircle />
+            </div>
             <div className="rightCol__adress">
               <p id="cardHeader">{placeInfo.header}</p>
               <div id="card__par">
                 <ImLocation2 />
 
-                <p>{placeInfo.street}</p>
+                <p>{placeInfo.info}</p>
               </div>
             </div>
-
-            <button
-              style={{
-                padding: "10px",
-                backgroundColor: "#100D4C",
-                color: "white",
-                borderRadius: "10px",
-                width: "5rem",
-                cursor: "pointer",
-                marginTop: "2rem",
-              }}
-              // onClick={() => {
-              //   discoverClickHandler();
-              // }}
-            >
-              Discover
-            </button>
           </div>
         </div>
       )}

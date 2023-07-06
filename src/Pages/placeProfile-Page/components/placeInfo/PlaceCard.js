@@ -84,17 +84,24 @@ const PlaceCard = () => {
   // this check is detrmine to show the user rate or the place rate
   //// dependening on the singedup state
   useEffect(() => {
-    let x;
+    let unsubscribe;
 
     if (signedUp) {
       const userRate = `Places/${storageData.id}/Reviews/${storageUser.id}`;
       const userRateRef = doc(db, userRate);
 
-      x = onSnapshot(userRateRef, (snapshot) => {
+      unsubscribe = onSnapshot(userRateRef, (snapshot) => {
         if (snapshot.exists) {
-          if (snapshot.data().Rate) {
-            setValue(snapshot.data().Rate);
+          if (snapshot.data()) {
+            if (snapshot.data().Rate) {
+              console.log("rate found and updated");
+              setValue(snapshot.data().Rate);
+            } else {
+              console.log("no rate yet");
+              setValue(0);
+            }
           } else {
+            console.log("no any data yet");
             setValue(0);
           }
         }
@@ -103,7 +110,7 @@ const PlaceCard = () => {
       const placeRate = `Places/${storageData.id}`;
       const placeRateRef = doc(db, placeRate);
 
-      x = onSnapshot(placeRateRef, (snapshot) => {
+      unsubscribe = onSnapshot(placeRateRef, (snapshot) => {
         if (snapshot.exists) {
           if (snapshot.data().Rate) {
             setValue(snapshot.data().Rate);
@@ -115,7 +122,7 @@ const PlaceCard = () => {
     }
 
     return () => {
-      signedUp && x();
+      signedUp && unsubscribe();
     };
   }, [signedUp]);
 

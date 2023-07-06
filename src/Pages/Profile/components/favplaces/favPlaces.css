@@ -1,6 +1,6 @@
 #fav__container {
   background-color: #e8e8e8;
-  width: 100%;
+  width: 60%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -8,4 +8,49 @@
   border-radius: 10px;
 
   padding: 1rem;
+}
+
+@media (min-width: 750px) {
+  #fav__container {
+    width: 60%;
+  }
+}
+@media (min-width: 767px) {
+  #fav__container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 800px) {
+  #fav__container {
+    width: 85%;
+  }
+}
+@media (min-width: 1100px) {
+  #fav__container {
+    width: 80%;
+  }
+}
+@media (min-width: 1200px) {
+  #fav__container {
+    width: 100%;
+  }
+}
+
+.fav_rightCol {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  height: 100%;
+}
+
+.fav_remove {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  font-size: 1.3rem;
+  color: #100d4c;
+  cursor: pointer;
 }
