@@ -182,9 +182,11 @@ const PlaceCard = () => {
 
         <div id="info__par">
           <p>{storageData.info}</p>
-          <button className="review__button">
-            <a href="#revInput">Review this place</a>
-          </button>
+          {signedUp && (
+            <a href="#revInput">
+              <button className="review__button">Review this place</button>
+            </a>
+          )}
         </div>
       </div>
     </>

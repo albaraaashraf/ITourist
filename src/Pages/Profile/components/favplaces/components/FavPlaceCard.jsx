@@ -100,7 +100,7 @@ export default function FavPlaceCard({ placeID, listen, setListen }) {
               <div id="card__par">
                 <ImLocation2 />
 
-                <p>{placeInfo.info}</p>
+                <p>{placeInfo.street}</p>
               </div>
             </div>
           </div>

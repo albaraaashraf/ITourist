@@ -9,17 +9,14 @@
   gap: 14px;
   box-shadow: 1px 2px 20px 0px;
   margin-top: 2rem;
-  font-family: 'Roboto', sans-serif;
-
+  font-family: "Roboto", sans-serif;
 }
 
 #info__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'DM Sans', sans-serif !important;
-
-  
+  font-family: "DM Sans", sans-serif !important;
 }
 #rating__container {
   color: #072c3d;
@@ -55,6 +52,7 @@
   font-weight: normal;
   font-size: 15px;
   font-weight: bold;
+  color: white;
 }
 .review__button:hover {
   cursor: pointer;
