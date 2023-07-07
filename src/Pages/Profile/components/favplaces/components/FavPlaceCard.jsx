@@ -6,11 +6,13 @@ import { ImLocation2, ImCancelCircle } from "react-icons/im";
 import { db } from "../../../../../firebase-config";
 import { useUser } from "../../../../../Context/UserContext";
 
-export default function FavPlaceCard({ placeID, listen, setListen }) {
+export default function FavPlaceCard({ placeID, remove }) {
   const [placeInfo, setPlaceInfo] = useState();
   const { theUser } = useUser();
 
   function removeFavPlace() {
+    remove();
+
     const favRef = doc(
       db,
       `/Users/${theUser.id}/Places to visit/${placeID.split("/")[1]}`
@@ -18,7 +20,6 @@ export default function FavPlaceCard({ placeID, listen, setListen }) {
 
     deleteDoc(favRef).then(() => {
       console.log("place removed");
-      setListen(!listen);
     });
   }
 

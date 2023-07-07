@@ -64,12 +64,14 @@ function ProfilePlaceApp() {
           <SliderContainer />
         </div>
         <div id="third__part">
-          <ReviewHeader length={reviews && reviews.length} />
+          <ReviewHeader
+            id={storageData.id}
+            length={reviews && reviews.length}
+          />
 
           <div>
             {reviews &&
               reviews.map((review, i) => {
-                // return <div> {review.reference} hi</div>;
                 return <ReviewCard review={review} key={i} />;
               })}
           </div>

@@ -9,18 +9,27 @@ import FavPlaceCard from "./components/FavPlaceCard";
 
 export default function FavPlaces() {
   const [fav, setFav] = useState();
-  const [listner, setListner] = useState(true);
+
   const { theUser } = useUser();
+
+  function handleDelete(id) {
+    let updatedlist = fav.filter((data) => {
+      return data.reference !== id;
+    });
+
+    setFav(updatedlist);
+  }
 
   function showFav() {
     let places = fav.map((data) => {
       return (
-        <div className="col-md-6 col-xl-4 d-flex justify-content-center ">
+        <div className="col-md-6 col-xl-4 d-flex justify-content-center">
           <FavPlaceCard
             placeID={data.reference}
             id={data.reference}
-            listen={listner}
-            setListen={setListner}
+            remove={() => {
+              handleDelete(data.reference);
+            }}
           />
         </div>
       );
@@ -29,12 +38,9 @@ export default function FavPlaces() {
   }
 
   useEffect(() => {
-    console.log("removed");
-    console.log(listner);
-
     const favRef = collection(db, `/Users/${theUser.id}/Places to visit`);
-    let list = [];
     const unSubscribe = onSnapshot(favRef, (snapshots) => {
+      let list = [];
       snapshots.docs.forEach((snapshot) => {
         list.push(snapshot.data());
       });
@@ -46,7 +52,7 @@ export default function FavPlaces() {
       console.log("left left ");
       unSubscribe();
     };
-  }, [theUser.id, listner]);
+  }, [theUser.id]);
 
   return (
     <div className="container-xl ">
