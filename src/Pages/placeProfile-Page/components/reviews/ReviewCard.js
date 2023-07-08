@@ -29,7 +29,11 @@ const ReviewCard = ({ data }) => {
   return (
     <>
       {data.review && (
-        <Accordion className="mx-5 my-3 accor">
+        <Accordion
+          className="mx-5 my-3 accor"
+          defaultActiveKey={["0"]}
+          alwaysOpen
+        >
           <Accordion.Item eventKey="0">
             <Accordion.Header data-bs-theme="dark" className="accor-header">
               {user && (
