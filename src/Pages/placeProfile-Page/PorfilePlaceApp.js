@@ -72,7 +72,7 @@ function ProfilePlaceApp() {
           <div>
             {reviews &&
               reviews.map((review, i) => {
-                return <ReviewCard review={review} key={i} />;
+                return <ReviewCard data={review} key={i} />;
               })}
           </div>
 

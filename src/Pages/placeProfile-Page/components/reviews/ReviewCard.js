@@ -6,12 +6,12 @@ import Accordion from "react-bootstrap/Accordion";
 import { useEffect } from "react";
 import { db } from "../../../../firebase-config";
 import { useState } from "react";
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ data }) => {
   const [user, setUser] = useState();
 
   function showRate() {
     let rate = [];
-    for (let i = 0; i < review.Rate; i++) {
+    for (let i = 0; i < data.Rate; i++) {
       rate.push(<AiFillStar />);
     }
 
@@ -19,16 +19,16 @@ const ReviewCard = ({ review }) => {
   }
 
   useEffect(() => {
-    if (review.reference) {
-      getDoc(doc(db, review.reference)).then((snapshot) => {
+    if (data.reference) {
+      getDoc(doc(db, data.reference)).then((snapshot) => {
         setUser(snapshot.data());
       });
     }
-  }, [review.reference]);
+  }, [data.reference]);
 
   return (
     <>
-      {review.review && (
+      {data.review && (
         <Accordion className="mx-5 my-3 accor">
           <Accordion.Item eventKey="0">
             <Accordion.Header data-bs-theme="dark" className="accor-header">
@@ -46,16 +46,14 @@ const ReviewCard = ({ review }) => {
               )}
             </Accordion.Header>
             <Accordion.Body>
-              {review.review.map((theReview, i) => {
-                return (
-                  <div className="review-container" key={i * i}>
-                    <div className="date">
-                      {theReview.createdAt.toDate().toString().split("GMT")[0]}{" "}
-                    </div>
-                    <div className="theReview">{theReview.review}</div>
+              {
+                <div className="review-container">
+                  <div className="date">
+                    {data.review.createdAt.toDate().toString().split("GMT")[0]}{" "}
                   </div>
-                );
-              })}
+                  <div className="theReview">{data.review.review}</div>
+                </div>
+              }
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
@@ -65,41 +63,25 @@ const ReviewCard = ({ review }) => {
 };
 export default ReviewCard;
 
-/* <div className="reviewCard__container">
-  <div className="reviewCard__firstrow ">
-    <p id="reviewCard__username">{probs.user}</p>
+// {data.review && (
+//   <div className="reviewCard__container">
+//     <div className="reviewCard__firstrow ">
+//       <div className="d-flex justify-content-center align-items-center">
+//         <div className="img-container">
+//           <img src={user && user.ProfileImg} alt="profile-img" />
+//         </div>
+//         <div>{user && user.UserName}</div>
+//       </div>
 
-    <div className="date">
-      {probs.time && (
-        <>
-          <span>
-            {days[probs.time.toDate().getDay().toString()] + " "}
-          </span>
-          <span>
-            {probs.time.toDate().getFullYear().toString() + "-"}
-          </span>
-          <span>
-            {(probs.time.toDate().getMonth() + 1).toString() + "-"}
-          </span>
-          <span>{probs.time.toDate().getDate().toString() + "  "}</span>
-          <span>{probs.time.toDate().getHours().toString() + ":"}</span>
-          <span>{probs.time.toDate().getMinutes().toString()}</span>
-        </>
-      )}
-    </div>
+//       <div className="date">
+//         {" "}
+//         {data.review.createdAt.toDate().toString().split("GMT")[0]}
+//       </div>
 
-    <div className="likeDislike__Container">
-      <AiFillLike className="likeLogo"></AiFillLike>
-      <AiFillDislike className="likeLogo"></AiFillDislike>
-    </div>
-  </div>
+//       <div className="likeDislike__Container"></div>
+//       <div className="reviewCard__userscore">{showRate()}</div>
+//     </div>
 
-  <div className="reviewCard__userscore">
-    <AiFillStar />
-    <AiFillStar />
-    <AiFillStar />
-    <AiFillStar />
-    <AiFillStar />
-  </div>
-  <div id="reviewCard__review">{probs.review}</div>
-</div> */
+//     <div id="reviewCard__review">{data.review.review}</div>
+//   </div>
+// )}
