@@ -2,17 +2,8 @@ import { useState, useContext, useEffect } from "react";
 import JobCard from "./components/cards/JobCard";
 import "./JobLists.css";
 
-import CityContext from "../../../../Context/CityContext";
-import {
-  doc,
-  setDoc,
-  getDoc,
-  serverTimestamp,
-  collection,
-  onSnapshot,
-} from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
-import { RequestContext } from "../../Request";
 
 function JobLists() {
   const currentLoaction = window.localStorage.getItem("currentLoaction");
@@ -20,7 +11,7 @@ function JobLists() {
   const [requests, setRequests] = useState();
 
   useEffect(() => {
-    const cityRef = collection(db, `/City/${currentLoaction}/Requests`);
+    const cityRef = collection(db, `/City/${currentLoaction}/Upcoming Tours`);
 
     const un = onSnapshot(cityRef, (snapshots) => {
       let list = [];

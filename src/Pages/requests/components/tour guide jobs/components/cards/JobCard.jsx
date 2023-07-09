@@ -13,7 +13,7 @@ function JobCard({ request, cityName }) {
   const navigate = useNavigate();
 
   // calculate the Time
-  const specificDate = new Date(request.time.toDate()); // replace with your specific date
+  const specificDate = new Date(request.createdAt.toDate()); // replace with your specific date
   const currentDate = new Date(); // current date and time
   const durationInMilliseconds = Math.abs(
     currentDate.getTime() - specificDate.getTime()
@@ -22,15 +22,23 @@ function JobCard({ request, cityName }) {
   const durationInMinutes = durationInSeconds / 60;
   const durationInHours = durationInMinutes / 60;
 
+  function showDetails() {
+    navigate("/Requests/requesDetails");
+    localStorage.setItem("requestUserDetails", JSON.stringify(user));
+    localStorage.setItem("requestDetails", JSON.stringify(request));
+    setJobDescUser(user);
+    setJobDescRequests(request);
+  }
+
   useEffect(() => {
-    getDoc(doc(db, request.reference)).then((snapshot) => {
+    getDoc(doc(db, request.userRef)).then((snapshot) => {
       setUser(snapshot.data());
     });
-  }, [request.reference, setUser]);
+  }, [request.userRef, setUser]);
 
   return (
     <div className="job--card__container">
-      <h3 className="job--card__title">{user && user.UserName}</h3>
+      <h3 className="job--card__title">{user && user.fullName}</h3>
       <div className="job--card__time-posted">
         <p>
           <BiTime className="clock-icon" />
@@ -40,13 +48,18 @@ function JobCard({ request, cityName }) {
       <div className="job--card__price">
         <p>
           <BiMoney className="cash-icon" />
-          {request.Price} {request.Currency}
+          {request.rangeOfBudget}
         </p>
       </div>
       <div className="job--card__description">
         <p>
-          looking for some1 that can take me through the desert with a spaceship
-          then through the seas with a camel and ...
+          {request.description &&
+            request.description.split(" ").map((word, i) => {
+              if (i <= 15) return <span>{word} </span>;
+
+              return "";
+            })}
+          ...
         </p>
       </div>
       <div className="job--card__tags">
@@ -54,14 +67,7 @@ function JobCard({ request, cityName }) {
         <div className="job--card__tag">Tourist</div>
         <div className="job--card__tag">Regular</div>
       </div>
-      <button
-        className="job--card__button"
-        onClick={() => {
-          navigate("/Requests/requesDetails");
-          setJobDescUser(user);
-          setJobDescRequests(request);
-        }}
-      >
+      <button className="job--card__button" onClick={showDetails}>
         Learn More
       </button>
     </div>

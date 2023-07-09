@@ -24,10 +24,10 @@ export default function ReviewInput() {
 
   async function submitComment(e) {
     e.preventDefault();
-    const usersPath = `Users/${storageUser.id}/Places Reviews/${storageData.id}`;
+    const usersPath = `Users/${storageUser.uid}/Places Reviews/${storageData.id}`;
     const userRef = doc(db, usersPath);
 
-    const placePPath = `Places/${storageData.id}/Reviews/${storageUser.id}`;
+    const placePPath = `Places/${storageData.id}/Reviews/${storageUser.uid}`;
     const PlaceRef = doc(db, placePPath);
 
     if (reviewRef.current.value === "") return;
@@ -35,26 +35,13 @@ export default function ReviewInput() {
     try {
       let rev;
 
-      rev = { review: reviewRef.current.value, createdAt: new Date() };
-
-      // if (reviewsData) {
-      //   if (reviewsData.review) {
-      //     rev = [
-      //       ...reviewsData.review,
-      //       { review: reviewRef.current.value, createdAt: new Date() },
-      //     ];
-      //   } else {
-      //   }
-      // } else {
-      //   rev = [{ review: reviewRef.current.value, createdAt: new Date() }];
-      // }
+      rev = reviewRef.current.value;
 
       await setDoc(
         PlaceRef,
         {
-          reference: `Users/${storageUser.id}`,
+          reference: `Users/${storageUser.uid}`,
           review: rev,
-          updated: serverTimestamp(),
         },
         { merge: true }
       )
@@ -69,7 +56,7 @@ export default function ReviewInput() {
         userRef,
         {
           reference: `Places/${storageData.id}`,
-          describtion: rev,
+          review: rev,
         },
         { merge: true }
       )
@@ -87,7 +74,7 @@ export default function ReviewInput() {
   }
 
   useEffect(() => {
-    const placePPath = `Places/${storageData.id}/Reviews/${storageUser.id}`;
+    const placePPath = `Places/${storageData.id}/Reviews/${storageUser.uid}`;
     const PlaceRef = doc(db, placePPath);
 
     const unsubscribe = onSnapshot(PlaceRef, (snapshot) => {
@@ -100,7 +87,7 @@ export default function ReviewInput() {
     return () => {
       unsubscribe();
     };
-  }, [storageData.id, storageUser.id]);
+  }, [storageData.id, storageUser.uid]);
 
   return (
     <>

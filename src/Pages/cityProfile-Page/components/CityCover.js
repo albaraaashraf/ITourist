@@ -10,7 +10,7 @@ import { db } from "../../../firebase-config";
 const CityCover = (props) => {
   const [cityImg, setCityImg] = useState([]);
 
-  const { cityName } = useContext(CityContext);
+  const cityName = localStorage.getItem("searchedCityName");
 
   const { theUser, signedUp } = useUser();
 

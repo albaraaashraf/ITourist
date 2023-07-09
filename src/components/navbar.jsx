@@ -53,7 +53,7 @@ function Navbar() {
                 </NavLink>
               </li>
 
-              {/* {theUser && (
+              {theUser && (
                 <>
                   {theUser.tourGuide && (
                     <li className="nav-item">
@@ -63,12 +63,7 @@ function Navbar() {
                     </li>
                   )}
                 </>
-              )} */}
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/Requests">
-                  Requests
-                </NavLink>
-              </li>
+              )}
 
               <li className="nav-item">
                 <NavLink className="nav-link" to="/About">
@@ -91,7 +86,7 @@ function Navbar() {
                       }}
                     >
                       <img
-                        src={theUser.ProfileImg}
+                        src={theUser.profileImg}
                         alt=""
                         style={{
                           width: "100%",

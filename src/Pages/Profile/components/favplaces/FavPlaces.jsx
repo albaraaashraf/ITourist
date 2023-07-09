@@ -38,7 +38,7 @@ export default function FavPlaces() {
   }
 
   useEffect(() => {
-    const favRef = collection(db, `/Users/${theUser.id}/Places to visit`);
+    const favRef = collection(db, `/Users/${theUser.uid}/Places to visit`);
     const unSubscribe = onSnapshot(favRef, (snapshots) => {
       let list = [];
       snapshots.docs.forEach((snapshot) => {
@@ -52,7 +52,7 @@ export default function FavPlaces() {
       console.log("left left ");
       unSubscribe();
     };
-  }, [theUser.id]);
+  }, [theUser.uid]);
 
   return (
     <div className="container-xl ">

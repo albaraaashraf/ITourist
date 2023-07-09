@@ -1,0 +1,12 @@
+.offer-recieved-container {
+  /* background-color: red; */
+  /* padding: 3rem 15rem; */
+}
+
+.offers-recieved-title {
+  text-align: center;
+  margin: 20px 0px;
+}
+.offers-recieved-amount {
+  color: #2e767f;
+}

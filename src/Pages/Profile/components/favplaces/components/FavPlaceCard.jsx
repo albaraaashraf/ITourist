@@ -15,7 +15,7 @@ export default function FavPlaceCard({ placeID, remove }) {
 
     const favRef = doc(
       db,
-      `/Users/${theUser.id}/Places to visit/${placeID.split("/")[1]}`
+      `/Users/${theUser.uid}/Places to visit/${placeID.split("/")[1]}`
     );
 
     deleteDoc(favRef).then(() => {

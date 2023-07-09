@@ -28,7 +28,6 @@ export function UserProvider({ children }) {
             "storedUser",
             JSON.stringify({
               ...snapshot.data(),
-              id: user.uid,
             })
           );
         });

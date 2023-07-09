@@ -3,7 +3,7 @@
   padding: 0;
 }
 .jobdesc-page {
-  padding: 2rem 5rem;
+  padding: 4rem 9rem;
 }
 .jobdesc--title {
   font-size: 2.5rem;
@@ -86,13 +86,14 @@
   border-radius: 15px;
   border: none;
   font-size: 20px;
-  background-color: #abf5ff;
+  background-color: #100d4c;
+  color: white;
   margin: 20px 0px;
   transition: 0.3s all;
   cursor: pointer;
 }
 .send-proposal:hover {
-  background-color: #9de8f2;
+  background-color: #141063;
 }
 
 .img-container {

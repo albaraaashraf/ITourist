@@ -72,7 +72,10 @@ const PlaceCard = (props) => {
     // add some data to the user
     //// only when the user have an account
     if (signedUp) {
-      const userRef = doc(db, `/Users/${theUser.id}/Places clicked/${item.id}`);
+      const userRef = doc(
+        db,
+        `/Users/${theUser.uid}/Places clicked/${item.id}`
+      );
       setDoc(userRef, {
         reference: `places/${item.id}`,
         xid: `${item.id}`,

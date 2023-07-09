@@ -1,7 +1,6 @@
-import { AiFillStar } from "react-icons/ai";
 import "./ReviewHeader.css";
 import { useEffect } from "react";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../../firebase-config";
 import { useState } from "react";
 import { Rating } from "@mui/material";
@@ -37,11 +36,6 @@ const ReviewHeader = (porbs) => {
               readOnly
             />
           )}
-          {/* <AiFillStar className="reviewSec__star"></AiFillStar>
-          <AiFillStar className="reviewSec__star"></AiFillStar>
-          <AiFillStar className="reviewSec__star"></AiFillStar>
-          <AiFillStar className="reviewSec__star"></AiFillStar>
-          <AiFillStar className="reviewSec__star"></AiFillStar> */}
         </div>
       </div>
     </>

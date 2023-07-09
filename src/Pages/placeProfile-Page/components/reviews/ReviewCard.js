@@ -40,9 +40,9 @@ const ReviewCard = ({ data }) => {
                 <div className="d-flex justify-content-between align-items-center w-100">
                   <div className="d-flex justify-content-center align-items-center">
                     <div className="img-container">
-                      <img src={user.ProfileImg} alt="profile-img" />
+                      <img src={user.profileImg} alt="profile-img" />
                     </div>
-                    <div>{user.UserName}</div>
+                    <div>{user.fullName}</div>
                   </div>
 
                   <div className="mx-2 p-2"> {showRate()}</div>
@@ -52,14 +52,7 @@ const ReviewCard = ({ data }) => {
             <Accordion.Body>
               {
                 <div className="review-container">
-                  <div className="date">
-                    {data.review.createdAt &&
-                      data.review.createdAt
-                        .toDate()
-                        .toString()
-                        .split("GMT")[0]}{" "}
-                  </div>
-                  <div className="theReview">{data.review.review}</div>
+                  <div className="theReview">{data.review}</div>
                 </div>
               }
             </Accordion.Body>
@@ -70,26 +63,3 @@ const ReviewCard = ({ data }) => {
   );
 };
 export default ReviewCard;
-
-// {data.review && (
-//   <div className="reviewCard__container">
-//     <div className="reviewCard__firstrow ">
-//       <div className="d-flex justify-content-center align-items-center">
-//         <div className="img-container">
-//           <img src={user && user.ProfileImg} alt="profile-img" />
-//         </div>
-//         <div>{user && user.UserName}</div>
-//       </div>
-
-//       <div className="date">
-//         {" "}
-//         {data.review.createdAt.toDate().toString().split("GMT")[0]}
-//       </div>
-
-//       <div className="likeDislike__Container"></div>
-//       <div className="reviewCard__userscore">{showRate()}</div>
-//     </div>
-
-//     <div id="reviewCard__review">{data.review.review}</div>
-//   </div>
-// )}

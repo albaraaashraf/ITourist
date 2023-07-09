@@ -38,13 +38,12 @@ function Edit() {
     const formData = document.querySelector("#formData").elements;
 
     let person = {
-      UserName: formData.userName.value,
-      FullName: formData.fullName.value,
-      Phone: formData.phone.value,
+      fullName: formData.fullName.value,
+      phoneNumber: formData.phone.value,
     };
 
     let file = formData.updateImg.files;
-    let imagePath = `Images/${theUser.id}/ProfileImgs/${file.name}`;
+    let imagePath = `Images/${theUser.uid}/ProfileImgs/${file[0].name}`;
 
     if (file.length !== 0) {
       file = file[0];
@@ -87,19 +86,7 @@ function Edit() {
           <div className="col-md-12 mb-3">
             <div className="row">
               {/*  the COL[1][1] */}
-              <div className="col-md-6">
-                <div className="form-field">
-                  <input
-                    id="userName"
-                    className="input-text js-input"
-                    type="text"
-                    defaultValue={theUser && theUser.UserName}
-                  />
-                  <label className="label" htmlFor="userName">
-                    User Name
-                  </label>
-                </div>
-              </div>
+
               {/*  the COL[1][2] */}
               <div className="col-md-6">
                 <div className="form-field ">
@@ -107,7 +94,7 @@ function Edit() {
                     id="fullName"
                     className="input-text js-input"
                     type="text"
-                    defaultValue={theUser && theUser.FullName}
+                    defaultValue={theUser && theUser.fullName}
                   />
                   <label className="label" htmlFor="fullName">
                     Full Name
@@ -125,7 +112,7 @@ function Edit() {
                     id="email"
                     className="input-text js-input disabled"
                     type="email"
-                    defaultValue={theUser && theUser.Email}
+                    defaultValue={theUser && theUser.email}
                     disabled
                   />
                   <label className="label" htmlFor="email">
@@ -141,7 +128,7 @@ function Edit() {
               id="phone"
               className="input-text js-input"
               type="text"
-              defaultValue={theUser && theUser.Phone}
+              defaultValue={theUser && theUser.phoneNumber}
             />
             <label className="label mx-1" htmlFor="phone">
               Phone
@@ -158,15 +145,7 @@ function Edit() {
             </label>
             <input type={"file"} id="updateImg" hidden />
           </div>
-          {/* <div className="form-field col-lg-12 ">
-            <label className="bio-label">Bio</label>
-            <textarea
-              id="message"
-              className="input-text js-input"
-              // type="text"
-              defaultValue={user && user["Bio"]}
-            ></textarea>
-          </div> */}
+
           <div className="form-field col-lg-12 d-flex justify-content-center">
             <NavLink to={"/Profile/Info"}>
               <button className="submit-btn mx-md-3">cancel</button>

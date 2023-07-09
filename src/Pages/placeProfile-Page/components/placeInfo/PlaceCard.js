@@ -28,17 +28,16 @@ const PlaceCard = () => {
   const handleRatingChange = async (event, newValue) => {
     setValue(newValue);
 
-    const usersPath = `Users/${storageUser.id}/Places Reviews/${storageData.id}`;
+    const usersPath = `Users/${storageUser.uid}/Places Reviews/${storageData.id}`;
     const userRef = doc(db, usersPath);
 
-    const userRate = `Places/${storageData.id}/Reviews/${storageUser.id}`;
+    const userRate = `Places/${storageData.id}/Reviews/${storageUser.uid}`;
     const userRateRef = doc(db, userRate);
 
     await setDoc(
       userRateRef,
       {
         Rate: newValue,
-        updated: serverTimestamp(),
       },
       { merge: true }
     ).catch((e) => {
@@ -59,7 +58,7 @@ const PlaceCard = () => {
   function wishList() {
     const userRef = doc(
       db,
-      `Users/${theUser.id}/Places to visit/${storageData.id}`
+      `Users/${theUser.uid}/Places to visit/${storageData.id}`
     );
 
     setDoc(userRef, {
@@ -77,23 +76,10 @@ const PlaceCard = () => {
     const placeRate = `Places/${storageData.id}`;
     const placeRateRef = doc(db, placeRate);
 
-    const rate = [1, 2, 3, 4, 5];
-    const ratePersisin = [0.0, 0.2, 0.4, 0.5, 0.7, 0.9];
-
     const unsubscribe = onSnapshot(placeRateRef, (snapshot) => {
       if (snapshot.exists) {
         if (snapshot.data().Rate) {
           setValue(snapshot.data().Rate);
-        } else {
-          let rateVal = rate[parseInt(Math.random() * rate.length)];
-
-          if (rateVal < 5) {
-            rateVal +=
-              +ratePersisin[parseInt(Math.random() * ratePersisin.length)];
-          }
-
-          setValue(rateVal);
-          setDoc(placeRateRef, { Rate: rateVal });
         }
       }
     });
@@ -109,7 +95,7 @@ const PlaceCard = () => {
     let unsubscribe;
 
     if (signedUp) {
-      const userRate = `Places/${storageData.id}/Reviews/${storageUser.id}`;
+      const userRate = `Places/${storageData.id}/Reviews/${storageUser.uid}`;
       const userRateRef = doc(db, userRate);
 
       unsubscribe = onSnapshot(userRateRef, (snapshot) => {

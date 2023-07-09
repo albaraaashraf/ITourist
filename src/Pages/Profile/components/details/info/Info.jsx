@@ -29,12 +29,11 @@ function Info() {
           <div className="col">
             {theUser && (
               <div>
-                <InfoData label="User Name" data={theUser.UserName} />
-                <InfoData label="Full Name" data={theUser.FullName} />
-                <InfoData label="Email" data={theUser.Email} />
-                <InfoData label="Phone" data={theUser.Phone} />
-                <InfoData label="Born" data={theUser.Born} />
-                <InfoData label="Gender" data={theUser.Gender} />
+                <InfoData label="Full Name" data={theUser.fullName} />
+                <InfoData label="Email" data={theUser.email} />
+                <InfoData label="Phone" data={theUser.phoneNumber} />
+                <InfoData label="Born" data={theUser.dataOfBirth} />
+                <InfoData label="Gender" data={theUser.gender} />
               </div>
             )}
           </div>

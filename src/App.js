@@ -30,6 +30,7 @@ import GalleryContainer from "./Pages/Profile/components/details/gallery/compone
 import Gallery from "./Pages/Profile/components/details/gallery/Gallery";
 import AddImages from "./Pages/Profile/components/details/gallery/components/AddImages/AddImages";
 import FavPlaces from "./Pages/Profile/components/favplaces/FavPlaces";
+import OffersRecieved from "./Pages/Profile/components/offers/components/OffersRecieved";
 // ContactUs page
 import ContactUs from "./Pages/Contact Us/contactUs";
 // About page
@@ -54,8 +55,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import RequestTourGuide from "./Pages/Places/Request Tour Guide/RequestTourGuide";
-import JobCard from "./Pages/requests/components/tour guide jobs/components/cards/JobCard";
+// import JobCard from "./Pages/requests/components/tour guide jobs/components/cards/JobCard";
 import JobLists from "./Pages/requests/components/tour guide jobs/JobLists";
+import UserOffers from "./Pages/Profile/components/offers/UserOffers";
 
 library.add(faEnvelope, faLock, faUser, faCalendar);
 
@@ -135,8 +137,13 @@ const router = createBrowserRouter(
         element={<PlaceProfileApp />}
       />
       <Route path="/places/Profile" element={<PlaceProfileApp />} />
+
       {/* profile root components */}
       <Route path="Profile" element={<Profile />}>
+        <Route path="Offers" element={<UserOffers />}>
+          <Route index element={<OffersRecieved />} />
+          <Route />
+        </Route>
         <Route path="Info" element={<Info />} />
         <Route path="favorite-places" element={<FavPlaces />} />
         <Route path="Gallery" element={<GalleryContainer />}>
@@ -145,19 +152,23 @@ const router = createBrowserRouter(
         </Route>
         <Route path="Edit" element={<Edit />} />
       </Route>
-      {/* <Route path="Requests" element={<Request />} /> */}
+
       <Route path="Requests" element={<Request />}>
         <Route index element={<JobLists />} />
         <Route path="requesDetails" element={<JobDesc />} />
       </Route>
+
       <Route path="Us" element={<ContactUs />} />
+
       <Route path="About" element={<About />} />
+
       <Route path="SingUp" element={<SignUp />} />
+
       <Route path="SignIn" element={<SignIn />}>
         <Route index element={<SignInContent />} />
         <Route path="RecoverPassword" element={<RecoverPassword />} />
       </Route>
-      <Route path="test" element={<RequestTourGuide />} />
+
       {/* for not found Page */}
       <Route path="*" element={<NotFound />} />
     </Route>

@@ -12,38 +12,43 @@ import CityContext from "../../../Context/CityContext";
 // firebase
 import { serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
+import { useRef } from "react";
 
 const TourRequest = ({ hide }) => {
   const [value, setValue] = useState(500);
   const [currency, setCurrecny] = useState("");
   const [gender, setGender] = useState("");
   const [car, setCar] = useState("");
+  const descRef = useRef();
   const [showError, setShowError] = useState("");
   const [formData, setFormData] = useState({
-    Number: "",
-    Date: "",
-    Currency: "",
-    Gender: "",
-    Language: "",
-    Car: "",
-    Price: "",
+    numberOfOffers: 0,
+    status: "pending",
   });
   const [maleIsClicked, setMaleIsClicked] = useState(false);
   const [femaleIsClicked, setFemaleIsClicked] = useState(false);
   const [carClicked, setCarClicked] = useState(false);
   const [noCarClicked, setNoCarClicked] = useState(false);
 
+  const textAreaStyle = {
+    resize: "none",
+    border: "1px solid #425281",
+    borderRadius: "0.4rem",
+    padding: "0.5rem 0.8rem",
+  };
+
   // city details
 
   const { cityName } = useContext(CityContext);
   const storedUser = JSON.parse(localStorage.getItem("storedUser"));
+  const storedCity = localStorage.getItem("searchedCityName");
 
   const handleCurrencyChange = (event) => {
     const selectedValue = event.target.value;
     setCurrecny(selectedValue);
     setFormData((prevFormData) => ({
       ...prevFormData,
-      Price: value, // Add the Slider value to the form data
+      rangeOfBudget: `1-${value}`, // Add the Slider value to the form data
     }));
     console.log(formData.Price);
     setValue(500);
@@ -53,7 +58,7 @@ const TourRequest = ({ hide }) => {
     setValue(newValue);
     setFormData((prevFormData) => ({
       ...prevFormData,
-      Price: newValue, // Add the Slider value to the form data
+      rangeOfBudget: `1-${newValue}`, // Add the Slider value to the form data
     }));
   };
 
@@ -65,7 +70,7 @@ const TourRequest = ({ hide }) => {
 
         setFormData((prevFormData) => ({
           ...prevFormData,
-          Gender: "",
+          tourGuideGender: "",
         }));
       } else {
         setMaleIsClicked(true);
@@ -73,7 +78,7 @@ const TourRequest = ({ hide }) => {
         setGender("Male");
         setFormData((prevFormData) => ({
           ...prevFormData,
-          Gender: "Male",
+          tourGuideGender: "Male",
         }));
       }
     } else if (value === 2) {
@@ -82,7 +87,7 @@ const TourRequest = ({ hide }) => {
         setGender("");
         setFormData((prevFormData) => ({
           ...prevFormData,
-          Gender: "",
+          tourGuideGender: "",
         }));
       } else {
         setGender("Female");
@@ -90,7 +95,7 @@ const TourRequest = ({ hide }) => {
         setMaleIsClicked(false);
         setFormData((prevFormData) => ({
           ...prevFormData,
-          Gender: "Female",
+          tourGuideGender: "Female",
         }));
       }
     }
@@ -104,7 +109,7 @@ const TourRequest = ({ hide }) => {
         setCar("");
         setFormData((prevFormData) => ({
           ...prevFormData,
-          Car: "",
+          ownsVehicle: "",
         }));
       } else {
         setCarClicked(true);
@@ -112,7 +117,7 @@ const TourRequest = ({ hide }) => {
         setCar("Yes");
         setFormData((prevFormData) => ({
           ...prevFormData,
-          Car: "Yes",
+          ownsVehicle: "Yes",
         }));
       }
     } else if (value === 2) {
@@ -126,13 +131,14 @@ const TourRequest = ({ hide }) => {
         setCar("No");
         setFormData((prevFormData) => ({
           ...prevFormData,
-          Car: "No",
+          ownsVehicle: "No",
         }));
       }
     }
   };
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    let { name, value } = event.target;
+    if (name === "numberOfPeople") value = parseInt(value);
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -141,24 +147,32 @@ const TourRequest = ({ hide }) => {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    if (!formData.Number || !formData.Date || !formData.Currency) {
+    if (!formData.numberOfPeople || !formData.arrivalDate) {
       setShowError(true);
 
       return;
     }
 
     // add form data to firebase
-    const colRef = doc(db, `/City/${cityName}/Requests/${storedUser.id}`);
+    const colRef = doc(
+      db,
+      `/City/${storedCity}/Upcoming Tours/${storedUser.uid}`
+    );
 
     const form = document.querySelector("#req-form");
-    await setDoc(colRef, {
+    setDoc(colRef, {
       ...formData,
-      reference: `Users/${storedUser.id}`,
-      time: serverTimestamp(),
+      description: descRef.current.value ? descRef.current.value : "none",
+      userRef: `Users/${storedUser.uid}`,
+      createdAt: serverTimestamp(),
     }).then(() => {
       console.log("Done Done");
       form.reset();
       hide(false);
+    });
+
+    setDoc(doc(db, `/Users/${storedUser.uid}/Tours Requests/${storedCity}`), {
+      Reference: `City/${storedCity}/Upcoming Tours/${storedUser.uid}`,
     });
 
     setShowError(false);
@@ -179,7 +193,7 @@ const TourRequest = ({ hide }) => {
                 min="1"
                 type="number"
                 placeholder="Indviduals Count"
-                name="Number"
+                name="numberOfPeople"
                 value={formData.Number}
                 onChange={handleInputChange}
               ></input>
@@ -193,7 +207,7 @@ const TourRequest = ({ hide }) => {
                 className={classes.inputContainer}
                 type="date"
                 placeholder="Date of arrival"
-                name="Date"
+                name="arrivalDate"
                 value={formData.Date}
                 onChange={handleInputChange}
               ></input>
@@ -203,7 +217,7 @@ const TourRequest = ({ hide }) => {
                 <FaWallet />
               </i>
 
-              <select
+              {/* <select
                 className={classes.inputContainer}
                 onChange={(event) => {
                   handleCurrencyChange(event);
@@ -219,7 +233,7 @@ const TourRequest = ({ hide }) => {
                 <option value="USD">United States Dollar</option>
                 <option value="EUR">Euro</option>
                 <option value="GBP">British Pound</option>
-              </select>
+              </select> */}
             </div>
             <div className={classes.numContainer}>
               <p>1 {currency}</p>
@@ -244,7 +258,7 @@ const TourRequest = ({ hide }) => {
 
                 <input
                   type="text"
-                  placeholder={gender ? gender : "Accompined by"}
+                  placeholder={gender ? gender : "tourGuideGender"}
                   disabled
                   className={classes.inputContainer}
                 />
@@ -286,18 +300,18 @@ const TourRequest = ({ hide }) => {
 
               <select
                 className={classes.inputContainer}
-                name="Language"
+                name="spokenLanguages"
                 value={formData.Language}
                 onChange={handleInputChange}
               >
                 <option value="" disabled hidden>
                   Spoken Languages
                 </option>
-                <option value="Ar">Arabic</option>
-                <option value="En">English</option>
-                <option value="Fr">French</option>
-                <option value="SP">Spanish</option>
-                <option value="It">Italian</option>
+                <option value="Arabic">Arabic</option>
+                <option value="English">English</option>
+                <option value="French">French</option>
+                <option value="Spanish">Spanish</option>
+                <option value="Italian">Italian</option>
               </select>
             </div>
             <div className={classes.numContainer}>
@@ -343,6 +357,18 @@ const TourRequest = ({ hide }) => {
               </div>
             </div>
             <div className={classes.formButton}></div>
+            <br></br>
+            <label style={{ fontWeight: "bolder", fontSize: "1.3rem" }}>
+              Description :
+            </label>
+            <br></br>
+            <textarea
+              rows={7}
+              cols={60}
+              placeholder="Write any Thing you Want Here ..."
+              ref={descRef}
+              style={textAreaStyle}
+            ></textarea>
             <br></br>
             <button className={classes.submitButton} type="submit">
               Submit

@@ -31,9 +31,7 @@ function ProfilePlaceApp() {
     const revRef = collection(db, `/Places/${storageData.id}/Reviews`);
     const palceRef = doc(db, `/Places/${storageData.id}`);
 
-    const q = query(revRef, orderBy("updated", "desc"));
-
-    const unsubscribe = onSnapshot(q, (snapshot) => {
+    const unsubscribe = onSnapshot(revRef, (snapshot) => {
       let rev = [];
       snapshot.docs.forEach((doc) => {
         if (doc.data().review) {

@@ -109,15 +109,14 @@ function SignInForm() {
       const file = data.profileImg.files[0];
 
       let person = {
-        UserName: registerUserName,
-        FullName: registerName,
-        Email: registerEmail,
-        Phone: registerPhone,
+        fullName: registerName,
+        email: registerEmail,
+        phoneNumber: registerPhone,
         tourGuide: data.tourGuide.value === "Tour Guide" ? true : false,
-        Country: registerCountry,
-        City: registerCity,
-        Gender: data.gender.value,
-        Born: data.date.value,
+        country: registerCountry,
+        city: registerCity,
+        gender: data.gender.value,
+        dataOfBirth: data.date.value,
         Imgs: [],
       };
 
@@ -136,13 +135,13 @@ function SignInForm() {
 
           await uploadFile(imagePath, file).then(async () => {
             await downloadImg(imagePath).then((downloadURL) => {
-              person = { ...person, ProfileImg: downloadURL };
+              person = { ...person, profileImg: downloadURL };
             });
           });
         } else {
           const imgpath =
             "https://firebasestorage.googleapis.com/v0/b/itourist-c5583.appspot.com/o/default%20imgs%2Fprofile-icon.png?alt=media&token=57ae903e-847c-49ae-bac6-6bd45635782a";
-          person = { ...person, ProfileImg: imgpath };
+          person = { ...person, profileImg: imgpath };
         }
 
         setText("Finalizing");
@@ -176,22 +175,6 @@ function SignInForm() {
           Sign Up
         </h2>
         {error && <Alert variant="danger">{error}</Alert>}
-        <div className="input-box">
-          <div className="font-awesome">
-            <FontAwesomeIcon icon="fa-solid fa-user" />
-          </div>
-          <Input
-            input={{
-              type: "text",
-              name: "UserName",
-              placeholder: "User Name",
-              required: true,
-            }}
-            onChange={function (e) {
-              setRegisterUserName(e.target.value);
-            }}
-          />
-        </div>
 
         <div className="input-box">
           <div className="font-awesome">

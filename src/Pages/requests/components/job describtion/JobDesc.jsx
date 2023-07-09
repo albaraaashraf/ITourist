@@ -1,36 +1,62 @@
+import { useState, useEffect, useRef } from "react";
+
 import "./JobDesc.css";
 import { FaBrain } from "react-icons/fa";
-import { BsCash } from "react-icons/bs";
-import { AiFillCalendar } from "react-icons/ai";
-import { useContext } from "react";
-import { RequestContext } from "../../Request";
-import { useState } from "react";
-import { useEffect } from "react";
+import { BsCash, BsFillPeopleFill } from "react-icons/bs";
+import { AiFillCalendar, AiFillCar } from "react-icons/ai";
+import { GrLanguage } from "react-icons/gr";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../../../firebase-config";
+
 function JobDesc() {
-  const { jobDescUser, jobDescRequests } = useContext(RequestContext);
   const [theRequest, setTheRequest] = useState();
 
+  const descRef = useRef();
+
+  const storedUser = JSON.parse(localStorage.getItem("requestUserDetails"));
+  const storedRequest = JSON.parse(localStorage.getItem("requestDetails"));
+  const tourguide = JSON.parse(localStorage.getItem("storedUser"));
+
+  const textAreaStyle = {
+    resize: "none",
+    border: "1px solid #425281",
+    borderRadius: "0.4rem",
+    padding: "0.5rem 0.8rem",
+  };
+
+  function sendProposal() {
+    const ref = doc(
+      db,
+      `/Users/${storedUser.uid}/Tours Offers/${tourguide.uid}`
+    );
+
+    setDoc(ref, {
+      desc: descRef.current.value,
+      ReqReference: `/City/${storedRequest.city}/Requests/${
+        storedRequest.reference.split("/")[1]
+      }`,
+      reference: `Users/${tourguide.uid}`,
+    });
+  }
+
   useEffect(() => {
-    if (jobDescUser && jobDescRequests) {
-      setTheRequest(jobDescRequests);
+    if (storedUser && storedRequest) {
+      setTheRequest(storedRequest);
     }
-  }, [jobDescUser, jobDescRequests]);
+  }, []);
 
   return (
     <div className="jobdesc-page">
       <h3 className="jobdesc--title">
         <div className="d-flex justify-content-start align-items-center">
           <div className="img-container">
-            <img src={jobDescUser && jobDescUser.ProfileImg} alt="" />
+            <img src={storedUser && storedUser.profileImg} alt="" />
           </div>
-          <div>{jobDescUser && jobDescUser.UserName}</div>
+          <div>{storedUser && storedUser.fullName}</div>
         </div>
       </h3>
       <p className="jobdesc--description">
-        looking for some1 that can take me through the desert with a spaceship
-        then through the seas with a camel and just fill the god damn tect idc
-        what i type just type anything so it looks like a good description lorem
-        ipsum bla bla bla hello word hello kitten
+        {theRequest && theRequest.description}
       </p>
       <div className="jobdesc--tags">
         <span className="jobdesc--tag">tag1</span>
@@ -42,11 +68,7 @@ function JobDesc() {
           <BsCash className="jobdesc--details__icon" />
           <div className="details--container">
             <div className="details--container__value">
-              {theRequest && (
-                <div>
-                  {theRequest.Price} {theRequest.Currency}
-                </div>
-              )}
+              {theRequest && <div>{theRequest.rangeOfBudget}</div>}
               <p className="details--container__identifier">Fixed</p>
             </div>
           </div>
@@ -64,15 +86,111 @@ function JobDesc() {
           <AiFillCalendar className="jobdesc--details__icon" />
           <div className="details--container">
             <div className="details--container__value">
-              {theRequest && <div>{theRequest.Date}</div>}
+              {theRequest && <div>{theRequest.arrivalDate}</div>}
             </div>
             <p className="details--container__identifier">Start Trip</p>
+          </div>
+        </div>
+
+        <div className="jobdesc--details__item">
+          <AiFillCar className="jobdesc--details__icon" />
+          <div className="details--container">
+            <div className="details--container__value">
+              {theRequest && (
+                <div>
+                  {theRequest.ownsVehicle
+                    ? theRequest.ownsVehicle
+                    : "Not Specified"}{" "}
+                </div>
+              )}
+            </div>
+            <p className="details--container__identifier">Car is prefered</p>
+          </div>
+        </div>
+
+        <div className="jobdesc--details__item">
+          <GrLanguage className="jobdesc--details__icon" />
+          <div className="details--container">
+            <div className="details--container__value">
+              {theRequest && (
+                <div>
+                  {theRequest.spokenLanguages
+                    ? theRequest.spokenLanguages
+                    : "Not Specified"}{" "}
+                </div>
+              )}
+            </div>
+            <p className="details--container__identifier">prefered Language</p>
+          </div>
+        </div>
+
+        <div className="jobdesc--details__item">
+          <BsFillPeopleFill className="jobdesc--details__icon" />
+          <div className="details--container">
+            <div className="details--container__value">
+              {theRequest && (
+                <div>
+                  {theRequest.tourGuideGender
+                    ? theRequest.tourGuideGender
+                    : "Not Specified"}{" "}
+                </div>
+              )}
+            </div>
+            <p className="details--container__identifier">
+              prefered Tour Guide Gender
+            </p>
           </div>
         </div>
       </div>
 
       <div className="jobdesc--activity">
-        <h4 className="jobdesc--activity__title">Activity on The Job</h4>
+        <label
+          htmlFor="proposal"
+          style={{ fontWeight: "bolder", fontSize: "1.3rem" }}
+        >
+          Write commit before sending
+        </label>
+        <br />
+        <textarea
+          id="proposal"
+          rows={7}
+          cols={60}
+          placeholder="Write any Thing you Want Here ..."
+          ref={descRef}
+          style={textAreaStyle}
+        ></textarea>
+      </div>
+      <button className="send-proposal" onClick={sendProposal}>
+        Send a Proposal
+      </button>
+    </div>
+  );
+}
+export default JobDesc;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* <h4 className="jobdesc--activity__title">Activity on The Job</h4>
         <div className="jobdesc--activity__items__container">
           <div className="jobdec--activity__item">
             <p className="jobdesc--activity__item__identifier">
@@ -89,10 +207,4 @@ function JobDesc() {
             </p>
             <p className="jobdesc--activity__item__value">2 days ago</p>
           </div>
-        </div>
-      </div>
-      <button className="send-proposal">Send a Proposal</button>
-    </div>
-  );
-}
-export default JobDesc;
+        </div> */
