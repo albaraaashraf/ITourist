@@ -10,10 +10,10 @@ import { Slider } from "@mui/material";
 import { useContext } from "react";
 import CityContext from "../../../Context/CityContext";
 // firebase
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 
-const TourRequest = () => {
+const TourRequest = ({ hide }) => {
   const [value, setValue] = useState(500);
   const [currency, setCurrecny] = useState("");
   const [gender, setGender] = useState("");
@@ -34,11 +34,9 @@ const TourRequest = () => {
   const [noCarClicked, setNoCarClicked] = useState(false);
 
   // city details
-  const { countryId } = useContext(CityContext);
-  const { cityName } = useContext(CityContext);
-  const storedCityName=localStorage.getItem('searchedCityName');
-  const storedCountryId=localStorage.getItem('searchedCountryId');
 
+  const { cityName } = useContext(CityContext);
+  const storedUser = JSON.parse(localStorage.getItem("storedUser"));
 
   const handleCurrencyChange = (event) => {
     const selectedValue = event.target.value;
@@ -150,20 +148,18 @@ const TourRequest = () => {
     }
 
     // add form data to firebase
-    const colRef = collection(
-      db,
-      `/requests/Pending/Countries/${storedCountryId}/request`
-    );
+    const colRef = doc(db, `/City/${cityName}/Requests/${storedUser.id}`);
 
     const form = document.querySelector("#req-form");
-    await addDoc(colRef, {
+    await setDoc(colRef, {
       ...formData,
-      storedCityName: storedCityName,
+      reference: `Users/${storedUser.id}`,
       time: serverTimestamp(),
     }).then(() => {
+      console.log("Done Done");
       form.reset();
+      hide(false);
     });
-    // console.log(formData);
 
     setShowError(false);
   };
@@ -319,11 +315,10 @@ const TourRequest = () => {
               </div>
               <div className={classes.formButton}>
                 <button
-                    style={{
-                      backgroundColor: carClicked ? "aliceblue" : "#100D4C",
-                      color: carClicked ? "#100D4C" : "aliceblue",
-                      
-                    }}
+                  style={{
+                    backgroundColor: carClicked ? "aliceblue" : "#100D4C",
+                    color: carClicked ? "#100D4C" : "aliceblue",
+                  }}
                   className={classes.checkButton}
                   type="button"
                   onClick={() => {

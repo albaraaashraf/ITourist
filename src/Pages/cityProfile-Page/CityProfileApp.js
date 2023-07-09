@@ -21,20 +21,20 @@ const CityProfileApp = (props) => {
       <CityImageSlider />
       <div className={classes.buttonFormContainer}>
         <div className={classes.buttonContainer}>
-        <DiscoverButton />
-        {signedUp && (
-          <TourButton
-            onClick={() => {
-              setShowForm(!showForm);
-              console.log("askldmnalskdnalksndaklsndlaksda");
-            }}
-          />
-        )}
+          <DiscoverButton />
+          {signedUp && (
+            <TourButton
+              onClick={() => {
+                setShowForm(!showForm);
+                console.log("askldmnalskdnalksndaklsndlaksda");
+              }}
+            />
+          )}
         </div>
         <div
           className={`${classes.tourRequest} ${showForm ? classes.show : ""}`}
         >
-          {showForm && <TourRequest />}
+          {showForm && <TourRequest hide={setShowForm} />}
         </div>
       </div>
     </>

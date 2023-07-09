@@ -113,6 +113,7 @@ function SignInForm() {
         FullName: registerName,
         Email: registerEmail,
         Phone: registerPhone,
+        tourGuide: data.tourGuide.value === "Tour Guide" ? true : false,
         Country: registerCountry,
         City: registerCity,
         Gender: data.gender.value,
@@ -145,7 +146,7 @@ function SignInForm() {
         }
 
         setText("Finalizing");
-        await setDoc(docRef, { ...person });
+        await setDoc(docRef, { ...person, uid: user.uid });
 
         navigate("/");
         window.location.reload();
@@ -301,6 +302,30 @@ function SignInForm() {
             }}
             style={fileSelectStyle}
           />
+        </div>
+
+        <div className="input-box my-3">
+          <Form.Group>
+            <Form.Label htmlFor="tourGuide" className="mx-4">
+              Status
+            </Form.Label>
+            <Form.Check
+              inline
+              type="radio"
+              id="tourGuideTrue"
+              name="tourGuide"
+              label="Tour Guide"
+              value="Tour Guide"
+            />
+            <Form.Check
+              inline
+              type="radio"
+              id="tourGuideFalse"
+              name="tourGuide"
+              label="Tourist"
+              value="Tourist"
+            />
+          </Form.Group>
         </div>
 
         <div className="input-box">

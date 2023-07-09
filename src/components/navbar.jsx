@@ -53,6 +53,23 @@ function Navbar() {
                 </NavLink>
               </li>
 
+              {/* {theUser && (
+                <>
+                  {theUser.tourGuide && (
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/Requests">
+                        Requests
+                      </NavLink>
+                    </li>
+                  )}
+                </>
+              )} */}
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/Requests">
+                  Requests
+                </NavLink>
+              </li>
+
               <li className="nav-item">
                 <NavLink className="nav-link" to="/About">
                   About

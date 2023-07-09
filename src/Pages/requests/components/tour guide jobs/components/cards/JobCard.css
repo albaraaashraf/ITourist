@@ -1,0 +1,68 @@
+.job--card__container {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 25px;
+  border: 1px solid #e1e1e1;
+  padding: 1rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.clock-icon,
+.cash-icon {
+  transform: translateY(10%);
+}
+.job--card__price {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.cash-icon,
+.clock-icon {
+  margin-right: 0.5rem;
+}
+.job--card__button {
+  width: 100%;
+  height: 2.5rem;
+  background-color: #100d4c;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  margin-top: 1rem;
+  max-width: 300px;
+  align-self: center;
+}
+.job--card__button:hover {
+  opacity: 0.9;
+}
+.job--card__tags {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.job--card__tag {
+  background-color: #f3f3f3;
+  border: #333 solid 1px;
+  min-width: 75px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: 0.3s all;
+  padding: 0.25rem 0.75rem;
+}
+.job--card__tag:hover {
+  background-color: #e8e6e6;
+}

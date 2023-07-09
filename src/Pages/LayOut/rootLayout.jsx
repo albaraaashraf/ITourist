@@ -31,7 +31,7 @@ function RootLayout() {
         </AuthProvider>
       </UserProvider>
 
-      <TopScreenButton />
+      {showNavbarAndFooter && <TopScreenButton />}
 
       {showNavbarAndFooter && (
         <div className="footer__container">

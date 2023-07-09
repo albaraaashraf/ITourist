@@ -11,7 +11,7 @@ const CityCover = (props) => {
   const [cityImg, setCityImg] = useState([]);
 
   const { cityName } = useContext(CityContext);
-  const { countryId } = useContext(CityContext);
+
   const { theUser, signedUp } = useUser();
 
   const storedCityName = localStorage.getItem("searchedCityName");
@@ -27,12 +27,8 @@ const CityCover = (props) => {
   }
 
   async function manegeFavourite() {
-    const userRef = doc(
-      db,
-      `Users/${theUser.id}/Liked Cities/${cityName.toUpperCase()}`
-    );
-
-    const cityRef = doc(db, `City/${cityName.toUpperCase()}`);
+    const userRef = doc(db, `Users/${theUser.id}/Liked Cities/${cityName}`);
+    const cityRef = doc(db, `City/${cityName}`);
 
     let city,
       likedNum,
@@ -43,19 +39,24 @@ const CityCover = (props) => {
     if (check.exists()) {
       await getDoc(cityRef).then(async (snapshot) => {
         city = snapshot.data();
-        likedNum = city.liked - 1;
-        toursNum = city.tours;
+        likedNum = city.Liked - 1;
+        toursNum = city.Tours;
       });
 
       deleteDoc(userRef);
     } else {
-      await setDoc(userRef, { reference: `City/${cityName.toUpperCase()}` });
+      await setDoc(userRef, { reference: `City/${cityName}` });
 
       await getDoc(cityRef).then(async (snapshot) => {
         if (snapshot.exists()) {
           city = snapshot.data();
-          likedNum = city.liked + 1;
-          toursNum = city.tours;
+          if (city) {
+            likedNum = city.Liked + 1;
+            toursNum = city.Tours;
+          } else {
+            likedNum = 1;
+            toursNum = 0;
+          }
         } else {
           likedNum = 1;
           toursNum = 0;
@@ -63,10 +64,14 @@ const CityCover = (props) => {
       });
     }
 
-    await setDoc(cityRef, {
-      liked: likedNum,
-      tours: toursNum,
-    });
+    await setDoc(
+      cityRef,
+      {
+        Liked: likedNum,
+        Tours: toursNum,
+      },
+      { merge: true }
+    );
   }
 
   useEffect(() => {

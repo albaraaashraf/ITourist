@@ -53,7 +53,11 @@ const ReviewCard = ({ data }) => {
               {
                 <div className="review-container">
                   <div className="date">
-                    {data.review.createdAt.toDate().toString().split("GMT")[0]}{" "}
+                    {data.review.createdAt &&
+                      data.review.createdAt
+                        .toDate()
+                        .toString()
+                        .split("GMT")[0]}{" "}
                   </div>
                   <div className="theReview">{data.review.review}</div>
                 </div>

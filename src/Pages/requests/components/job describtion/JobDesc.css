@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.jobdesc-page {
+  padding: 2rem 5rem;
+}
+.jobdesc--title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  padding-bottom: 2rem;
+  margin-bottom: 0;
+  border-bottom: 2px solid #9c9c9c;
+}
+.jobdesc--description {
+  line-height: 3;
+  font-size: 1.25rem;
+  font-weight: 400;
+  padding: 2rem 0rem;
+  border-bottom: 2px solid #9c9c9c;
+}
+.jobdesc--tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: start;
+  padding: 2rem 0rem;
+  border-bottom: 2px solid #9c9c9c;
+}
+.jobdesc--tag {
+  border: 1px solid #9c9c9c;
+  border-radius: 25px;
+  padding: 0.25rem 2rem;
+  transition: 0.2s all;
+  margin-right: 2rem;
+}
+.jobdesc--tag:hover {
+  background-color: #d5d5d5;
+  cursor: pointer;
+}
+.jobdesc--details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 2rem 0rem;
+  border-bottom: 2px solid #9c9c9c;
+}
+.jobdesc--details__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  align-self: center;
+}
+.jobdesc--details__icon {
+  font-size: 2.5rem;
+  margin-right: 1rem;
+}
+.details--container__value {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.details--container__identifier {
+  font-size: 1.25rem;
+  font-weight: 200;
+  color: #9c9c9c;
+}
+.jobdesc--activity {
+  padding: 2rem 0rem;
+  border-bottom: 2px solid #9c9c9c;
+}
+.jobdesc--activity__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-bottom: 2rem;
+  margin-bottom: 0;
+}
+.jobdesc--activity__items__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  width: 100%;
+  padding: 1rem 0rem;
+}
+.send-proposal {
+  padding: 15px 40px;
+  border-radius: 15px;
+  border: none;
+  font-size: 20px;
+  background-color: #abf5ff;
+  margin: 20px 0px;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+.send-proposal:hover {
+  background-color: #9de8f2;
+}
+
+.img-container {
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.img-container img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+}

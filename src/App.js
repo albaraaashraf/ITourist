@@ -29,7 +29,7 @@ import Info from "./Pages/Profile/components/details/info/Info";
 import GalleryContainer from "./Pages/Profile/components/details/gallery/components/GalleryContainer/GalleryContainer";
 import Gallery from "./Pages/Profile/components/details/gallery/Gallery";
 import AddImages from "./Pages/Profile/components/details/gallery/components/AddImages/AddImages";
-
+import FavPlaces from "./Pages/Profile/components/favplaces/FavPlaces";
 // ContactUs page
 import ContactUs from "./Pages/Contact Us/contactUs";
 // About page
@@ -41,6 +41,10 @@ import SignUp from "./Pages/SignUp-SignIn/Pages/SignUp";
 import SignIn from "./Pages/SignUp-SignIn/Pages/SignIn";
 import SignInContent from "./Pages/SignUp-SignIn/Components/Main page/Containers/SignInContent";
 import RecoverPassword from "./Pages/SignUp-SignIn/Components/Main page/RecoverPassword";
+import CityProfileApp from "./Pages/cityProfile-Page/CityProfileApp";
+
+import Request from "./Pages/requests/Request";
+import JobDesc from "./Pages/requests/components/job describtion/JobDesc";
 
 import {
   faCalendar,
@@ -50,8 +54,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import RequestTourGuide from "./Pages/Places/Request Tour Guide/RequestTourGuide";
-import CityProfileApp from "./Pages/cityProfile-Page/CityProfileApp";
-import FavPlaces from "./Pages/Profile/components/favplaces/FavPlaces";
+import JobCard from "./Pages/requests/components/tour guide jobs/components/cards/JobCard";
+import JobLists from "./Pages/requests/components/tour guide jobs/JobLists";
 
 library.add(faEnvelope, faLock, faUser, faCalendar);
 
@@ -140,6 +144,11 @@ const router = createBrowserRouter(
           <Route path="AddImages" element={<AddImages />} />
         </Route>
         <Route path="Edit" element={<Edit />} />
+      </Route>
+      {/* <Route path="Requests" element={<Request />} /> */}
+      <Route path="Requests" element={<Request />}>
+        <Route index element={<JobLists />} />
+        <Route path="requesDetails" element={<JobDesc />} />
       </Route>
       <Route path="Us" element={<ContactUs />} />
       <Route path="About" element={<About />} />
