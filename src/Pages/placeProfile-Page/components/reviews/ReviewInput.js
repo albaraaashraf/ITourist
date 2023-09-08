@@ -33,24 +33,21 @@ export default function ReviewInput() {
     if (reviewRef.current.value === "") return;
 
     try {
-      let rev = [];
-      // reviewsData
-      //   && reviewsData.review? [
+      let rev;
+
+      rev = { review: reviewRef.current.value, createdAt: new Date() };
+
+      // if (reviewsData) {
+      //   if (reviewsData.review) {
+      //     rev = [
       //       ...reviewsData.review,
       //       { review: reviewRef.current.value, createdAt: new Date() },
-      //     ]
-      //   : [{ review: reviewRef.current.value, createdAt: new Date() }];
-
-      if (reviewsData) {
-        if (reviewsData.review) {
-          rev = [
-            ...reviewsData.review,
-            { review: reviewRef.current.value, createdAt: new Date() },
-          ];
-        }
-      } else {
-        rev = [{ review: reviewRef.current.value, createdAt: new Date() }];
-      }
+      //     ];
+      //   } else {
+      //   }
+      // } else {
+      //   rev = [{ review: reviewRef.current.value, createdAt: new Date() }];
+      // }
 
       await setDoc(
         PlaceRef,
@@ -96,13 +93,14 @@ export default function ReviewInput() {
     const unsubscribe = onSnapshot(PlaceRef, (snapshot) => {
       // console.log("placePPath in onSnapshot");
       // console.log(placePPath);
+      setReviewsData("snapshot.data()");
       setReviewsData(snapshot.data());
     });
 
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [storageData.id, storageUser.id]);
 
   return (
     <>

@@ -82,6 +82,15 @@
   }
 }
 
+/* larger screens */
+@media (max-width: 960px) {
+  .coverStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 /* large screens */
 @media (max-width: 768px) {
   .coverStyle {

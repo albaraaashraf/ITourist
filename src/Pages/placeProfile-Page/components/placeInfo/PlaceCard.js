@@ -41,13 +41,9 @@ const PlaceCard = () => {
         updated: serverTimestamp(),
       },
       { merge: true }
-    )
-      .then(() => {
-        console.log("added rate to place ref");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    ).catch((e) => {
+      console.log(e);
+    });
 
     await setDoc(
       userRef,
@@ -55,13 +51,9 @@ const PlaceCard = () => {
         Rate: newValue,
       },
       { merge: true }
-    )
-      .then(() => {
-        console.log("added rate to user ref");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    ).catch((e) => {
+      console.log(e);
+    });
   };
 
   function wishList() {
@@ -81,6 +73,36 @@ const PlaceCard = () => {
       });
   }
 
+  useEffect(() => {
+    const placeRate = `Places/${storageData.id}`;
+    const placeRateRef = doc(db, placeRate);
+
+    const rate = [1, 2, 3, 4, 5];
+    const ratePersisin = [0.0, 0.2, 0.4, 0.5, 0.7, 0.9];
+
+    const unsubscribe = onSnapshot(placeRateRef, (snapshot) => {
+      if (snapshot.exists) {
+        if (snapshot.data().Rate) {
+          setValue(snapshot.data().Rate);
+        } else {
+          let rateVal = rate[parseInt(Math.random() * rate.length)];
+
+          if (rateVal < 5) {
+            rateVal +=
+              +ratePersisin[parseInt(Math.random() * ratePersisin.length)];
+          }
+
+          setValue(rateVal);
+          setDoc(placeRateRef, { Rate: rateVal });
+        }
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [storageData.id]);
+
   // this check is detrmine to show the user rate or the place rate
   //// dependening on the singedup state
   useEffect(() => {
@@ -94,14 +116,11 @@ const PlaceCard = () => {
         if (snapshot.exists) {
           if (snapshot.data()) {
             if (snapshot.data().Rate) {
-              console.log("rate found and updated");
               setValue(snapshot.data().Rate);
             } else {
-              console.log("no rate yet");
               setValue(0);
             }
           } else {
-            console.log("no any data yet");
             setValue(0);
           }
         }
@@ -163,9 +182,11 @@ const PlaceCard = () => {
 
         <div id="info__par">
           <p>{storageData.info}</p>
-          <button className="review__button">
-            <a href="#revInput">Review this place</a>
-          </button>
+          {signedUp && (
+            <a href="#revInput">
+              <button className="review__button">Review this place</button>
+            </a>
+          )}
         </div>
       </div>
     </>

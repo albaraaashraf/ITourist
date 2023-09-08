@@ -13,7 +13,7 @@ import PlaceImageContext from "./Context/PlaceImageContext";
 // Layouts
 import RootLayout from "./Pages/LayOut/rootLayout";
 import NotFound from "./Pages/Not Found/NotFound";
-import Edit from "./Pages/Profile/Edit";
+import Edit from "./Pages/Profile/components/Edit/Edit";
 
 import { ShowNavbarAndFooterProvider } from "./Context/NavbarAndFooterContext";
 
@@ -25,11 +25,11 @@ import RequestTourGuide from "./Pages/Tour guide/Request Tour Guide/RequestTourG
 
 // profile page
 import Profile from "./Pages/Profile/Profile.jsx";
-import Info from "./Pages/Profile/details/Info";
-import FavPlaces from "./Pages/Profile/components/favplaces/FavPlaces";
-import GalleryContainer from "./Pages/Profile/details/GalleryContainer";
-import Gallery from "./Pages/Profile/details/Gallery";
-import AddImages from "./Pages/Profile/details/AddImages";
+////  profile Components
+import Info from "./Pages/Profile/components/details/info/Info";
+import GalleryContainer from "./Pages/Profile/components/details/gallery/components/GalleryContainer/GalleryContainer";
+import Gallery from "./Pages/Profile/components/details/gallery/Gallery";
+import AddImages from "./Pages/Profile/components/details/gallery/components/AddImages/AddImages";
 
 // ContactUs page
 import ContactUs from "./Pages/Contact Us/contactUs";
@@ -37,6 +37,7 @@ import ContactUs from "./Pages/Contact Us/contactUs";
 import About from "./Pages/About/About";
 //City Profile Page
 import CityProfileApp from "./Pages/cityProfile-Page/CityProfileApp";
+import FavPlaces from "./Pages/Profile/components/favplaces/FavPlaces";
 
 // SignUp page
 import SignUp from "./Pages/SignUp-SignIn/Pages/SignUp";

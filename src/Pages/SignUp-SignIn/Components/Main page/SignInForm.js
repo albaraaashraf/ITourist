@@ -105,7 +105,7 @@ function SignInForm() {
           />
         </div>
 
-        <button className="btn btn-sign-in" onClick={login} disabled={loading}>
+        <button className=" profile-img-btn" onClick={login} disabled={loading}>
           Sign In
         </button>
 

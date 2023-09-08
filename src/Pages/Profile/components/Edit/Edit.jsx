@@ -4,13 +4,13 @@ import { NavLink, useOutletContext } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
 
 // css
-import "../../Css/edit.css";
+import "./edit.css";
 
-import { useUser } from "../../Context/UserContext";
-import { db } from "../../firebase-config";
-import { useStorage } from "../../Context/StorageContext";
+import { useUser } from "../../../../Context/UserContext";
+import { db } from "../../../../firebase-config";
+import { useStorage } from "../../../../Context/StorageContext";
 
-import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
+import LoadingScreen from "../../../../components/LoadingScreen/LoadingScreen";
 
 function Edit() {
   const [loading, setLoading] = useState(false);

@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./Gallery.css";
 
-import { useUser } from "../../../Context/UserContext";
+import { useUser } from "../../../../../Context/UserContext";
 
 function Gallery() {
   // while rendring

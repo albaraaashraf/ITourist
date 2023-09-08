@@ -1,18 +1,16 @@
 import React from "react";
 
-import { useUser } from "../../Context/UserContext";
+import { useUser } from "../../../../Context/UserContext";
 
-// Css
-
-function CoverProflie(probs) {
+function CoverProflie() {
   const { theUser } = useUser();
 
   return (
     <>
       <div className="container-fluid px-2">
         <div className="container-fluid text-light overflow-hidden coverStyle">
-          <div className="row h-100 h-md-75 align-items-center ">
-            <div className="col col-md-6 d-flex flex-row justify-content-center align-items-center">
+          <div className="row h-100">
+            <div className="col col-lg-6 d-flex flex-row justify-content-center align-items-center">
               <div className="img-cover">
                 <img src={theUser && theUser.ProfileImg} alt="profile-img" />
               </div>

@@ -10,7 +10,6 @@ import ReviewCard from "./components/reviews/ReviewCard";
 import ReviewHeader from "./components/reviews/ReviewHeader";
 import SliderContainer from "./components/Slider/SliderContainer";
 import ReviewInput from "./components/reviews/ReviewInput";
-import CityDataContext from "../../Context/CityDataContext";
 
 import {
   collection,
@@ -37,7 +36,11 @@ function ProfilePlaceApp() {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       let rev = [];
       snapshot.docs.forEach((doc) => {
-        rev.push(doc.data());
+        if (doc.data().review) {
+          rev.push(doc.data());
+        } else {
+          console.log("no rev yet");
+        }
       });
 
       setDoc(palceRef, { numberOfReviews: rev.length }, { merge: true });
@@ -61,13 +64,15 @@ function ProfilePlaceApp() {
           <SliderContainer />
         </div>
         <div id="third__part">
-          <ReviewHeader length={reviews && reviews.length} />
+          <ReviewHeader
+            id={storageData.id}
+            length={reviews && reviews.length}
+          />
 
           <div>
             {reviews &&
               reviews.map((review, i) => {
-                // return <div> {review.reference} hi</div>;
-                return <ReviewCard review={review} key={i} />;
+                return <ReviewCard data={review} key={i} />;
               })}
           </div>
 
