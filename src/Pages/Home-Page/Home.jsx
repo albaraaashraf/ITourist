@@ -1,8 +1,8 @@
 // Components
 // import MainCard from "./Home-Components/mainPage/MainCard";
 // import MainImage from "./Home-Components/mainPage/MainImage";
-import Nearby from "./Home-Components/Popular/Nearby";
-import PopularPage from "./Home-Components/Nearby/nearbyPlaces/PopularPage";
+import Nearby from "./Home-Components/Nearby/Nearby";
+import PopularPage from "./Home-Components/Popular/Popular cities/PopularPage";
 import CategoryPage from "./Home-Components/Category/CategoryPage";
 
 //CSS
@@ -21,22 +21,7 @@ const Home = () => {
   const [cityName, setCityName] = useState();
   const [categoryLon, setCategoryLon] = useState();
   const [categoryLat, setCategoryLat] = useState();
-  const keysToRemove = [
-    // "storedCardData",
-    // "searchedCountryId",
-    // "searchedCityName",
-    // "searchedCityLat",
-    // "searchedCityLon",
-    // "searchedCityLat",
-    // "searchedCityId",
-    // "category",
-    // "popularPlaceClicked",
-    // "popularLat",
-    // "popularLon"
-  ]; // Array of keys to remove
-  keysToRemove.forEach((key) => {
-    localStorage.removeItem(key);
-  });
+
 
   return (
     <>

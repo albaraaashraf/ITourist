@@ -2,7 +2,7 @@ import'./NearbySlider.css'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import {  AiFillStar } from "react-icons/ai";
 import "./NearbySlider.css";
 import { useState, useEffect, useContext } from "react";
 import CityNameContext from '../../../../../Context/CityNameContext';
@@ -14,8 +14,11 @@ const NearbySlider = () => {
 const {setCityName}=useContext(CityNameContext);
 const{setCategoryLat}=useContext(CityNameContext);
 const{setCategoryLon}=useContext(CityNameContext);
-  // const lat=31.263665;
-  // const lon=32.310398;
+
+
+//getting the coordinates of the user 
+
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLat(position.coords.latitude);
@@ -24,9 +27,12 @@ const{setCategoryLon}=useContext(CityNameContext);
       setCategoryLon(position.coords.longitude);
     });
   }, [setCategoryLat,setCategoryLon]);
-  console.log("lat= "+lat + "  lon = "+ lon);
+
+
 localStorage.setItem('lat',lat);
 localStorage.setItem('lon',lon);
+
+//fetching the nearby places based on the user's location
 
   useEffect(() => {
     async function fetchNearbyHandler() {

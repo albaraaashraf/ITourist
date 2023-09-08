@@ -1,11 +1,9 @@
 import Slider from "react-slick";
 import classes from "./CityImageSlider.module.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useState, useContext, useEffect } from "react";
-import CityContext from "../../../Context/CityContext";
+import { useState, useEffect } from "react";
 const CityImageSlider = () => {
   const [unSplash, setUnSplash] = useState([]);
-  const { cityName } = useContext(CityContext);
   const storedCityName=localStorage.getItem('searchedCityName');
 
   useEffect(() => {
@@ -17,8 +15,6 @@ const CityImageSlider = () => {
 
         const data = await response.json();
         var urlsRawArray = data.results.map((result) => result.urls.raw);
-        console.log(urlsRawArray);
-        // var y = data.query.pages[0].thumbnail.source;
       } catch (error) {
         console.error("An error occurred:", error);
       }
@@ -27,6 +23,7 @@ const CityImageSlider = () => {
 
     fetchUnsplash();
   }, [storedCityName]);
+  
   const CustomPrevArrow = (props) => {
     const { onClick } = props;
     return (

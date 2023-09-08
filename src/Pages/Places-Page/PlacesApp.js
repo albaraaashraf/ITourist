@@ -87,9 +87,7 @@ function PlacesApp() {
         };
       });
       setAllData(transformedData);
-      console.log(transformedData);
-      // setRestaurantPlaces(transformedData);
-      // props.onShowRestaurant(transformedData);
+  
     }
     async function fetchCategoryPlaces() {
       const response = await fetch(
@@ -146,9 +144,7 @@ function PlacesApp() {
         };
       });
       setAllData(transformedData);
-      console.log(transformedData);
-      // setRestaurantPlaces(transformedData);
-      // props.onShowRestaurant(transformedData);
+   
     }
     if (storedCategory) {
       fetchCategoryPlaces();

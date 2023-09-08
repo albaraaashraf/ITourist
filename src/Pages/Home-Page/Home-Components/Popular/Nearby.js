@@ -1,15 +1,27 @@
 import "./Nearby.css";
-import NearbySlider from "./NearbyPlaces/NearbySlider";
+import { AiFillStar } from "react-icons/ai";
 
-const Nearby = () => {
+const Nearby = (props) => {
   return (
     <>
-      <div className="slick1__container">
-        <p className="popular__header">Nearby Places</p>
+      <div className="nearby__card">
+        <div className="nearbyCard__top">
+          <img className="nearbyImage" src={props.image} alt={props.name}></img>
+          <div className="nearbyData">
+            <p> {props.name}</p>
+            <p>3KM</p>
+            
+          </div>
+          <div className="nearbyFA">
+            <AiFillStar></AiFillStar>
+            <AiFillStar></AiFillStar>
+            <AiFillStar></AiFillStar>
+            <AiFillStar></AiFillStar>
 
-        <div className="slider__container">
-          <NearbySlider />
+          </div>
+
         </div>
+        
       </div>
     </>
   );

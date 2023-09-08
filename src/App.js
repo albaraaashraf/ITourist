@@ -21,12 +21,12 @@ import { ShowNavbarAndFooterProvider } from "./Context/NavbarAndFooterContext";
 import Home from "./Pages/Home-Page/Home";
 import PlaceProfileApp from "./Pages/placeProfile-Page/PorfilePlaceApp";
 import PlacesApp from "./Pages/Places-Page/PlacesApp";
+import RequestTourGuide from "./Pages/Tour guide/Request Tour Guide/RequestTourGuide";
 
 // profile page
 import Profile from "./Pages/Profile/Profile.jsx";
-////  profile Components
 import Info from "./Pages/Profile/details/Info";
-
+import FavPlaces from "./Pages/Profile/components/favplaces/FavPlaces";
 import GalleryContainer from "./Pages/Profile/details/GalleryContainer";
 import Gallery from "./Pages/Profile/details/Gallery";
 import AddImages from "./Pages/Profile/details/AddImages";
@@ -35,6 +35,8 @@ import AddImages from "./Pages/Profile/details/AddImages";
 import ContactUs from "./Pages/Contact Us/contactUs";
 // About page
 import About from "./Pages/About/About";
+//City Profile Page
+import CityProfileApp from "./Pages/cityProfile-Page/CityProfileApp";
 
 // SignUp page
 import SignUp from "./Pages/SignUp-SignIn/Pages/SignUp";
@@ -42,7 +44,7 @@ import SignUp from "./Pages/SignUp-SignIn/Pages/SignUp";
 import SignIn from "./Pages/SignUp-SignIn/Pages/SignIn";
 import SignInContent from "./Pages/SignUp-SignIn/Components/Main page/Containers/SignInContent";
 import RecoverPassword from "./Pages/SignUp-SignIn/Components/Main page/RecoverPassword";
-
+// Font Awsome Icons
 import {
   faCalendar,
   faEnvelope,
@@ -50,11 +52,10 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import RequestTourGuide from "./Pages/Places/Request Tour Guide/RequestTourGuide";
-import CityProfileApp from "./Pages/cityProfile-Page/CityProfileApp";
-import FavPlaces from "./Pages/Profile/components/favplaces/FavPlaces";
 
 library.add(faEnvelope, faLock, faUser, faCalendar);
+
+//function to scroll to top when the page is rendered
 
 export const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -65,7 +66,7 @@ export const ScrollToTop = () => {
 
   return null;
 };
-
+//Using React Router
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
@@ -157,6 +158,9 @@ const router = createBrowserRouter(
 );
 
 function App() {
+
+  //useState hooks to pass context through it in the application
+
   const [lon, setLon] = useState();
   const [lat, setLat] = useState();
   const [cityName, setCityName] = useState();
@@ -166,9 +170,11 @@ function App() {
   const [cityId, setCityId] = useState();
   const [placeImage, setPlaceImage] = useState();
   const [categoryClicked, setCategoryClicked] = useState();
-
+  
+// JSX to be rendered in the app file
   return (
     <>
+    
       <PlaceImageContext.Provider value={{ placeImage, setPlaceImage }}>
         <CityDataContext.Provider
           value={{ cardData, setCardData, categoryName, setCategoryName }}

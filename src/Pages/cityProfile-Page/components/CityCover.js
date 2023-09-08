@@ -11,7 +11,6 @@ const CityCover = (props) => {
   const [cityImg, setCityImg] = useState([]);
 
   const { cityName } = useContext(CityContext);
-  const { countryId } = useContext(CityContext);
   const { theUser, signedUp } = useUser();
 
   const storedCityName = localStorage.getItem("searchedCityName");

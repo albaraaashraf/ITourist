@@ -1,16 +1,31 @@
-.slick1__container{
+img{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-  }
-  .slick1__container .popular__header {
-    /* margin-top: 2rem; */
-    margin-bottom: 2rem;
-    color:#597A76;
-    font-weight: bold;
-    font-size: 24px;
-    margin-left: 3rem;
-    font-family: 'Open Sans', sans-serif;
+}
+.nearby__card{
+    background-color: #dafffb; 
+    width: 20rem;
+    margin: 0.5rem;
+    
 
-  }
+}
+.nearbyCard__top{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+border: 1px solid #072c3d;
+padding: 1rem;
+color: #072c3d;
+font-size: 1rem;
+font-weight:normal;
+}
+
+
+
+.nearbyData{
+    display: flex;
+    margin-top:1rem;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
